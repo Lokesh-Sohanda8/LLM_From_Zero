@@ -108,4 +108,4 @@ Free to use and adapt for your own teaching material.
 
 ---
 
-Built by [@lokeshsohanda](https://github.com/Lokesh-Sohanda8)) for teaching LLM fundamentals, one diagram at a time.
+Built by [@lokeshsohanda](https://github.com/lokeshsohanda) for teaching LLM fundamentals, one diagram at a time.
