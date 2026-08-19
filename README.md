@@ -2,7 +2,7 @@
 
 A single-scroll, dark-themed teaching page that walks through **31 lessons** — from "what is machine learning?" all the way to a complete modern LLM application (RAG, tools, agents, memory). Built for teaching a student the concepts behind Large Language Models from the ground up, one idea and one diagram at a time.
 
-**[→ View the live page](#)** *(replace with your GitHub Pages / hosting link once deployed)*
+**[→ View the live page](https://lokesh-sohanda8.github.io/LLM_From_Zero/)** *(replace with your GitHub Pages / hosting link once deployed)*
 
 ![status](https://img.shields.io/badge/status-teaching%20material-5b9dff)
 ![lessons](https://img.shields.io/badge/lessons-31-a78bfa)
