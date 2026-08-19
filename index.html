@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM, From Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="progress"></div>
+<button id="navtoggle">&#9776; Contents</button>
+<nav id="navrail">
+  <div class="navrail-title">LLM, From Zero</div>
+  <a href="#l01" class="nav-item"><span class="nav-num">01</span><span class="nav-title">The Family Tree of an LLM</span></a>
+<a href="#l02" class="nav-item"><span class="nav-num">02</span><span class="nav-title">What Is Machine Learning?</span></a>
+<a href="#l03" class="nav-item"><span class="nav-num">03</span><span class="nav-title">Neural Networks: Stacking Simple Math</span></a>
+<a href="#l04" class="nav-item"><span class="nav-num">04</span><span class="nav-title">How a Network Actually Learns</span></a>
+<a href="#l05" class="nav-item"><span class="nav-num">05</span><span class="nav-title">NLP: Teaching Machines to Read</span></a>
+<a href="#l06" class="nav-item"><span class="nav-num">06</span><span class="nav-title">Tokenization: Chopping Text into Pieces</span></a>
+<a href="#l07" class="nav-item"><span class="nav-num">07</span><span class="nav-title">From Tokens to Token IDs</span></a>
+<a href="#l08" class="nav-item"><span class="nav-num">08</span><span class="nav-title">Embeddings: Giving Numbers Meaning</span></a>
+<a href="#l09" class="nav-item"><span class="nav-num">09</span><span class="nav-title">Semantic Vector Space</span></a>
+<a href="#l10" class="nav-item"><span class="nav-num">10</span><span class="nav-title">Positional Information: Word Order Matters</span></a>
+<a href="#l11" class="nav-item"><span class="nav-num">11</span><span class="nav-title">Why Attention? Context Changes Meaning</span></a>
+<a href="#l12" class="nav-item"><span class="nav-num">12</span><span class="nav-title">Self-Attention: Every Token Looks at Every Token</span></a>
+<a href="#l13" class="nav-item"><span class="nav-num">13</span><span class="nav-title">Query, Key, Value &mdash; The Three Roles</span></a>
+<a href="#l14" class="nav-item"><span class="nav-num">14</span><span class="nav-title">The Attention Formula, Step by Step</span></a>
+<a href="#l15" class="nav-item"><span class="nav-num">15</span><span class="nav-title">Multi-Head Attention: Many Perspectives at Once</span></a>
+<a href="#l16" class="nav-item"><span class="nav-num">16</span><span class="nav-title">The Feed-Forward Network</span></a>
+<a href="#l17" class="nav-item"><span class="nav-num">17</span><span class="nav-title">Residual Connections: Don&rsquo;t Lose the Original</span></a>
+<a href="#l18" class="nav-item"><span class="nav-num">18</span><span class="nav-title">One Transformer Block, Assembled</span></a>
+<a href="#l19" class="nav-item"><span class="nav-num">19</span><span class="nav-title">The Transformer Stack</span></a>
+<a href="#l20" class="nav-item"><span class="nav-num">20</span><span class="nav-title">Encoder vs. Decoder</span></a>
+<a href="#l21" class="nav-item"><span class="nav-num">21</span><span class="nav-title">Causal (Masked) Attention</span></a>
+<a href="#l22" class="nav-item"><span class="nav-num">22</span><span class="nav-title">The Complete LLM Pipeline</span></a>
+<a href="#l23" class="nav-item"><span class="nav-num">23</span><span class="nav-title">Next-Token Prediction</span></a>
+<a href="#l24" class="nav-item"><span class="nav-num">24</span><span class="nav-title">Autoregressive Generation</span></a>
+<a href="#l25" class="nav-item"><span class="nav-num">25</span><span class="nav-title">Training an LLM</span></a>
+<a href="#l26" class="nav-item"><span class="nav-num">26</span><span class="nav-title">Pretraining &rarr; Fine-Tuning &rarr; Alignment</span></a>
+<a href="#l27" class="nav-item"><span class="nav-num">27</span><span class="nav-title">Training vs. Inference</span></a>
+<a href="#l28" class="nav-item"><span class="nav-num">28</span><span class="nav-title">RAG: Retrieval-Augmented Generation</span></a>
+<a href="#l29" class="nav-item"><span class="nav-num">29</span><span class="nav-title">Tool / Function Calling</span></a>
+<a href="#l30" class="nav-item"><span class="nav-num">30</span><span class="nav-title">AI Agent: A Loop, Not Just an Answer</span></a>
+<a href="#lmaster" class="nav-item"><span class="nav-num">MASTER</span><span class="nav-title">The Complete Modern LLM Application</span></a>
+</nav>
+<main>
+  <section class="hero">
+    <div class="hero-eyebrow">A Teaching Journey</div>
+    <h1>LLM, From <span class="accent">Zero</span>.</h1>
+    <p class="hero-sub">From "what is machine learning" to a full modern AI application &mdash; 31 short lessons, each one diagram and one idea. Follow the numbers in order; every lesson builds on the one before it.</p>
+    <div class="hero-meta">
+      <span><b>31</b> lessons</span>
+      <span><b>01 &rarr; MASTER</b> sequence</span>
+      <span><b>~15 min</b> to read straight through</span>
+    </div>
+  </section>
+
+  
+    <section class="lesson" id="l01">
+      <div class="lesson-eyebrow">Lesson 01</div>
+      <h2 class="lesson-title">The Family Tree of an LLM</h2>
+      <p class="lesson-thesis">An LLM isn&rsquo;t one invention &mdash; it&rsquo;s the newest ring in a decades-old tree of research, each ring narrowing the focus of the one before it.</p>
+      
+<div class="diagram hierarchy-wrap">
+  <div class="ring ring-1"><span class="ring-label">Artificial Intelligence <em>— machines that act smart</em></span>
+    <div class="ring ring-2"><span class="ring-label">Machine Learning <em>— learns from data</em></span>
+      <div class="ring ring-3"><span class="ring-label">Deep Learning <em>— learns with neural networks</em></span>
+        <div class="ring ring-4"><span class="ring-label">NLP <em>— understands language</em></span>
+          <div class="ring ring-5"><span class="ring-label">Transformers <em>— attention-based architecture</em></span>
+            <div class="ring ring-6">LLM<em>you are here</em></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="lesson-body">
+        <p class="explain">Every ring here is a specialization of the ring around it. <strong>AI</strong> is the whole field of making machines behave intelligently. <strong>Machine Learning</strong> is the part of AI that learns patterns from data instead of following hand-written rules. <strong>Deep Learning</strong> is ML done with layered neural networks. <strong>NLP</strong> applies deep learning to language specifically. <strong>Transformers</strong> are the architecture that made modern NLP possible. And an <strong>LLM</strong> is simply a very large Transformer, trained on a huge amount of text.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a set of Russian nesting dolls &mdash; you can&rsquo;t understand the smallest doll without knowing it lives inside all the bigger ones.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l02">
+      <div class="lesson-eyebrow">Lesson 02</div>
+      <h2 class="lesson-title">What Is Machine Learning?</h2>
+      <p class="lesson-thesis">Instead of programming exact rules, we show the machine examples &mdash; and let it work out the pattern itself.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Training Data</span><span class="node-sub">past examples</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Features</span><span class="node-sub">the useful signals</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">ML Model</span><span class="node-sub">guesses a rule</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Prediction</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg><span class="arrow-label">measure</span></div>
+<div class="node kind-red"><span class="node-label">Error</span><span class="node-sub">how wrong it was</span></div>
+</div><div class="loop-chip">&#8635; repeats thousands of times, adjusting the model a little each round</div>
+      <div class="lesson-body">
+        <p class="explain">A machine learning model starts out knowing nothing. You show it data, it makes a guess, you tell it how wrong the guess was (the <strong>error</strong>), and it nudges its internal numbers to be a little less wrong next time. Do this enough times on enough examples, and the model converges on a rule that generalizes to data it has never seen.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> teaching someone to throw darts blindfolded &mdash; they throw, you tell them &lsquo;too far left,&rsquo; they adjust, and over hundreds of throws they get accurate without ever seeing the board.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l03">
+      <div class="lesson-eyebrow">Lesson 03</div>
+      <h2 class="lesson-title">Neural Networks: Stacking Simple Math</h2>
+      <p class="lesson-thesis">A neural network is just several simple transformations stacked on top of each other, layer by layer.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Input</span><span class="node-sub">raw numbers</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Hidden Layer 1</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Hidden Layer 2</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Hidden Layer 3</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">the answer</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">Each layer takes the numbers from the layer before it, multiplies them by learned weights, adds a bias, and passes the result through a small non-linear function. No single layer is smart on its own &mdash; but stack enough of them and the network can approximate extremely complex functions, like &lsquo;is this a cat photo&rsquo; or &lsquo;what word comes next.&rsquo;</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an assembly line &mdash; each station does one small, simple operation, but after enough stations the raw material has become a finished product.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l04">
+      <div class="lesson-eyebrow">Lesson 04</div>
+      <h2 class="lesson-title">How a Network Actually Learns</h2>
+      <p class="lesson-thesis">Training is a loop: guess, compare, measure how wrong, then fix the weights that caused the mistake.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Input</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Neural Network</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Prediction</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Actual Answer</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-red"><span class="node-label">Loss</span><span class="node-sub">the gap between them</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Backpropagation</span><span class="node-sub">trace blame backward</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Update Weights</span></div>
+</div><div class="loop-chip">&#8635; update, then run the next batch of data through again</div>
+      <div class="lesson-body">
+        <p class="explain"><strong>Backpropagation</strong> is the key idea: once we know the loss (how wrong the final prediction was), we can mathematically trace back through every layer to figure out exactly how much each individual weight contributed to that error &mdash; and nudge each one in the direction that reduces it.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a group project post-mortem &mdash; after a bad result, you trace back through every decision to see who contributed how much to the mistake, so each person knows exactly what to adjust next time.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l05">
+      <div class="lesson-eyebrow">Lesson 05</div>
+      <h2 class="lesson-title">NLP: Teaching Machines to Read</h2>
+      <p class="lesson-thesis">Natural Language Processing is the pipeline that turns messy human language into something a model can compute on.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Human Language</span><span class="node-sub">spoken / written</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Text</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Tokenization</span><span class="node-sub">chop into pieces</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Numerical Representation</span><span class="node-sub">pieces &amp;rarr; numbers</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Language Model</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Useful Output</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">Computers only understand numbers, but language is made of words, grammar, and context. NLP is the whole discipline of bridging that gap &mdash; breaking language into pieces a model can digest, turning those pieces into numbers, and using a model to turn those numbers back into something useful: a translation, an answer, a summary.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a translator standing between two people who speak entirely different languages &mdash; one who speaks &lsquo;words&rsquo; and one who only speaks &lsquo;numbers.&rsquo;</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l06">
+      <div class="lesson-eyebrow">Lesson 06</div>
+      <h2 class="lesson-title">Tokenization: Chopping Text into Pieces</h2>
+      <p class="lesson-thesis">Before a model can process text, it has to be split into small, consistent chunks called tokens.</p>
+      <div class="diagram tokenize-wrap">
+      <div class="sentence-box">&ldquo;I love artificial intelligence&rdquo;</div>
+      <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg><span class="arrow-label">tokenizer</span></div>
+      <div class="token-row">
+        <span class="token">I</span><span class="token">love</span><span class="token">art</span><span class="token">ificial</span><span class="token">intelligence</span>
+      </div>
+    </div>
+      <div class="lesson-body">
+        <p class="explain">A tokenizer doesn&rsquo;t always split on whole words &mdash; common words often stay whole, while rare or long words get chopped into familiar sub-pieces (like <em>art</em> + <em>ificial</em>). This lets the model represent literally any word, even ones it has never seen, using a fixed, manageable vocabulary of pieces.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> cutting a sentence into LEGO bricks &mdash; common shapes stay as one big brick, unusual shapes get broken into several small bricks the model already recognizes.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l07">
+      <div class="lesson-eyebrow">Lesson 07</div>
+      <h2 class="lesson-title">From Tokens to Token IDs</h2>
+      <p class="lesson-thesis">Every token in the model&rsquo;s vocabulary has a fixed integer ID &mdash; a lookup, nothing more.</p>
+      <div class="diagram tokenid-wrap">
+      <div class="idmap-row"><span class="token">cat</span><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div><span class="idbox">4021</span></div>
+      <div class="idmap-row"><span class="token">dog</span><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div><span class="idbox">4022</span></div>
+      <div class="idmap-row"><span class="token">runs</span><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div><span class="idbox">8710</span></div>
+    </div>
+      <div class="lesson-body">
+        <p class="explain">The model&rsquo;s vocabulary (often 50,000&ndash;150,000 tokens) is just a giant lookup table decided once, before training. &ldquo;cat&rdquo; is always ID 4021 for that model. This turns text into a simple list of integers &mdash; the only format a neural network actually understands.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a coat-check counter &mdash; you hand in your word, you get back a numbered ticket, and that number is all the system needs to remember what you handed in.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l08">
+      <div class="lesson-eyebrow">Lesson 08</div>
+      <h2 class="lesson-title">Embeddings: Giving Numbers Meaning</h2>
+      <p class="lesson-thesis">A token ID alone carries no meaning &mdash; embeddings convert it into a rich vector that captures meaning.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Token ID</span><span class="node-sub">e.g. 4021</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Embedding Layer</span><span class="node-sub">learned lookup table</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">High-Dim Vector</span><span class="node-sub">e.g. 768 numbers</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Semantic Representation</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">ID 4021 tells the model nothing about what &ldquo;cat&rdquo; means &mdash; it&rsquo;s an arbitrary label. The embedding layer maps that ID to a vector of hundreds of numbers, learned during training so that words with related meanings end up with similar vectors. This is where a token stops being a symbol and starts being a point in &lsquo;meaning space.&rsquo;</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> translating a word into GPS coordinates on a map of meaning &mdash; the number itself looks arbitrary, but its position relative to other words is not.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l09">
+      <div class="lesson-eyebrow">Lesson 09</div>
+      <h2 class="lesson-title">Semantic Vector Space</h2>
+      <p class="lesson-thesis">Words with related meaning land near each other in vector space &mdash; distance encodes similarity.</p>
+      
+<div class="diagram scatter-wrap">
+  <div class="scatter-box">
+    <div class="cluster cluster-a"><span class="cluster-label">animals</span>
+      <span class="dot dot-a" style="top:28%;left:22%">cat</span>
+      <span class="dot dot-a" style="top:44%;left:34%">dog</span>
+      <span class="dot dot-a" style="top:20%;left:40%">wolf</span>
+    </div>
+    <div class="cluster cluster-b"><span class="cluster-label">vehicles</span>
+      <span class="dot dot-b" style="top:68%;left:70%">car</span>
+      <span class="dot dot-b" style="top:80%;left:58%">truck</span>
+    </div>
+  </div>
+</div>
+
+      <div class="lesson-body">
+        <p class="explain">Plot every word&rsquo;s embedding vector (simplified here to 2 dimensions) and a pattern appears: <strong>cat</strong>, <strong>dog</strong>, and <strong>wolf</strong> cluster together, far from <strong>car</strong> and <strong>truck</strong>, which cluster together too. Nobody told the model animals and vehicles are different categories &mdash; it discovered that structure purely from how these words are used in text.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a well-organized library where books get shelved by topic automatically &mdash; you never told the librarian &lsquo;animals go together,&rsquo; but that&rsquo;s where you find them.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l10">
+      <div class="lesson-eyebrow">Lesson 10</div>
+      <h2 class="lesson-title">Positional Information: Word Order Matters</h2>
+      <p class="lesson-thesis">&ldquo;Dog bites man&rdquo; and &ldquo;man bites dog&rdquo; use the same words &mdash; order changes everything.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">The</span><span class="node-sub">+ pos 1</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">dog</span><span class="node-sub">+ pos 2</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">chased</span><span class="node-sub">+ pos 3</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">the</span><span class="node-sub">+ pos 4</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">cat</span><span class="node-sub">+ pos 5</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">Embeddings alone tell the model <em>what</em> each word means, but not <em>where</em> it sits in the sentence &mdash; and a Transformer looks at all tokens at once, not in reading order. So a positional signal is mathematically added to every token&rsquo;s embedding, letting the model tell &ldquo;dog chased cat&rdquo; apart from &ldquo;cat chased dog.&rdquo;</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> stamping every word with a timestamp before throwing all the words into a bag &mdash; you can dump them out in any order and still reconstruct the original sentence.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l11">
+      <div class="lesson-eyebrow">Lesson 11</div>
+      <h2 class="lesson-title">Why Attention? Context Changes Meaning</h2>
+      <p class="lesson-thesis">The word &ldquo;it&rdquo; is meaningless on its own &mdash; its meaning depends entirely on the rest of the sentence.</p>
+      
+<div class="diagram disambig-wrap">
+  <p class="disambig-sentence">The <span class="hl-a">animal</span> didn&rsquo;t cross the <span class="hl-b">road</span> because <span class="hl-c">it</span> was too <span class="hl-d">tired</span>.</p>
+  <div class="disambig-answers">
+    <div class="pill pill-yes">&ldquo;it&rdquo; &rarr; animal &nbsp;&#10003;</div>
+    <div class="pill pill-no">&ldquo;it&rdquo; &rarr; road &nbsp;&#10007;</div>
+  </div>
+</div>
+
+      <div class="lesson-body">
+        <p class="explain">A model reading this sentence has to figure out that &ldquo;it&rdquo; refers to the <strong>animal</strong>, not the <strong>road</strong> &mdash; because &ldquo;tired&rdquo; makes sense for a living thing, not a road. This kind of reasoning requires every word to be able to look at every other word and weigh how relevant it is. That mechanism is called <strong>attention</strong>, and it&rsquo;s the single most important idea behind modern LLMs.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a detective re-reading every earlier clue in a story before deciding what a pronoun really refers to.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l12">
+      <div class="lesson-eyebrow">Lesson 12</div>
+      <h2 class="lesson-title">Self-Attention: Every Token Looks at Every Token</h2>
+      <p class="lesson-thesis">Self-attention lets each token gather context from every other token in the sequence, weighted by relevance.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">All Token Reps</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Query</span><span class="node-sub">what am I looking for?</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Keys</span><span class="node-sub">what do others offer?</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Attention Scores</span><span class="node-sub">relevance</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Attention Weights</span><span class="node-sub">normalized</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Context-Aware Output</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">For every token, the model asks a question (Query), compares it against what every other token offers (Keys), and scores how relevant each one is. Those scores become weights, and the token&rsquo;s new representation becomes a weighted blend of all the other tokens &mdash; now &lsquo;aware&rsquo; of its context instead of standing alone.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a group discussion where, before speaking, everyone briefly checks in with everyone else in the room to see whose input is most relevant to the current topic.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l13">
+      <div class="lesson-eyebrow">Lesson 13</div>
+      <h2 class="lesson-title">Query, Key, Value &mdash; The Three Roles</h2>
+      <p class="lesson-thesis">Query asks &ldquo;what am I looking for,&rdquo; Key answers &ldquo;here&rsquo;s what I contain,&rdquo; Value carries the actual content.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Input Representation</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Query (Q)</span><span class="node-sub">the question</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Key (K)</span><span class="node-sub">the label</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Q &amp;times; K</span><span class="node-sub">match score</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Softmax</span><span class="node-sub">turn into weights</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Weighted Values</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Attention Output</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">Every token is projected into three different vectors using three separate learned weight matrices. The <strong>Query</strong> represents what this token is searching for. The <strong>Key</strong> represents what each token has to offer, and matching Q against K produces relevance scores. Those scores are used to blend the <strong>Values</strong> &mdash; the actual content each token carries.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a library search: your <em>Query</em> is your search terms, every book&rsquo;s <em>Key</em> is its catalog tags, and once you find good matches, the <em>Value</em> is the actual book content you walk away with.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l14">
+      <div class="lesson-eyebrow">Lesson 14</div>
+      <h2 class="lesson-title">The Attention Formula, Step by Step</h2>
+      <p class="lesson-thesis">Behind the diagrams is one compact formula &mdash; here&rsquo;s exactly what each piece does.</p>
+      <div class="diagram formula-wrap">
+      <div class="formula">Attention(Q,K,V) = softmax( QK<sup>T</sup> / &radic;d<sub>k</sub> ) V</div>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Q &amp;times; Kᵀ</span><span class="node-sub">similarity scores</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">&amp;divide; &amp;radic;dₖ</span><span class="node-sub">keep values stable</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Softmax</span><span class="node-sub">turn into probabilities</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">&amp;times; V</span><span class="node-sub">blend the values</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Attention Output</span></div>
+</div>
+    </div>
+      <div class="lesson-body">
+        <p class="explain"><strong>QK<sup>T</sup></strong> multiplies queries against keys to get raw similarity scores. Dividing by <strong>&radic;d<sub>k</sub></strong> (the square root of the key dimension) simply keeps those numbers from growing too large as vectors get bigger. <strong>Softmax</strong> turns the scores into a clean probability distribution that sums to 1. Multiplying by <strong>V</strong> then blends the actual content according to those probabilities.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a recipe with exactly four steps &mdash; each one boring on its own, but skip any single step and the whole dish fails.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l15">
+      <div class="lesson-eyebrow">Lesson 15</div>
+      <h2 class="lesson-title">Multi-Head Attention: Many Perspectives at Once</h2>
+      <p class="lesson-thesis">Instead of paying attention one way, the model runs several attention &lsquo;heads&rsquo; in parallel, each free to learn a different kind of relationship.</p>
+      <div class="diagram flow-row branch-wrap">
+      <div class="node "><span class="node-label">Input</span></div>
+      <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+      <div class="branch-group"><div class="branch-col"><div class="node kind-violet"><span class="node-label">Head 1</span><span class="node-sub">e.g. grammar</span></div></div><div class="branch-col"><div class="node kind-violet"><span class="node-label">Head 2</span><span class="node-sub">e.g. topic</span></div></div><div class="branch-col"><div class="node kind-violet"><span class="node-label">Head 3</span><span class="node-sub">e.g. tone</span></div></div><div class="branch-col"><div class="node kind-violet"><span class="node-label">Head 4</span><span class="node-sub">e.g. position</span></div></div></div>
+      <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+      <div class="node "><span class="node-label">Concatenate</span></div><div class="node "><span class="node-label">Linear Projection</span></div><div class="node kind-green"><span class="node-label">Multi-Head Output</span></div>
+    </div>
+      <div class="lesson-body">
+        <p class="explain">One attention head might learn to track grammatical structure, another might track which pronoun refers to which noun, another might track topic. Running several heads in parallel &mdash; then concatenating and projecting their outputs back down &mdash; lets the model capture many kinds of relationships simultaneously instead of being forced to pick just one.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a panel of specialists reviewing the same document at once &mdash; a grammar expert, a fact-checker, a tone reader &mdash; then combining all their notes into one final review.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l16">
+      <div class="lesson-eyebrow">Lesson 16</div>
+      <h2 class="lesson-title">The Feed-Forward Network</h2>
+      <p class="lesson-thesis">After attention mixes information between tokens, the feed-forward network processes each token individually to refine it.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Attention Output</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Linear Layer</span><span class="node-sub">expand</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Activation</span><span class="node-sub">add non-linearity</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Linear Layer</span><span class="node-sub">compress back</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">FFN Output</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">Attention is about tokens talking to each other; the FFN is the opposite &mdash; it takes each token&rsquo;s (now context-aware) representation and pushes it through its own small neural network, independently of every other token, to further refine what it &lsquo;knows.&rsquo; This combination of &lsquo;mix, then think&rsquo; repeats throughout the whole model.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a team meeting (attention, everyone shares notes) followed by quiet, independent desk work (FFN, each person processes what they just heard on their own).</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l17">
+      <div class="lesson-eyebrow">Lesson 17</div>
+      <h2 class="lesson-title">Residual Connections: Don&rsquo;t Lose the Original</h2>
+      <p class="lesson-thesis">A shortcut path carries the original input forward so it never gets lost &mdash; only added to.</p>
+      <div class="diagram residual-wrap">
+      <div class="residual-main">
+        <div class="node "><span class="node-label">Input</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div><div class="node kind-violet"><span class="node-label">Self-Attention</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div><div class="node kind-amber"><span class="node-label">Add + Residual</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div><div class="node kind-green"><span class="node-label">Updated Representation</span></div>
+      </div>
+      <div class="residual-skip">&#8618; the original Input is carried straight through and added back in, not replaced</div>
+    </div>
+      <div class="lesson-body">
+        <p class="explain">Instead of letting a layer completely overwrite a token&rsquo;s representation, the layer&rsquo;s output is <em>added to</em> the original input via a shortcut connection. This means each layer only has to learn what to <em>change</em>, not how to reconstruct everything from scratch &mdash; which makes very deep networks (dozens of stacked layers) far easier to train.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> editing a document with tracked changes instead of retyping it from memory &mdash; you keep the original text and only layer your edits on top.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l18">
+      <div class="lesson-eyebrow">Lesson 18</div>
+      <h2 class="lesson-title">One Transformer Block, Assembled</h2>
+      <p class="lesson-thesis">Attention, then a feed-forward network, each wrapped in normalization and a residual connection &mdash; this is the repeating unit of every LLM.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Input</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Multi-Head Self-Attention</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Add + Norm</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Feed Forward Network</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Add + Norm</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Output</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">This is where every idea from the last few lessons comes together into one reusable unit: tokens exchange context through <strong>multi-head attention</strong>, get stabilized and combined with their original signal (<strong>add + norm</strong>), get individually refined by the <strong>FFN</strong>, and get stabilized again. This exact block is what actually gets stacked to build the full model.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> one lap on a factory conveyor belt &mdash; the product goes through the same two stations (mix, then refine) with a quality check after each one, and the whole belt just loops this lap over and over.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l19">
+      <div class="lesson-eyebrow">Lesson 19</div>
+      <h2 class="lesson-title">The Transformer Stack</h2>
+      <p class="lesson-thesis">A real LLM isn&rsquo;t one block &mdash; it&rsquo;s dozens of identical blocks, stacked, each refining the representation a little further.</p>
+      <div class="diagram flow-col">
+<div class="node "><span class="node-label">Token + Position Embeddings</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Transformer Block 1</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Transformer Block 2</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Transformer Block 3</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-ghost"><span class="node-label">&amp;#8942;</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Transformer Block N</span><span class="node-sub">N can be 12, 32, 96+</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Contextual Representation</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">GPT-3 has 96 of these blocks stacked; smaller models might have 12. Each block takes the previous block&rsquo;s output and refines it a bit further &mdash; early blocks tend to capture simple patterns like grammar, while later blocks capture more abstract meaning and reasoning. Depth is one of the main reasons scale helps LLMs get smarter.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> sharpening a pencil &mdash; each pass of the blade removes a little more wood, and it takes many passes before you get a fine point.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l20">
+      <div class="lesson-eyebrow">Lesson 20</div>
+      <h2 class="lesson-title">Encoder vs. Decoder</h2>
+      <p class="lesson-thesis">Transformers come in two flavors, depending on whether the goal is to understand text or to generate it.</p>
+      <div class="diagram flow-row branch-wrap">
+      <div class="node "><span class="node-label">Transformer</span></div>
+      <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+      <div class="branch-group"><div class="branch-col"><div class="node kind-violet"><span class="node-label">Encoder</span><span class="node-sub">Understand / Represent&lt;br&gt;&lt;em&gt;e.g. BERT&lt;/em&gt;</span></div></div><div class="branch-col"><div class="node kind-amber"><span class="node-label">Decoder</span><span class="node-sub">Generate Tokens&lt;br&gt;&lt;em&gt;e.g. GPT&lt;/em&gt;</span></div></div></div>
+      <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+      
+    </div>
+      <div class="lesson-body">
+        <p class="explain">An <strong>encoder</strong> looks at the whole input at once and builds a rich representation of it &mdash; good for classification, search, and understanding tasks. A <strong>decoder</strong> generates text one token at a time, only looking backward at what it has already produced &mdash; good for writing and conversation. Most modern chat-style LLMs (GPT, Claude, Llama) are decoder-only.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an editor who reads an entire manuscript before summarizing it (encoder) versus a novelist writing one sentence at a time, never allowed to peek at pages they haven&rsquo;t written yet (decoder).</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l21">
+      <div class="lesson-eyebrow">Lesson 21</div>
+      <h2 class="lesson-title">Causal (Masked) Attention</h2>
+      <p class="lesson-thesis">A GPT-style decoder is only allowed to look at the past &mdash; never at tokens it hasn&rsquo;t generated yet.</p>
+      
+<div class="diagram mask-wrap">
+  <div class="mask-collabels"><div class="mask-corner"></div><div class="mask-collabel">I</div><div class="mask-collabel">love</div><div class="mask-collabel">AI</div><div class="mask-collabel">because</div></div>
+  <div class="mask-row"><div class="mask-rowlabel">I</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-closed">&#128274;</div><div class="mask-cell mask-closed">&#128274;</div><div class="mask-cell mask-closed">&#128274;</div></div><div class="mask-row"><div class="mask-rowlabel">love</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-closed">&#128274;</div><div class="mask-cell mask-closed">&#128274;</div></div><div class="mask-row"><div class="mask-rowlabel">AI</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-closed">&#128274;</div></div><div class="mask-row"><div class="mask-rowlabel">because</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-open">&#10003;</div><div class="mask-cell mask-open">&#10003;</div></div>
+  <div class="mask-caption">rows = the token &ldquo;asking,&rdquo; columns = the token being looked at &mdash; &#10003; = allowed, &#128274; = blocked (future)</div>
+</div>
+
+      <div class="lesson-body">
+        <p class="explain">If the model could peek at future tokens while learning to predict them, it would be cheating &mdash; and useless at generation time, since future tokens don&rsquo;t exist yet when you&rsquo;re writing them. The <strong>causal mask</strong> forces each token to attend only to itself and everything before it, which keeps training and real-world generation consistent.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> taking a closed-book exam one question at a time &mdash; you can use everything you&rsquo;ve already answered, but the next question stays covered up until it&rsquo;s your turn.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l22">
+      <div class="lesson-eyebrow">Lesson 22</div>
+      <h2 class="lesson-title">The Complete LLM Pipeline</h2>
+      <p class="lesson-thesis">Every idea so far assembles into one path: a prompt goes in, a next token comes out.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">User Prompt</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Tokenizer</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Token IDs</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Embeddings + Position</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Transformer Stack</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Logits</span><span class="node-sub">raw scores</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Probabilities</span><span class="node-sub">softmax</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Select Next Token</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Generated Text</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">This is the entire forward pass of an LLM in one line: text is tokenized, tokens become embeddings enriched with position, the Transformer stack processes everything into a contextual representation, and a final layer turns that into a probability over every possible next token. One token is chosen, and the text grows by one word.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a single, well-rehearsed assembly line &mdash; every station you learned about in earlier lessons is really just one stage of this one continuous process.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l23">
+      <div class="lesson-eyebrow">Lesson 23</div>
+      <h2 class="lesson-title">Next-Token Prediction</h2>
+      <p class="lesson-thesis">An LLM doesn&rsquo;t know the &lsquo;right&rsquo; next word &mdash; it produces a probability for every word in its vocabulary.</p>
+      
+<div class="diagram prob-wrap">
+  <div class="prompt-chip">&ldquo;The sky is &hellip;&rdquo;</div>
+  <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg><span class="arrow-label">LLM</span></div>
+  <div class="prob-bars"><div class="prob-row"><span class="prob-label">blue</span><div class="prob-track"><div class="prob-fill prob-winner" style="width:62%"></div></div><span class="prob-pct">62%</span></div><div class="prob-row"><span class="prob-label">dark</span><div class="prob-track"><div class="prob-fill" style="width:19%"></div></div><span class="prob-pct">19%</span></div><div class="prob-row"><span class="prob-label">clear</span><div class="prob-track"><div class="prob-fill" style="width:11%"></div></div><span class="prob-pct">11%</span></div><div class="prob-row"><span class="prob-label">full of stars</span><div class="prob-track"><div class="prob-fill" style="width:3%"></div></div><span class="prob-pct">3%</span></div></div>
+</div>
+
+      <div class="lesson-body">
+        <p class="explain">Given &ldquo;The sky is&hellip;&rdquo;, the model doesn&rsquo;t deterministically output &ldquo;blue.&rdquo; It computes a probability for every token in its vocabulary, and &ldquo;blue&rdquo; simply scores highest given everything it learned from training data. A sampling strategy then picks one token &mdash; often the highest-probability one, sometimes a slightly less likely one for variety.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a weather forecaster who never says &lsquo;it will rain&rsquo; &mdash; only &lsquo;70% chance of rain, 20% cloudy, 10% clear,&rsquo; leaving the final call to how the forecast gets used.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l24">
+      <div class="lesson-eyebrow">Lesson 24</div>
+      <h2 class="lesson-title">Autoregressive Generation</h2>
+      <p class="lesson-thesis">The model generates one token, appends it to its own input, and runs itself again &mdash; over and over.</p>
+      <div class="diagram flow-col">
+<div class="node "><span class="node-label">I love</span></div>
+<div class="arrow arrow-vert"><span class="arrow-label">+ AI</span><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">I love AI</span></div>
+<div class="arrow arrow-vert"><span class="arrow-label">+ because</span><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">I love AI because</span></div>
+<div class="arrow arrow-vert"><span class="arrow-label">+ it</span><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">I love AI because it</span></div>
+<div class="arrow arrow-vert"><span class="arrow-label">+ helps</span><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">I love AI because it helps</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">&ldquo;Autoregressive&rdquo; just means the model feeds its own output back in as part of the next input. Every single word you see an LLM produce is really the entire prompt-so-far being re-processed from scratch through the whole Transformer stack, one more time, to predict just the next token.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> writing a story one word at a time, and before every new word, silently re-reading the entire story so far from the beginning.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l25">
+      <div class="lesson-eyebrow">Lesson 25</div>
+      <h2 class="lesson-title">Training an LLM</h2>
+      <p class="lesson-thesis">The exact same predict-compare-adjust loop from Lesson 4 &mdash; just run on billions of sentences of real text.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">Massive Text Dataset</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Training Tokens</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Transformer LLM</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Predicted Token</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Actual Token</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-red"><span class="node-label">Loss</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Backpropagation</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Update Weights</span></div>
+</div><div class="loop-chip">&#8635; repeated across trillions of tokens, for weeks on thousands of GPUs</div>
+      <div class="lesson-body">
+        <p class="explain">For every sentence in a giant training set, the model is shown some words and asked to predict the next one. It compares its guess to the real next word, computes a loss, backpropagates that error through every layer, and updates its weights slightly. Scale that up to a trillion+ tokens of text and you get a model that has absorbed an enormous amount of world knowledge and language structure &mdash; purely as a side effect of getting better at next-token prediction.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> learning a language by reading an entire library, one sentence at a time, constantly quizzing yourself on &lsquo;what word comes next&rsquo; and correcting your intuition after every guess.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l26">
+      <div class="lesson-eyebrow">Lesson 26</div>
+      <h2 class="lesson-title">Pretraining &rarr; Fine-Tuning &rarr; Alignment</h2>
+      <p class="lesson-thesis">A raw pretrained model is a text predictor. Two more stages turn it into a helpful assistant.</p>
+      <div class="diagram flow-col">
+<div class="node "><span class="node-label">Massive Raw Dataset</span><span class="node-sub">internet-scale text</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Pretraining</span><span class="node-sub">learn language &amp; facts</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Base Model</span><span class="node-sub">predicts text, but untamed</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Instruction Dataset</span><span class="node-sub">example Q&amp;amp;A pairs</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Fine-Tuning</span><span class="node-sub">learn to follow instructions</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Preference Data</span><span class="node-sub">humans rank responses</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Alignment</span><span class="node-sub">RLHF / DPO</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Chat Assistant</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain"><strong>Pretraining</strong> teaches the raw model language, facts, and reasoning patterns from huge amounts of text &mdash; but it just predicts plausible next text, with no sense of being &lsquo;helpful&rsquo; or &lsquo;safe.&rsquo; <strong>Fine-tuning</strong> shows it curated examples of instructions and good responses. <strong>Alignment</strong> then uses human preference rankings to steer it further toward answers people actually prefer &mdash; turning a raw text predictor into the assistant you chat with.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> raising someone through school (pretraining &mdash; broad general knowledge), then job training (fine-tuning &mdash; how to do this specific role), then on-the-job coaching based on feedback (alignment &mdash; how to do it the way people actually want).</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l27">
+      <div class="lesson-eyebrow">Lesson 27</div>
+      <h2 class="lesson-title">Training vs. Inference</h2>
+      <p class="lesson-thesis">Training is the one-time (expensive) process of learning weights. Inference is every single time you actually use the model.</p>
+      <div class="diagram compare-row">
+      <div class="compare-col"><div class="compare-title compare-a">TRAINING &amp;mdash; happens once</div><div class="diagram flow-col">
+<div class="node "><span class="node-label">Dataset</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-red"><span class="node-label">Loss</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Backpropagation</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Updated Weights</span></div>
+</div></div>
+      <div class="compare-divider">VS</div>
+      <div class="compare-col"><div class="compare-title compare-b">INFERENCE &amp;mdash; happens every chat</div><div class="diagram flow-col">
+<div class="node "><span class="node-label">User Prompt</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Fixed Weights</span><span class="node-sub">frozen, unchanged</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Forward Pass Only</span></div>
+<div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
+      <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
+      <polygon points="2,34 8,44 14,34" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Generated Answer</span></div>
+</div></div>
+    </div>
+      <div class="lesson-body">
+        <p class="explain">During <strong>training</strong>, the model&rsquo;s weights are constantly changing as it learns from data &mdash; this happens once (or occasionally, for updates), and is extremely expensive. During <strong>inference</strong> &mdash; every time you send a message to an LLM &mdash; the weights are completely frozen. The model just runs a forward pass through fixed weights to produce a response; nothing about it is being &lsquo;learned&rsquo; from your conversation.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> the difference between years spent training for a marathon (training, you change and improve) and actually running race day (inference, you just execute what you already learned &mdash; no more improving mid-race).</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l28">
+      <div class="lesson-eyebrow">Lesson 28</div>
+      <h2 class="lesson-title">RAG: Retrieval-Augmented Generation</h2>
+      <p class="lesson-thesis">An LLM only knows what was in its training data. RAG hands it fresh, specific facts to read before answering.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">User</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Question</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Retriever</span><span class="node-sub">search relevant docs</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Knowledge Base</span><span class="node-sub">your own data</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">Retrieved Context</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">LLM</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Grounded Answer</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">Instead of relying purely on what the model memorized during training (which can be outdated or simply not include your private data), RAG first searches a knowledge base for the most relevant documents, then stuffs those documents into the prompt as extra context. The LLM then answers using that fresh, specific information instead of guessing from memory.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an open-book exam &mdash; instead of relying only on what you memorized, you&rsquo;re allowed to quickly look up the exact page that answers the question before you write your response.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l29">
+      <div class="lesson-eyebrow">Lesson 29</div>
+      <h2 class="lesson-title">Tool / Function Calling</h2>
+      <p class="lesson-thesis">When an LLM can&rsquo;t answer from knowledge alone, it can ask to call a real tool &mdash; and use the result.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">User</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Request</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">LLM</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Need a Tool?</span><span class="node-sub">decides yes/no</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">External Tool / API</span><span class="node-sub">e.g. calculator, weather</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Tool Result</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-green"><span class="node-label">Final Answer</span></div>
+</div>
+      <div class="lesson-body">
+        <p class="explain">The LLM itself never runs code or hits an API &mdash; it just outputs structured text saying &lsquo;call this function with these arguments.&rsquo; The surrounding application actually executes that call, and feeds the real result back into the model&rsquo;s context so it can write a final answer grounded in real, live data instead of a guess.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a manager who can&rsquo;t personally check the live stock price, but knows exactly who to ask &mdash; delegates the lookup, waits for the answer, then reports back using the real number.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l30">
+      <div class="lesson-eyebrow">Lesson 30</div>
+      <h2 class="lesson-title">AI Agent: A Loop, Not Just an Answer</h2>
+      <p class="lesson-thesis">An agent doesn&rsquo;t just answer once &mdash; it repeatedly plans, acts, and checks its own progress until the goal is met.</p>
+      <div class="diagram flow-row">
+<div class="node "><span class="node-label">User</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Goal</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-violet"><span class="node-label">AI Agent</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Reason / Plan</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Tools</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Observe Result</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node "><span class="node-label">Memory</span><span class="node-sub">remember what happened</span></div>
+<div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
+      <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
+      <polygon points="50,2 60,8 50,14" class="arrow-head"/>
+      <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
+    </svg></div>
+<div class="node kind-amber"><span class="node-label">Goal Complete?</span><span class="node-sub">no &amp;rarr; loop again</span></div>
+</div><div class="loop-chip">&#8635; loops through plan &amp;rarr; act &amp;rarr; observe until the goal check passes, then returns the Final Answer</div>
+      <div class="lesson-body">
+        <p class="explain">A single LLM call is a one-shot response. An <strong>agent</strong> wraps that call in a loop: it plans a next step, uses a tool, observes what happened, updates its memory, and checks whether the overall goal is done &mdash; repeating until it is (or it gives up). This is what lets an LLM tackle multi-step tasks instead of only answering single questions.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a project manager who doesn&rsquo;t just give one instruction and walk away &mdash; they plan, delegate, check the result, adjust the plan, and repeat until the project is actually finished.</div></div>
+        
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="lmaster">
+      <div class="lesson-eyebrow">Lesson MASTER</div>
+      <h2 class="lesson-title">The Complete Modern LLM Application</h2>
+      <p class="lesson-thesis">Everything in this course is a piece of a bigger machine: an orchestrator around a raw LLM, giving it memory, tools, and fresh knowledge.</p>
+      
+<div class="diagram hub-wrap">
+  <div class="hub-row hub-top">
+    <div class="node">USER</div>
+    <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div>
+    <div class="node kind-amber">Agent Orchestrator</div>
+  </div>
+  <div class="hub-spokes">
+    <div class="node kind-violet">LLM / Transformer</div>
+    <div class="node">RAG &rarr; Vector DB</div>
+    <div class="node">Tools / APIs</div>
+    <div class="node">Memory</div>
+  </div>
+  <div class="hub-row hub-bottom">
+    <div class="node kind-green">Response</div>
+  </div>
+</div>
+
+      <div class="lesson-body">
+        <p class="explain">A raw LLM only does one thing well: predict the next token. Every production AI application wraps that core with an <strong>orchestrator</strong> that decides, per request, whether to fetch context via <strong>RAG</strong>, call out to <strong>tools/APIs</strong>, consult <strong>memory</strong> from earlier in the conversation, or just answer directly from the model &mdash; then assembles all of it into a final response. Everything you just learned, from tokenization up through agents, is one layer of this stack.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a restaurant kitchen &mdash; the LLM is the chef, but the chef alone isn&rsquo;t the restaurant. Orders (orchestrator), a pantry of fresh ingredients (RAG), specialized equipment (tools), and notes on regular customers (memory) all have to work together to actually serve a meal.</div></div>
+        
+      </div>
+    </section>
+    
+
+  <div class="footer">Built for teaching &middot; follow the flowing dot in each diagram &mdash; it traces the direction data actually moves.</div>
+</main>
+<script src="js/script.js"></script>
+</body>
+</html>
