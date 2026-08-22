@@ -16,54 +16,819 @@
 <body>
 <div id="progress"></div>
 <button id="navtoggle">&#9776; Contents</button>
+<button id="glossarytoggle">&#128214; Glossary</button>
 <nav id="navrail">
   <div class="navrail-title">LLM, From Zero</div>
-  <a href="#l01" class="nav-item"><span class="nav-num">01</span><span class="nav-title">The Family Tree of an LLM</span></a>
-<a href="#l02" class="nav-item"><span class="nav-num">02</span><span class="nav-title">What Is Machine Learning?</span></a>
-<a href="#l03" class="nav-item"><span class="nav-num">03</span><span class="nav-title">Neural Networks: Stacking Simple Math</span></a>
-<a href="#l04" class="nav-item"><span class="nav-num">04</span><span class="nav-title">How a Network Actually Learns</span></a>
-<a href="#l05" class="nav-item"><span class="nav-num">05</span><span class="nav-title">NLP: Teaching Machines to Read</span></a>
-<a href="#l06" class="nav-item"><span class="nav-num">06</span><span class="nav-title">Tokenization: Chopping Text into Pieces</span></a>
-<a href="#l07" class="nav-item"><span class="nav-num">07</span><span class="nav-title">From Tokens to Token IDs</span></a>
-<a href="#l08" class="nav-item"><span class="nav-num">08</span><span class="nav-title">Embeddings: Giving Numbers Meaning</span></a>
-<a href="#l09" class="nav-item"><span class="nav-num">09</span><span class="nav-title">Semantic Vector Space</span></a>
-<a href="#l10" class="nav-item"><span class="nav-num">10</span><span class="nav-title">Positional Information: Word Order Matters</span></a>
-<a href="#l11" class="nav-item"><span class="nav-num">11</span><span class="nav-title">Why Attention? Context Changes Meaning</span></a>
-<a href="#l12" class="nav-item"><span class="nav-num">12</span><span class="nav-title">Self-Attention: Every Token Looks at Every Token</span></a>
-<a href="#l13" class="nav-item"><span class="nav-num">13</span><span class="nav-title">Query, Key, Value &mdash; The Three Roles</span></a>
-<a href="#l14" class="nav-item"><span class="nav-num">14</span><span class="nav-title">The Attention Formula, Step by Step</span></a>
-<a href="#l15" class="nav-item"><span class="nav-num">15</span><span class="nav-title">Multi-Head Attention: Many Perspectives at Once</span></a>
-<a href="#l16" class="nav-item"><span class="nav-num">16</span><span class="nav-title">The Feed-Forward Network</span></a>
-<a href="#l17" class="nav-item"><span class="nav-num">17</span><span class="nav-title">Residual Connections: Don&rsquo;t Lose the Original</span></a>
-<a href="#l18" class="nav-item"><span class="nav-num">18</span><span class="nav-title">One Transformer Block, Assembled</span></a>
-<a href="#l19" class="nav-item"><span class="nav-num">19</span><span class="nav-title">The Transformer Stack</span></a>
-<a href="#l20" class="nav-item"><span class="nav-num">20</span><span class="nav-title">Encoder vs. Decoder</span></a>
-<a href="#l21" class="nav-item"><span class="nav-num">21</span><span class="nav-title">Causal (Masked) Attention</span></a>
-<a href="#l22" class="nav-item"><span class="nav-num">22</span><span class="nav-title">The Complete LLM Pipeline</span></a>
-<a href="#l23" class="nav-item"><span class="nav-num">23</span><span class="nav-title">Next-Token Prediction</span></a>
-<a href="#l24" class="nav-item"><span class="nav-num">24</span><span class="nav-title">Autoregressive Generation</span></a>
-<a href="#l25" class="nav-item"><span class="nav-num">25</span><span class="nav-title">Training an LLM</span></a>
-<a href="#l26" class="nav-item"><span class="nav-num">26</span><span class="nav-title">Pretraining &rarr; Fine-Tuning &rarr; Alignment</span></a>
-<a href="#l27" class="nav-item"><span class="nav-num">27</span><span class="nav-title">Training vs. Inference</span></a>
-<a href="#l28" class="nav-item"><span class="nav-num">28</span><span class="nav-title">RAG: Retrieval-Augmented Generation</span></a>
-<a href="#l29" class="nav-item"><span class="nav-num">29</span><span class="nav-title">Tool / Function Calling</span></a>
-<a href="#l30" class="nav-item"><span class="nav-num">30</span><span class="nav-title">AI Agent: A Loop, Not Just an Answer</span></a>
-<a href="#lmaster" class="nav-item"><span class="nav-num">MASTER</span><span class="nav-title">The Complete Modern LLM Application</span></a>
+  <div class="progress-counter" id="progresscounter">0 / 31 lessons marked understood</div>
+  <a href="#l01" class="nav-item" data-lesson="l01"><span class="nav-check"></span><span class="nav-num">01</span><span class="nav-title">The Family Tree of an LLM</span></a>
+<a href="#l02" class="nav-item" data-lesson="l02"><span class="nav-check"></span><span class="nav-num">02</span><span class="nav-title">What Is Machine Learning?</span></a>
+<a href="#l03" class="nav-item" data-lesson="l03"><span class="nav-check"></span><span class="nav-num">03</span><span class="nav-title">Neural Networks: Stacking Simple Math</span></a>
+<a href="#l04" class="nav-item" data-lesson="l04"><span class="nav-check"></span><span class="nav-num">04</span><span class="nav-title">How a Network Actually Learns</span></a>
+<a href="#l05" class="nav-item" data-lesson="l05"><span class="nav-check"></span><span class="nav-num">05</span><span class="nav-title">NLP: Teaching Machines to Read</span></a>
+<a href="#l06" class="nav-item" data-lesson="l06"><span class="nav-check"></span><span class="nav-num">06</span><span class="nav-title">Tokenization: Chopping Text into Pieces</span></a>
+<a href="#l07" class="nav-item" data-lesson="l07"><span class="nav-check"></span><span class="nav-num">07</span><span class="nav-title">From Tokens to Token IDs</span></a>
+<a href="#l08" class="nav-item" data-lesson="l08"><span class="nav-check"></span><span class="nav-num">08</span><span class="nav-title">Embeddings: Giving Numbers Meaning</span></a>
+<a href="#l09" class="nav-item" data-lesson="l09"><span class="nav-check"></span><span class="nav-num">09</span><span class="nav-title">Semantic Vector Space</span></a>
+<a href="#l10" class="nav-item" data-lesson="l10"><span class="nav-check"></span><span class="nav-num">10</span><span class="nav-title">Positional Information: Word Order Matters</span></a>
+<a href="#l11" class="nav-item" data-lesson="l11"><span class="nav-check"></span><span class="nav-num">11</span><span class="nav-title">Why Attention? Context Changes Meaning</span></a>
+<a href="#l12" class="nav-item" data-lesson="l12"><span class="nav-check"></span><span class="nav-num">12</span><span class="nav-title">Self-Attention: Every Token Looks at Every Token</span></a>
+<a href="#l13" class="nav-item" data-lesson="l13"><span class="nav-check"></span><span class="nav-num">13</span><span class="nav-title">Query, Key, Value &mdash; The Three Roles</span></a>
+<a href="#l14" class="nav-item" data-lesson="l14"><span class="nav-check"></span><span class="nav-num">14</span><span class="nav-title">The Attention Formula, Step by Step</span></a>
+<a href="#l15" class="nav-item" data-lesson="l15"><span class="nav-check"></span><span class="nav-num">15</span><span class="nav-title">Multi-Head Attention: Many Perspectives at Once</span></a>
+<a href="#l16" class="nav-item" data-lesson="l16"><span class="nav-check"></span><span class="nav-num">16</span><span class="nav-title">The Feed-Forward Network</span></a>
+<a href="#l17" class="nav-item" data-lesson="l17"><span class="nav-check"></span><span class="nav-num">17</span><span class="nav-title">Residual Connections: Don&rsquo;t Lose the Original</span></a>
+<a href="#l18" class="nav-item" data-lesson="l18"><span class="nav-check"></span><span class="nav-num">18</span><span class="nav-title">One Transformer Block, Assembled</span></a>
+<a href="#l19" class="nav-item" data-lesson="l19"><span class="nav-check"></span><span class="nav-num">19</span><span class="nav-title">The Transformer Stack</span></a>
+<a href="#l20" class="nav-item" data-lesson="l20"><span class="nav-check"></span><span class="nav-num">20</span><span class="nav-title">Encoder vs. Decoder</span></a>
+<a href="#l21" class="nav-item" data-lesson="l21"><span class="nav-check"></span><span class="nav-num">21</span><span class="nav-title">Causal (Masked) Attention</span></a>
+<a href="#l22" class="nav-item" data-lesson="l22"><span class="nav-check"></span><span class="nav-num">22</span><span class="nav-title">The Complete LLM Pipeline</span></a>
+<a href="#l23" class="nav-item" data-lesson="l23"><span class="nav-check"></span><span class="nav-num">23</span><span class="nav-title">Next-Token Prediction</span></a>
+<a href="#l24" class="nav-item" data-lesson="l24"><span class="nav-check"></span><span class="nav-num">24</span><span class="nav-title">Autoregressive Generation</span></a>
+<a href="#l25" class="nav-item" data-lesson="l25"><span class="nav-check"></span><span class="nav-num">25</span><span class="nav-title">Training an LLM</span></a>
+<a href="#l26" class="nav-item" data-lesson="l26"><span class="nav-check"></span><span class="nav-num">26</span><span class="nav-title">Pretraining &rarr; Fine-Tuning &rarr; Alignment</span></a>
+<a href="#l27" class="nav-item" data-lesson="l27"><span class="nav-check"></span><span class="nav-num">27</span><span class="nav-title">Training vs. Inference</span></a>
+<a href="#l28" class="nav-item" data-lesson="l28"><span class="nav-check"></span><span class="nav-num">28</span><span class="nav-title">RAG: Retrieval-Augmented Generation</span></a>
+<a href="#l29" class="nav-item" data-lesson="l29"><span class="nav-check"></span><span class="nav-num">29</span><span class="nav-title">Tool / Function Calling</span></a>
+<a href="#l30" class="nav-item" data-lesson="l30"><span class="nav-check"></span><span class="nav-num">30</span><span class="nav-title">AI Agent: A Loop, Not Just an Answer</span></a>
+<a href="#lmaster" class="nav-item" data-lesson="lmaster"><span class="nav-check"></span><span class="nav-num">MASTER</span><span class="nav-title">The Complete Modern LLM Application</span></a>
 </nav>
+<!-- <aside id="glossarypanel">
+  <button class="glossary-close" id="glossaryclose">&times;</button>
+  <div class="glossary-panel-title">Glossary</div>
+  <div class="glossary-panel-sub">Quick reference for terms used throughout the lessons.</div>
+  <div class="glossary-item"><div class="glossary-term">Token</div><div class="glossary-def">A small chunk of text (a word, sub-word, or character) that a model processes as one unit.</div></div>
+<div class="glossary-item"><div class="glossary-term">Embedding</div><div class="glossary-def">A vector of numbers that represents a token's meaning, learned so related words end up close together in vector space.</div></div>
+<div class="glossary-item"><div class="glossary-term">Logits</div><div class="glossary-def">The raw, unnormalized scores a model outputs before they're turned into probabilities.</div></div>
+<div class="glossary-item"><div class="glossary-term">Softmax</div><div class="glossary-def">A function that converts a list of raw scores into a probability distribution that sums to 1.</div></div>
+<div class="glossary-item"><div class="glossary-term">Loss</div><div class="glossary-def">A number representing how wrong a model's prediction was compared to the correct answer.</div></div>
+<div class="glossary-item"><div class="glossary-term">Backpropagation</div><div class="glossary-def">The algorithm that traces a model's error backward through its layers to figure out how to adjust each weight.</div></div>
+<div class="glossary-item"><div class="glossary-term">Attention</div><div class="glossary-def">A mechanism that lets each token weigh and gather information from every other token in a sequence.</div></div>
+<div class="glossary-item"><div class="glossary-term">Query / Key / Value</div><div class="glossary-def">The three roles a token's representation is projected into during attention: what it's looking for (Query), what it offers (Key), and its actual content (Value).</div></div>
+<div class="glossary-item"><div class="glossary-term">Multi-Head Attention</div><div class="glossary-def">Running several attention mechanisms in parallel so the model can track several kinds of relationships at once.</div></div>
+<div class="glossary-item"><div class="glossary-term">Residual Connection</div><div class="glossary-def">A shortcut that adds a layer's input back to its output, so the layer only has to learn what to change.</div></div>
+<div class="glossary-item"><div class="glossary-term">Causal Mask</div><div class="glossary-def">A restriction that prevents a token from attending to tokens that come after it in the sequence.</div></div>
+<div class="glossary-item"><div class="glossary-term">Autoregressive</div><div class="glossary-def">Generating output one token at a time, feeding each new token back in as part of the next input.</div></div>
+<div class="glossary-item"><div class="glossary-term">Pretraining</div><div class="glossary-def">The initial, large-scale training phase where a model learns language and facts from massive text data.</div></div>
+<div class="glossary-item"><div class="glossary-term">Fine-Tuning</div><div class="glossary-def">Further training a pretrained model on curated examples to teach it a specific behavior, like following instructions.</div></div>
+<div class="glossary-item"><div class="glossary-term">RLHF / Alignment</div><div class="glossary-def">Reinforcement Learning from Human Feedback &mdash; using human preference rankings to steer a model's responses.</div></div>
+<div class="glossary-item"><div class="glossary-term">Inference</div><div class="glossary-def">Using an already-trained model to generate a response; the model's weights stay frozen during this.</div></div>
+<div class="glossary-item"><div class="glossary-term">RAG</div><div class="glossary-def">Retrieval-Augmented Generation &mdash; retrieving relevant documents and adding them to the prompt so the model can use fresh information.</div></div>
+<div class="glossary-item"><div class="glossary-term">Agent</div><div class="glossary-def">A system that wraps an LLM in a loop of planning, acting, and observing to complete multi-step tasks.</div></div>
+</aside> -->
+<aside id="glossarypanel">
+  <button class="glossary-close" id="glossaryclose">&times;</button>
+
+  <div class="glossary-panel-title">Glossary</div>
+  <div class="glossary-panel-sub">
+    A quick reference for important concepts used throughout the lessons.
+    Each term includes a simple explanation and an everyday analogy.
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Artificial Intelligence (AI)</div>
+    <div class="glossary-def">
+      Artificial Intelligence is the broad field of building machines or software
+      that can perform tasks that normally require human-like intelligence, such
+      as understanding language, recognizing patterns, making predictions, or
+      solving problems.
+      <br><br>
+      <strong>Analogy:</strong> Think of AI as the entire school. Machine Learning,
+      Deep Learning, NLP, and LLMs are different subjects taught inside that school.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Machine Learning (ML)</div>
+    <div class="glossary-def">
+      Machine Learning is a way of building systems that learn patterns from
+      examples instead of being explicitly programmed with every rule. During
+      training, the model adjusts its internal parameters so that its predictions
+      become better over time.
+      <br><br>
+      <strong>Analogy:</strong> Instead of giving a student a rule for recognizing
+      every type of fruit, you show them hundreds of examples and let them discover
+      the patterns themselves.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Neural Network</div>
+    <div class="glossary-def">
+      A neural network is a mathematical model made of layers of interconnected
+      units that transform numbers. Each layer learns useful patterns from the
+      previous layer, allowing the network to represent increasingly complex
+      relationships.
+      <br><br>
+      <strong>Analogy:</strong> Imagine an assembly line. Each worker performs a
+      small transformation, and after many workers process the material, you get
+      a much more useful final product.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Deep Learning</div>
+    <div class="glossary-def">
+      Deep Learning is Machine Learning based on neural networks with many layers.
+      These layers allow the model to automatically learn increasingly complex
+      representations from data.
+      <br><br>
+      <strong>Analogy:</strong> If a simple neural network is a few workers on an
+      assembly line, deep learning is a huge factory with many stages, each
+      discovering more complex patterns.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">NLP</div>
+    <div class="glossary-def">
+      NLP stands for Natural Language Processing. It is the field of AI concerned
+      with processing and understanding human language. NLP systems can perform
+      tasks such as translation, summarization, classification, question answering,
+      and text generation.
+      <br><br>
+      <strong>Analogy:</strong> Think of NLP as a translator between humans who
+      communicate using language and computers that ultimately operate on numbers.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Token</div>
+    <div class="glossary-def">
+      A token is a small piece of text that a language model processes as one unit.
+      Depending on the tokenizer, a token can be a complete word, part of a word,
+      punctuation, whitespace, or another text fragment.
+      <br><br>
+      The model does not directly process a sentence as human-readable words.
+      The sentence is first broken into tokens and then converted into numerical
+      representations.
+      <br><br>
+      <strong>Analogy:</strong> Think of a sentence as a LEGO structure. Tokens
+      are the individual LEGO pieces used to build that structure.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Tokenization</div>
+    <div class="glossary-def">
+      Tokenization is the process of breaking text into tokens that a language
+      model can process. A tokenizer uses a fixed vocabulary and rules for deciding
+      how text should be split.
+      <br><br>
+      Common words may remain as one token, while rare or long words may be split
+      into multiple subword tokens.
+      <br><br>
+      <strong>Analogy:</strong> Imagine cutting a sentence into LEGO pieces.
+      Familiar shapes can remain as large pieces, while unusual shapes are broken
+      into smaller pieces that the system already knows.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Token ID</div>
+    <div class="glossary-def">
+      A Token ID is the integer assigned to a token in a model's vocabulary.
+      The ID itself has no inherent meaning; it simply acts as an index that lets
+      the model look up the corresponding learned representation.
+      <br><br>
+      For example, a vocabulary might assign one number to "cat" and another
+      number to "dog."
+      <br><br>
+      <strong>Analogy:</strong> Think of a library card catalog. The book title
+      has meaning to you, while its catalog number simply tells the librarian
+      where to find it.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Vocabulary</div>
+    <div class="glossary-def">
+      A vocabulary is the collection of tokens that a tokenizer and language
+      model know how to represent. Every token in the vocabulary has an associated
+      token ID.
+      <br><br>
+      <strong>Analogy:</strong> Think of it as the dictionary of LEGO pieces
+      available to the model. The model can only directly use pieces that exist
+      in its vocabulary.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Embedding</div>
+    <div class="glossary-def">
+      An embedding is a learned vector of numbers used to represent information
+      such as a token. Instead of treating a token ID as just an arbitrary number,
+      the model looks up a vector containing many learned numerical values.
+      <br><br>
+      These representations allow the model to work with relationships between
+      tokens in a continuous numerical space.
+      <br><br>
+      <strong>Analogy:</strong> Imagine giving every word a location on a giant
+      map. Words with related meanings tend to occupy related regions of the map.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Vector</div>
+    <div class="glossary-def">
+      A vector is an ordered collection of numbers. In machine learning, vectors
+      are used to represent information numerically so mathematical operations
+      can be performed on it.
+      <br><br>
+      An embedding is one important example of a vector.
+      <br><br>
+      <strong>Analogy:</strong> Think of a vector as a set of coordinates describing
+      where something is located on a mathematical map.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Semantic Vector Space</div>
+    <div class="glossary-def">
+      A semantic vector space is a mathematical space where objects such as words
+      or sentences are represented as vectors. The learned positions can capture
+      aspects of meaning and relationships between concepts.
+      <br><br>
+      Similar concepts tend to have representations that are related or close
+      according to a chosen similarity measure.
+      <br><br>
+      <strong>Analogy:</strong> Imagine a giant map of concepts. "Doctor" might
+      appear near "hospital," while "banana" might appear much closer to "fruit."
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Positional Information</div>
+    <div class="glossary-def">
+      Positional information tells the Transformer where each token occurs in
+      the sequence. This is important because attention by itself does not
+      inherently tell the model whether a token came first, second, or last.
+      <br><br>
+      Position information allows the model to distinguish between sequences
+      where the same tokens appear in different orders.
+      <br><br>
+      <strong>Analogy:</strong> Imagine giving someone a pile of numbered puzzle
+      pieces. The pieces alone are not enough; the numbers tell you where each
+      piece belongs.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Logits</div>
+    <div class="glossary-def">
+      Logits are the raw, unnormalized scores produced by the model for possible
+      next tokens. Every candidate token receives a score, and these scores are
+      later converted into probabilities.
+      <br><br>
+      A higher logit means the model is currently assigning a stronger score to
+      that candidate relative to candidates with lower scores.
+      <br><br>
+      <strong>Analogy:</strong> Imagine judges giving contestants raw marks before
+      those marks are converted into percentages or rankings. The raw marks are
+      the logits.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Softmax</div>
+    <div class="glossary-def">
+      Softmax converts a collection of raw scores into a probability distribution.
+      The resulting probabilities are non-negative and sum to 1.
+      <br><br>
+      In a language model, softmax can turn the logits for thousands of possible
+      next tokens into probabilities that indicate how strongly each candidate
+      is preferred.
+      <br><br>
+      <strong>Analogy:</strong> Imagine several students receiving different raw
+      marks. Softmax converts those scores into percentages representing each
+      student's share of the total probability.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Attention</div>
+    <div class="glossary-def">
+      Attention is a mechanism that allows a token to gather information from
+      other tokens in the sequence. Instead of treating every token equally,
+      the model calculates which other tokens are more relevant to the current
+      token.
+      <br><br>
+      This allows meaning to change based on context.
+      <br><br>
+      <strong>Analogy:</strong> Imagine reading a sentence and deciding which
+      previous words you should pay attention to in order to understand the
+      meaning of the current word.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Self-Attention</div>
+    <div class="glossary-def">
+      Self-attention is attention where the tokens in a sequence attend to other
+      tokens from the same sequence. Each token can use information from other
+      relevant tokens to create a more context-aware representation.
+      <br><br>
+      <strong>Analogy:</strong> Imagine a group discussion where every person can
+      listen to everyone else before forming their own understanding of the topic.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Query / Key / Value</div>
+    <div class="glossary-def">
+      Query, Key, and Value are three learned representations used by attention.
+      <br><br>
+      <strong>Query:</strong> What information am I looking for?<br>
+      <strong>Key:</strong> What kind of information do I represent?<br>
+      <strong>Value:</strong> What information can I provide?
+      <br><br>
+      The model compares a Query with Keys to determine which Values should
+      receive more attention.
+      <br><br>
+      <strong>Analogy:</strong> Think of a library. Your question is the Query,
+      the labels on the books are the Keys, and the actual information inside
+      the books is the Value.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Attention Score</div>
+    <div class="glossary-def">
+      An attention score measures how relevant one token is to another token
+      during the attention calculation. Higher scores indicate stronger
+      relationships before the scores are normalized into attention weights.
+      <br><br>
+      <strong>Analogy:</strong> Imagine asking a group of people for help.
+      The attention score is like deciding how relevant each person's answer
+      is to your particular question.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Attention Weight</div>
+    <div class="glossary-def">
+      An attention weight is the normalized importance assigned to another token
+      during attention. These weights determine how much information from each
+      token contributes to the resulting representation.
+      <br><br>
+      <strong>Analogy:</strong> If five people give you advice, you might trust
+      one person's answer more than the others. The amount of trust given to each
+      person is like an attention weight.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Multi-Head Attention</div>
+    <div class="glossary-def">
+      Multi-Head Attention runs multiple attention mechanisms in parallel.
+      Different heads can learn to focus on different relationships or patterns
+      within the same sequence. Their outputs are then combined.
+      <br><br>
+      <strong>Analogy:</strong> Imagine several detectives investigating the same
+      case. One studies people, another studies locations, another studies time,
+      and another searches for hidden connections. Together they produce a richer
+      understanding.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Transformer</div>
+    <div class="glossary-def">
+      A Transformer is a neural network architecture built around attention
+      mechanisms. It processes sequences by allowing tokens to interact with
+      one another and then transforms those representations through additional
+      neural network layers.
+      <br><br>
+      Transformers became the foundation for modern large language models because
+      they can capture relationships between tokens effectively and process many
+      tokens in parallel during training.
+      <br><br>
+      <strong>Analogy:</strong> Think of a Transformer as a sophisticated team
+      workshop where every team member can communicate with the others, analyze
+      the information, and refine their understanding repeatedly.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Feed-Forward Network (FFN)</div>
+    <div class="glossary-def">
+      A Feed-Forward Network is the part of a Transformer block that processes
+      each token's representation independently after attention has mixed
+      contextual information between tokens.
+      <br><br>
+      It typically expands the representation into a larger space, applies a
+      non-linear activation, and then projects it back down.
+      <br><br>
+      <strong>Analogy:</strong> Attention is like a group discussion where
+      everyone exchanges information. The FFN is like each person going back
+      to their own desk to think deeply about what they just learned.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Residual Connection</div>
+    <div class="glossary-def">
+      A residual connection adds a layer's original input back to its transformed
+      output. This creates a shortcut through the network and allows a layer to
+      focus on learning the changes it needs to make rather than rebuilding the
+      entire representation from scratch.
+      <br><br>
+      Residual connections also help information and gradients travel through
+      deep networks.
+      <br><br>
+      <strong>Analogy:</strong> Imagine editing a document. Instead of rewriting
+      the entire document, you keep the original version and simply apply the
+      necessary changes on top of it.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Transformer Block</div>
+    <div class="glossary-def">
+      A Transformer block is one repeated unit of a Transformer. It typically
+      contains an attention mechanism, a feed-forward network, residual
+      connections, and normalization components.
+      <br><br>
+      Many such blocks are stacked together to create a deep Transformer model.
+      <br><br>
+      <strong>Analogy:</strong> Think of one Transformer block as one floor of
+      a building. Each floor performs similar kinds of work, and stacking many
+      floors creates the complete building.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Transformer Stack</div>
+    <div class="glossary-def">
+      A Transformer stack is a sequence of Transformer blocks placed one after
+      another. Each block receives the representations produced by the previous
+      block and refines them further.
+      <br><br>
+      <strong>Analogy:</strong> Imagine sending a rough idea through several
+      editors. The first editor improves the structure, the next improves the
+      meaning, another improves the details, and so on.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Encoder</div>
+    <div class="glossary-def">
+      An encoder is the part of a Transformer architecture designed to build
+      rich representations of an input sequence. It can generally use information
+      from the entire input when creating those representations.
+      <br><br>
+      <strong>Analogy:</strong> Think of an encoder as someone reading an entire
+      document first and building a detailed understanding of what it contains.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Decoder</div>
+    <div class="glossary-def">
+      A decoder generates an output sequence, typically one token at a time.
+      In autoregressive language models, it uses causal attention so that a token
+      cannot see future tokens that have not been generated yet.
+      <br><br>
+      <strong>Analogy:</strong> Think of a writer composing a story one sentence
+      at a time while being allowed to see everything already written, but not
+      the future pages.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Causal Mask</div>
+    <div class="glossary-def">
+      A causal mask prevents a token from attending to tokens that appear later
+      in the sequence. This prevents the model from seeing future information
+      when it is supposed to predict the next token.
+      <br><br>
+      <strong>Analogy:</strong> Imagine taking an exam where you can see the
+      questions you've reached, but you are not allowed to look at the next
+      page for the answers.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Next-Token Prediction</div>
+    <div class="glossary-def">
+      Next-token prediction is the fundamental training objective of many modern
+      language models. Given the tokens that came before, the model learns to
+      predict what token should come next.
+      <br><br>
+      For example, given "The sky is", the model might assign high probability
+      to tokens such as "blue."
+      <br><br>
+      <strong>Analogy:</strong> Imagine someone finishing your sentences by
+      guessing what word you are most likely to say next.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Autoregressive</div>
+    <div class="glossary-def">
+      Autoregressive generation means producing output one token at a time,
+      where each newly generated token becomes part of the context used to
+      generate the next token.
+      <br><br>
+      <strong>Analogy:</strong> Imagine telling a story one word at a time.
+      After saying each word, you use everything you've said so far to decide
+      what should come next.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Loss</div>
+    <div class="glossary-def">
+      Loss is a numerical measurement of how different the model's prediction
+      is from the desired target. During training, the model uses this signal
+      to determine how its parameters should be adjusted.
+      <br><br>
+      Lower loss generally means the model's predictions are closer to the
+      training targets under that particular loss function.
+      <br><br>
+      <strong>Analogy:</strong> Think of loss as a "mistake meter" on a student's
+      test. The larger the mistake, the larger the number on the meter.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Backpropagation</div>
+    <div class="glossary-def">
+      Backpropagation is the algorithmic process of calculating how the loss
+      changes with respect to the model's parameters. It works backward through
+      the network using the chain rule of calculus to calculate gradients.
+      <br><br>
+      Those gradients are then used by an optimization algorithm to update the
+      model's parameters.
+      <br><br>
+      <strong>Analogy:</strong> Imagine a group project producing a bad result.
+      You trace the problem backward through each decision to determine which
+      changes would most improve the next attempt.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Gradient</div>
+    <div class="glossary-def">
+      A gradient tells us how much the loss would change if a model parameter
+      changed slightly. During training, gradients provide the direction and
+      magnitude of adjustment needed to reduce the loss.
+      <br><br>
+      <strong>Analogy:</strong> Imagine standing on a mountain and wanting to
+      walk downhill. The gradient gives you information about the slope so you
+      know which direction leads downward.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Weight / Parameter</div>
+    <div class="glossary-def">
+      A parameter is a learned numerical value inside a neural network.
+      Weights are a major type of parameter. During training, these values are
+      adjusted so the model becomes better at its task.
+      <br><br>
+      A modern LLM can contain millions, billions, or even hundreds of billions
+      of learned parameters.
+      <br><br>
+      <strong>Analogy:</strong> Think of parameters as thousands or millions of
+      tiny knobs inside a machine. Training repeatedly adjusts those knobs until
+      the machine behaves better.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Pretraining</div>
+    <div class="glossary-def">
+      Pretraining is the initial large-scale training stage where a language
+      model learns general patterns from a huge amount of text. Through this
+      process, the model learns statistical relationships involving language,
+      syntax, concepts, and information present in its training data.
+      <br><br>
+      <strong>Analogy:</strong> Think of pretraining as general school education.
+      Before becoming a specialist, a student first develops a broad foundation
+      across many subjects.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Fine-Tuning</div>
+    <div class="glossary-def">
+      Fine-tuning is additional training performed on an already pretrained
+      model using a more focused dataset. It can teach the model to perform a
+      particular task, follow a particular format, or behave in a particular way.
+      <br><br>
+      <strong>Analogy:</strong> Pretraining is general education; fine-tuning is
+      specialization. A student first learns broadly and then trains specifically
+      to become a doctor, engineer, teacher, or lawyer.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">RLHF / Alignment</div>
+    <div class="glossary-def">
+      RLHF stands for Reinforcement Learning from Human Feedback. It refers to
+      techniques that use human preferences or evaluations to make model behavior
+      more aligned with what people consider useful, appropriate, or desirable.
+      <br><br>
+      Alignment is the broader goal of making model behavior better match intended
+      human goals and constraints.
+      <br><br>
+      <strong>Analogy:</strong> Imagine a teacher evaluating several answers and
+      explaining not only which one is correct, but which answer is clearer,
+      safer, more helpful, and more polite. The student gradually learns those
+      preferences.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Training</div>
+    <div class="glossary-def">
+      Training is the process of adjusting a model's parameters using data so
+      that it becomes better at a particular objective. The model repeatedly
+      makes predictions, calculates loss, computes gradients, and updates its
+      parameters.
+      <br><br>
+      <strong>Analogy:</strong> Training is practice. The model attempts a task
+      repeatedly, receives feedback about its mistakes, and gradually improves.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Inference</div>
+    <div class="glossary-def">
+      Inference is the process of using an already-trained model to produce an
+      output. During normal inference, the model's learned parameters are not
+      updated; the model simply uses what it has already learned.
+      <br><br>
+      <strong>Analogy:</strong> Training is studying for an exam. Inference is
+      taking the exam using what you learned.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">RAG</div>
+    <div class="glossary-def">
+      RAG stands for Retrieval-Augmented Generation. A RAG system retrieves
+      relevant information from an external knowledge source and provides that
+      information to an LLM as context before generating an answer.
+      <br><br>
+      A simplified flow is:
+      <br>
+      Question → Retrieve information → Add context → Generate answer
+      <br><br>
+      <strong>Analogy:</strong> Imagine a student taking an open-book exam.
+      Instead of relying entirely on memory, the student searches the textbook
+      for the relevant information and then uses it to answer.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Retrieval</div>
+    <div class="glossary-def">
+      Retrieval is the process of finding information that is relevant to a
+      user's query from an external collection of documents or data.
+      <br><br>
+      In RAG systems, retrieval happens before generation so the LLM receives
+      useful external context.
+      <br><br>
+      <strong>Analogy:</strong> Imagine asking a librarian a question. Before
+      answering, the librarian searches the shelves and brings you the most
+      relevant books or pages.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Context</div>
+    <div class="glossary-def">
+      Context is the information available to the model when it is generating
+      a response. It can include the user's prompt, previous conversation,
+      retrieved documents, system instructions, and other information supplied
+      to the model.
+      <br><br>
+      <strong>Analogy:</strong> Imagine answering a question while being allowed
+      to keep a set of notes on your desk. Those notes are your context.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">Tool / Function Calling</div>
+    <div class="glossary-def">
+      Tool or function calling allows an LLM to request that an external program
+      or tool perform a specific operation. The model does not necessarily perform
+      the operation itself; it produces a structured request that the application
+      can execute and then return the result to the model.
+      <br><br>
+      Examples include searching a database, checking weather, calling an API,
+      calculating something, or sending a message.
+      <br><br>
+      <strong>Analogy:</strong> Imagine an employee who cannot directly access
+      the company's database but can ask the database specialist to look something
+      up and return the result.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">AI Agent</div>
+    <div class="glossary-def">
+      An AI agent is a system that uses an LLM together with tools, instructions,
+      state or memory, and an execution loop to accomplish a goal. Instead of
+      producing only one answer, it can decide what action to take, use a tool,
+      observe the result, and continue until the task is complete.
+      <br><br>
+      A simplified loop is:
+      <br>
+      Goal → Plan → Act → Observe → Decide → Act again
+      <br><br>
+      <strong>Analogy:</strong> A normal chatbot is like asking an employee a
+      question and getting an answer. An AI agent is like giving an employee a
+      task and allowing them to decide which tools and steps are needed to finish it.
+    </div>
+  </div>
+
+  <div class="glossary-item">
+    <div class="glossary-term">LLM</div>
+    <div class="glossary-def">
+      LLM stands for Large Language Model. It is a neural network trained on
+      large amounts of text to learn patterns in language and generate text.
+      Modern LLMs are commonly built using Transformer architectures and are
+      typically trained using next-token prediction.
+      <br><br>
+      <strong>Analogy:</strong> Think of an LLM as an extremely well-practiced
+      language student that has seen an enormous number of examples and learned
+      patterns about how language is used.
+    </div>
+  </div>
+
+</aside>
 <main>
   <section class="hero">
     <div class="hero-eyebrow">A Teaching Journey</div>
     <h1>LLM, From <span class="accent">Zero</span>.</h1>
-    <p class="hero-sub">From "what is machine learning" to a full modern AI application &mdash; 31 short lessons, each one diagram and one idea. Follow the numbers in order; every lesson builds on the one before it.</p>
+    <p class="hero-sub">From "what is machine learning" to a full modern AI application &mdash; 31 short lessons across 6 parts, each one diagram and one idea. Follow the numbers in order; every lesson builds on the one before it.</p>
     <div class="hero-meta">
       <span><b>31</b> lessons</span>
-      <span><b>01 &rarr; MASTER</b> sequence</span>
-      <span><b>~15 min</b> to read straight through</span>
+      <span><b>6</b> parts</span>
+      <span><b>~20 min</b> to read straight through</span>
+    </div>
+    <div class="roadmap">
+      <a href="#part1" class="roadmap-chip">
+      <span class="roadmap-roman">I</span>
+      <span class="roadmap-info"><span class="roadmap-title">Foundations</span><span class="roadmap-range">Lessons 01&ndash;05</span></span>
+    </a>
+<a href="#part2" class="roadmap-chip">
+      <span class="roadmap-roman">II</span>
+      <span class="roadmap-info"><span class="roadmap-title">Preparing Language for a Model</span><span class="roadmap-range">Lessons 06&ndash;10</span></span>
+    </a>
+<a href="#part3" class="roadmap-chip">
+      <span class="roadmap-roman">III</span>
+      <span class="roadmap-info"><span class="roadmap-title">The Attention Mechanism</span><span class="roadmap-range">Lessons 11&ndash;17</span></span>
+    </a>
+<a href="#part4" class="roadmap-chip">
+      <span class="roadmap-roman">IV</span>
+      <span class="roadmap-info"><span class="roadmap-title">The Full Transformer</span><span class="roadmap-range">Lessons 18&ndash;24</span></span>
+    </a>
+<a href="#part5" class="roadmap-chip">
+      <span class="roadmap-roman">V</span>
+      <span class="roadmap-info"><span class="roadmap-title">Training &amp; Deployment</span><span class="roadmap-range">Lessons 25&ndash;27</span></span>
+    </a>
+<a href="#part6" class="roadmap-chip">
+      <span class="roadmap-roman">VI</span>
+      <span class="roadmap-info"><span class="roadmap-title">Building Real Applications</span><span class="roadmap-range">Lessons 28&ndash;MASTER</span></span>
+    </a>
     </div>
   </section>
 
   
-    <section class="lesson" id="l01">
+    <section class="prereq-section">
+      <div class="prereq-header">
+        <span class="prereq-eyebrow">Before You Start</span>
+        <h2 class="prereq-heading">Do I know enough to follow this?</h2>
+        <p class="prereq-sub">Short answer: if you can write a basic function, you&rsquo;re ready. Everything else gets explained as you go.</p>
+      </div>
+      <div class="prereq-grid"><div class="prereq-col prereq-required">
+          <div class="prereq-col-title"><span class="prereq-icon">&#10003;</span> You should already know</div>
+          <ul class="prereq-list"><li>Basic programming logic &mdash; variables, loops, functions, in any language</li><li>How to read simple code, even if you wouldn&rsquo;t write it from scratch</li><li>General comfort with numbers &mdash; percentages, averages, basic algebra</li></ul>
+        </div><div class="prereq-col prereq-helpful">
+          <div class="prereq-col-title"><span class="prereq-icon">&#128161;</span> Helpful, but not required</div>
+          <ul class="prereq-list"><li>Some exposure to Python syntax specifically</li><li>A rough sense of what vectors/arrays are</li><li>Having used an AI chatbot before (ChatGPT, Claude, etc.)</li></ul>
+        </div><div class="prereq-col prereq-skip">
+          <div class="prereq-col-title"><span class="prereq-icon">&#10007;</span> You do NOT need</div>
+          <ul class="prereq-list"><li>Calculus or linear algebra proofs &mdash; the math is explained in plain English as it comes up</li><li>Any prior machine learning or deep learning experience</li><li>GPU hardware knowledge or a powerful computer &mdash; this is all conceptual</li></ul>
+        </div></div>
+    </section>
+    
+
+  
+    <section class="chapter-divider" id="part1">
+      <div class="chapter-roman">I</div>
+      <div class="chapter-info">
+        <div class="chapter-eyebrow">Part 1 &middot; Lessons 01&ndash;05</div>
+        <h2 class="chapter-title">Foundations</h2>
+        <p class="chapter-desc">Where LLMs come from, and the basic idea of learning from data instead of hand-written rules.</p>
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l01" data-part="">
       <div class="lesson-eyebrow">Lesson 01</div>
       <h2 class="lesson-title">The Family Tree of an LLM</h2>
       <p class="lesson-thesis">An LLM isn&rsquo;t one invention &mdash; it&rsquo;s the newest ring in a decades-old tree of research, each ring narrowing the focus of the one before it.</p>
@@ -82,15 +847,20 @@
   </div>
 </div>
 
+      
       <div class="lesson-body">
-        <p class="explain">Every ring here is a specialization of the ring around it. <strong>AI</strong> is the whole field of making machines behave intelligently. <strong>Machine Learning</strong> is the part of AI that learns patterns from data instead of following hand-written rules. <strong>Deep Learning</strong> is ML done with layered neural networks. <strong>NLP</strong> applies deep learning to language specifically. <strong>Transformers</strong> are the architecture that made modern NLP possible. And an <strong>LLM</strong> is simply a very large Transformer, trained on a huge amount of text.</p>
+        <p class="explain">Each ring sits inside the ring before it. <strong>AI</strong> just means machines that can act smart. <strong>Machine Learning</strong> is one way to do that &mdash; the machine learns from examples instead of being told exact rules. <strong>Deep Learning</strong> is machine learning done with layered neural networks. <strong>NLP</strong> is deep learning applied to language. <strong>Transformers</strong> are the design that made NLP much better. And an <strong>LLM</strong> is simply a very big Transformer, trained on a huge amount of text.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a set of Russian nesting dolls &mdash; you can&rsquo;t understand the smallest doll without knowing it lives inside all the bigger ones.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><span class="lesson-nav-link spacer"></span><a class="lesson-nav-link next" href="#l02">What Is Machine Learning? &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l01"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l02">
+    <section class="lesson" id="l02" data-part="">
       <div class="lesson-eyebrow">Lesson 02</div>
       <h2 class="lesson-title">What Is Machine Learning?</h2>
       <p class="lesson-thesis">Instead of programming exact rules, we show the machine examples &mdash; and let it work out the pattern itself.</p>
@@ -121,15 +891,20 @@
     </svg><span class="arrow-label">measure</span></div>
 <div class="node kind-red"><span class="node-label">Error</span><span class="node-sub">how wrong it was</span></div>
 </div><div class="loop-chip">&#8635; repeats thousands of times, adjusting the model a little each round</div>
+      
       <div class="lesson-body">
-        <p class="explain">A machine learning model starts out knowing nothing. You show it data, it makes a guess, you tell it how wrong the guess was (the <strong>error</strong>), and it nudges its internal numbers to be a little less wrong next time. Do this enough times on enough examples, and the model converges on a rule that generalizes to data it has never seen.</p>
+        <p class="explain">A machine learning model starts out knowing nothing. You show it data. It makes a guess. You tell it how wrong that guess was &mdash; that&rsquo;s the <strong>error</strong>. Then it adjusts its numbers to do a little better next time. Repeat this many times, and the model learns a rule that also works on new data it has never seen.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> teaching someone to throw darts blindfolded &mdash; they throw, you tell them &lsquo;too far left,&rsquo; they adjust, and over hundreds of throws they get accurate without ever seeing the board.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l01">&larr; The Family Tree of an LLM</a><a class="lesson-nav-link next" href="#l03">Neural Networks: Stacking Simple Math &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l02"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l03">
+    <section class="lesson" id="l03" data-part="">
       <div class="lesson-eyebrow">Lesson 03</div>
       <h2 class="lesson-title">Neural Networks: Stacking Simple Math</h2>
       <p class="lesson-thesis">A neural network is just several simple transformations stacked on top of each other, layer by layer.</p>
@@ -160,15 +935,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">the answer</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">Each layer takes the numbers from the layer before it, multiplies them by learned weights, adds a bias, and passes the result through a small non-linear function. No single layer is smart on its own &mdash; but stack enough of them and the network can approximate extremely complex functions, like &lsquo;is this a cat photo&rsquo; or &lsquo;what word comes next.&rsquo;</p>
+        <p class="explain">Each layer takes the numbers from the layer before it, multiplies them by learned weights, and passes the result forward. One layer alone isn&rsquo;t very smart. But stack enough layers together, and the whole network can learn complex patterns &mdash; like recognizing a cat photo, or guessing the next word in a sentence.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an assembly line &mdash; each station does one small, simple operation, but after enough stations the raw material has become a finished product.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l02">&larr; What Is Machine Learning?</a><a class="lesson-nav-link next" href="#l04">How a Network Actually Learns &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l03"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l04">
+    <section class="lesson" id="l04" data-part="">
       <div class="lesson-eyebrow">Lesson 04</div>
       <h2 class="lesson-title">How a Network Actually Learns</h2>
       <p class="lesson-thesis">Training is a loop: guess, compare, measure how wrong, then fix the weights that caused the mistake.</p>
@@ -211,15 +991,20 @@
     </svg></div>
 <div class="node "><span class="node-label">Update Weights</span></div>
 </div><div class="loop-chip">&#8635; update, then run the next batch of data through again</div>
+      
       <div class="lesson-body">
-        <p class="explain"><strong>Backpropagation</strong> is the key idea: once we know the loss (how wrong the final prediction was), we can mathematically trace back through every layer to figure out exactly how much each individual weight contributed to that error &mdash; and nudge each one in the direction that reduces it.</p>
+        <p class="explain"><abbr class='gloss' title='Traces a model's error backward through its layers to figure out how to adjust each weight.'><strong>Backpropagation</strong></abbr> is the key idea here. Once we know the loss &mdash; how wrong the answer was &mdash; we trace that error back through every layer. This shows exactly how much each weight contributed to the mistake. Then we nudge each weight a little, in the direction that reduces the error.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a group project post-mortem &mdash; after a bad result, you trace back through every decision to see who contributed how much to the mistake, so each person knows exactly what to adjust next time.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l03">&larr; Neural Networks: Stacking Simple Math</a><a class="lesson-nav-link next" href="#l05">NLP: Teaching Machines to Read &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l04"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l05">
+    <section class="lesson" id="l05" data-part="">
       <div class="lesson-eyebrow">Lesson 05</div>
       <h2 class="lesson-title">NLP: Teaching Machines to Read</h2>
       <p class="lesson-thesis">Natural Language Processing is the pipeline that turns messy human language into something a model can compute on.</p>
@@ -242,7 +1027,7 @@
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div>
-<div class="node "><span class="node-label">Numerical Representation</span><span class="node-sub">pieces &amp;rarr; numbers</span></div>
+<div class="node "><span class="node-label">Numerical Representation</span><span class="node-sub">pieces &rarr; numbers</span></div>
 <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
       <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
@@ -256,15 +1041,54 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Useful Output</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">Computers only understand numbers, but language is made of words, grammar, and context. NLP is the whole discipline of bridging that gap &mdash; breaking language into pieces a model can digest, turning those pieces into numbers, and using a model to turn those numbers back into something useful: a translation, an answer, a summary.</p>
+        <p class="explain">Computers only understand numbers. Language is made of words, grammar, and context. NLP is the field that bridges this gap. It breaks language into pieces a model can read, turns those pieces into numbers, and turns the model&rsquo;s output back into something useful &mdash; a translation, an answer, a summary.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a translator standing between two people who speak entirely different languages &mdash; one who speaks &lsquo;words&rsquo; and one who only speaks &lsquo;numbers.&rsquo;</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l04">&larr; How a Network Actually Learns</a><a class="lesson-nav-link next" href="#l06">Tokenization: Chopping Text into Pieces &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l05"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l06">
+    <section class="quiz-block" id="quiz1" data-quiz-total="3">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#129504;</span>
+        <div>
+          <div class="quiz-title">Chapter Check &mdash; Foundations</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 3</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="AI is the broad field; ML is the part of AI that learns from data; Deep Learning is ML done with layered neural networks &mdash; each ring narrows the focus of the one before it.">
+          <p class="quiz-question">1. Which of these best describes the relationship between AI, ML, and Deep Learning?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">They're unrelated fields that happen to overlap</button><button class="quiz-opt" data-correct="true">Each is a specialization of the one before it &mdash; ML is part of AI, Deep Learning is part of ML</button><button class="quiz-opt" data-correct="false">Deep Learning came first, then ML, then AI</button><button class="quiz-opt" data-correct="false">They're just three names for the same thing</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Loss quantifies the gap between the model's prediction and the actual correct answer &mdash; it's what the model tries to minimize during training.">
+          <p class="quiz-question">2. In machine learning, what is the 'loss' or 'error'?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">The final answer the model gives</button><button class="quiz-opt" data-correct="true">A measure of how wrong the model's prediction was</button><button class="quiz-opt" data-correct="false">The dataset used for training</button><button class="quiz-opt" data-correct="false">A bug in the code</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Backpropagation mathematically traces the loss backward through every layer, so each weight can be nudged in the direction that reduces the error.">
+          <p class="quiz-question">3. What does backpropagation actually do?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">It deletes bad training examples</button><button class="quiz-opt" data-correct="true">It traces the error backward through the network to figure out how much each weight contributed to the mistake</button><button class="quiz-opt" data-correct="false">It randomly shuffles the training data</button><button class="quiz-opt" data-correct="false">It converts text into tokens</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
+    </section>
+    
+
+    <section class="chapter-divider" id="part2">
+      <div class="chapter-roman">II</div>
+      <div class="chapter-info">
+        <div class="chapter-eyebrow">Part 2 &middot; Lessons 06&ndash;10</div>
+        <h2 class="chapter-title">Preparing Language for a Model</h2>
+        <p class="chapter-desc">Turning raw text into numbers a neural network can actually compute on.</p>
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l06" data-part="">
       <div class="lesson-eyebrow">Lesson 06</div>
       <h2 class="lesson-title">Tokenization: Chopping Text into Pieces</h2>
       <p class="lesson-thesis">Before a model can process text, it has to be split into small, consistent chunks called tokens.</p>
@@ -279,15 +1103,34 @@
         <span class="token">I</span><span class="token">love</span><span class="token">art</span><span class="token">ificial</span><span class="token">intelligence</span>
       </div>
     </div>
+      
+<div class="demo-box" id="tokenizer-demo">
+  <div class="demo-label"><span class="demo-dot"></span> Try it &mdash; live tokenizer</div>
+  <input type="text" class="demo-input" id="tok-input" placeholder="Type any sentence&hellip;" value="Transformers changed everything" maxlength="80">
+  <div class="token-row" id="tok-output"></div>
+  <div class="demo-hint">Illustrative demo &mdash; splits on whitespace and breaks long words into sub-pieces, roughly like a real tokenizer would.</div>
+</div>
+
       <div class="lesson-body">
-        <p class="explain">A tokenizer doesn&rsquo;t always split on whole words &mdash; common words often stay whole, while rare or long words get chopped into familiar sub-pieces (like <em>art</em> + <em>ificial</em>). This lets the model represent literally any word, even ones it has never seen, using a fixed, manageable vocabulary of pieces.</p>
+        <p class="explain">A tokenizer doesn&rsquo;t always split on whole words. Common words usually stay whole. Rare or long words get broken into smaller, familiar pieces (like <em>art</em> + <em>ificial</em>). This way, the model can represent any word &mdash; even ones it has never seen &mdash; using a small, fixed set of pieces.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> cutting a sentence into LEGO bricks &mdash; common shapes stay as one big brick, unusual shapes get broken into several small bricks the model already recognizes.</div></div>
         
+        <div class="code-block">
+          <div class="code-label"><span>&#128013;</span> Python</div>
+          <pre><code>text = &quot;I love artificial intelligence&quot;
+tokens = tokenizer.encode(text)
+# [&#x27;I&#x27;, &#x27;love&#x27;, &#x27;art&#x27;, &#x27;ificial&#x27;, &#x27;intelligence&#x27;]
+token_ids = [vocab[t] for t in tokens]
+# [312, 891, 4021, 4022, 205]</code></pre>
+        </div>
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l05">&larr; NLP: Teaching Machines to Read</a><a class="lesson-nav-link next" href="#l07">From Tokens to Token IDs &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l06"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l07">
+    <section class="lesson" id="l07" data-part="">
       <div class="lesson-eyebrow">Lesson 07</div>
       <h2 class="lesson-title">From Tokens to Token IDs</h2>
       <p class="lesson-thesis">Every token in the model&rsquo;s vocabulary has a fixed integer ID &mdash; a lookup, nothing more.</p>
@@ -308,15 +1151,20 @@
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div><span class="idbox">8710</span></div>
     </div>
+      
       <div class="lesson-body">
-        <p class="explain">The model&rsquo;s vocabulary (often 50,000&ndash;150,000 tokens) is just a giant lookup table decided once, before training. &ldquo;cat&rdquo; is always ID 4021 for that model. This turns text into a simple list of integers &mdash; the only format a neural network actually understands.</p>
+        <p class="explain">The model&rsquo;s vocabulary is just a big lookup table, fixed before training &mdash; often 50,000 to 150,000 entries. &ldquo;cat&rdquo; is always ID 4021 for that model. This turns any piece of text into a simple list of numbers &mdash; the only thing a neural network can actually work with.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a coat-check counter &mdash; you hand in your word, you get back a numbered ticket, and that number is all the system needs to remember what you handed in.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l06">&larr; Tokenization: Chopping Text into Pieces</a><a class="lesson-nav-link next" href="#l08">Embeddings: Giving Numbers Meaning &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l07"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l08">
+    <section class="lesson" id="l08" data-part="">
       <div class="lesson-eyebrow">Lesson 08</div>
       <h2 class="lesson-title">Embeddings: Giving Numbers Meaning</h2>
       <p class="lesson-thesis">A token ID alone carries no meaning &mdash; embeddings convert it into a rich vector that captures meaning.</p>
@@ -341,15 +1189,29 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Semantic Representation</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">ID 4021 tells the model nothing about what &ldquo;cat&rdquo; means &mdash; it&rsquo;s an arbitrary label. The embedding layer maps that ID to a vector of hundreds of numbers, learned during training so that words with related meanings end up with similar vectors. This is where a token stops being a symbol and starts being a point in &lsquo;meaning space.&rsquo;</p>
+        <p class="explain">ID 4021 doesn&rsquo;t tell the model anything about what &ldquo;cat&rdquo; means &mdash; it&rsquo;s just a label. The embedding layer turns that ID into a vector of hundreds of numbers. This vector is learned during training, so words with similar meaning end up with similar vectors. This is the step where a token stops being a plain symbol and becomes a point in &lsquo;meaning space.&rsquo;</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> translating a word into GPS coordinates on a map of meaning &mdash; the number itself looks arbitrary, but its position relative to other words is not.</div></div>
         
+        <div class="code-block">
+          <div class="code-label"><span>&#128013;</span> Python</div>
+          <pre><code>import torch.nn as nn
+
+embedding = nn.Embedding(vocab_size=50000, embedding_dim=768)
+vector = embedding(token_id)   # shape: [768]
+# similar words -&gt; similar vectors
+cosine_similarity(embedding(cat_id), embedding(dog_id))  # high
+cosine_similarity(embedding(cat_id), embedding(car_id))  # low</code></pre>
+        </div>
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l07">&larr; From Tokens to Token IDs</a><a class="lesson-nav-link next" href="#l09">Semantic Vector Space &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l08"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l09">
+    <section class="lesson" id="l09" data-part="">
       <div class="lesson-eyebrow">Lesson 09</div>
       <h2 class="lesson-title">Semantic Vector Space</h2>
       <p class="lesson-thesis">Words with related meaning land near each other in vector space &mdash; distance encodes similarity.</p>
@@ -368,15 +1230,20 @@
   </div>
 </div>
 
+      
       <div class="lesson-body">
-        <p class="explain">Plot every word&rsquo;s embedding vector (simplified here to 2 dimensions) and a pattern appears: <strong>cat</strong>, <strong>dog</strong>, and <strong>wolf</strong> cluster together, far from <strong>car</strong> and <strong>truck</strong>, which cluster together too. Nobody told the model animals and vehicles are different categories &mdash; it discovered that structure purely from how these words are used in text.</p>
+        <p class="explain">If you plot every word&rsquo;s embedding vector (simplified here to 2 dimensions), a pattern shows up: <strong>cat</strong>, <strong>dog</strong>, and <strong>wolf</strong> land close together, far from <strong>car</strong> and <strong>truck</strong>, which land close together too. Nobody told the model that animals and vehicles are different categories &mdash; it figured that out just from how these words are used in real text.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a well-organized library where books get shelved by topic automatically &mdash; you never told the librarian &lsquo;animals go together,&rsquo; but that&rsquo;s where you find them.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l08">&larr; Embeddings: Giving Numbers Meaning</a><a class="lesson-nav-link next" href="#l10">Positional Information: Word Order Matters &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l09"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l10">
+    <section class="lesson" id="l10" data-part="">
       <div class="lesson-eyebrow">Lesson 10</div>
       <h2 class="lesson-title">Positional Information: Word Order Matters</h2>
       <p class="lesson-thesis">&ldquo;Dog bites man&rdquo; and &ldquo;man bites dog&rdquo; use the same words &mdash; order changes everything.</p>
@@ -407,15 +1274,54 @@
     </svg></div>
 <div class="node "><span class="node-label">cat</span><span class="node-sub">+ pos 5</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">Embeddings alone tell the model <em>what</em> each word means, but not <em>where</em> it sits in the sentence &mdash; and a Transformer looks at all tokens at once, not in reading order. So a positional signal is mathematically added to every token&rsquo;s embedding, letting the model tell &ldquo;dog chased cat&rdquo; apart from &ldquo;cat chased dog.&rdquo;</p>
+        <p class="explain">Embeddings tell the model <em>what</em> a word means, but not <em>where</em> it sits in the sentence. A Transformer looks at all tokens at the same time, not in reading order. So a positional signal gets added to each token&rsquo;s embedding &mdash; this is how the model tells &ldquo;dog chased cat&rdquo; apart from &ldquo;cat chased dog.&rdquo;</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> stamping every word with a timestamp before throwing all the words into a bag &mdash; you can dump them out in any order and still reconstruct the original sentence.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l09">&larr; Semantic Vector Space</a><a class="lesson-nav-link next" href="#l11">Why Attention? Context Changes Meaning &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l10"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l11">
+    <section class="quiz-block" id="quiz2" data-quiz-total="3">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#129504;</span>
+        <div>
+          <div class="quiz-title">Chapter Check &mdash; Preparing Language for a Model</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 3</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="Neural networks compute on numbers. Tokenization is the first step in turning text into a form that can eventually become numbers.">
+          <p class="quiz-question">1. Why does text need to be tokenized before a model can use it?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">To make the text shorter for storage</button><button class="quiz-opt" data-correct="true">Because neural networks only understand numbers, not raw text</button><button class="quiz-opt" data-correct="false">To remove punctuation permanently</button><button class="quiz-opt" data-correct="false">Tokenization is optional and rarely used</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="A token ID is just a label (e.g. 'cat' = 4021) with no meaning by itself. An embedding maps that ID to a vector positioned near other words with related meaning.">
+          <p class="quiz-question">2. What's the difference between a token ID and an embedding?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">They're the same thing</button><button class="quiz-opt" data-correct="true">A token ID is an arbitrary lookup number; an embedding is a learned vector that captures meaning</button><button class="quiz-opt" data-correct="false">An embedding is always shorter than a token ID</button><button class="quiz-opt" data-correct="false">Token IDs are only used during inference, not training</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Without positional signals, 'dog chased cat' and 'cat chased dog' would look identical to the model, since it processes all tokens in parallel rather than left-to-right.">
+          <p class="quiz-question">3. Why do Transformers need positional information added to embeddings?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Because embeddings are too large otherwise</button><button class="quiz-opt" data-correct="true">Because a Transformer looks at all tokens at once, not in reading order, so it needs a way to know word order</button><button class="quiz-opt" data-correct="false">To make the model run faster</button><button class="quiz-opt" data-correct="false">Positional information replaces the need for tokenization</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
+    </section>
+    
+
+    <section class="chapter-divider" id="part3">
+      <div class="chapter-roman">III</div>
+      <div class="chapter-info">
+        <div class="chapter-eyebrow">Part 3 &middot; Lessons 11&ndash;17</div>
+        <h2 class="chapter-title">The Attention Mechanism</h2>
+        <p class="chapter-desc">The single most important idea in modern LLMs &mdash; letting every token look at every other token.</p>
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l11" data-part="">
       <div class="lesson-eyebrow">Lesson 11</div>
       <h2 class="lesson-title">Why Attention? Context Changes Meaning</h2>
       <p class="lesson-thesis">The word &ldquo;it&rdquo; is meaningless on its own &mdash; its meaning depends entirely on the rest of the sentence.</p>
@@ -428,15 +1334,28 @@
   </div>
 </div>
 
+      
+<div class="demo-box" id="attn-demo">
+  <div class="demo-label"><span class="demo-dot"></span> Try it &mdash; click a word</div>
+  <p class="disambig-sentence" id="attn-sentence">
+    <span class="attn-word" data-refers="">The</span> <span class="attn-word attn-target" data-refers="">animal</span> <span class="attn-word" data-refers="">didn&rsquo;t</span> <span class="attn-word" data-refers="">cross</span> <span class="attn-word" data-refers="">the</span> <span class="attn-word attn-distractor" data-refers="">road</span> <span class="attn-word" data-refers="">because</span> <span class="attn-word attn-pronoun" data-refers="animal">it</span> <span class="attn-word" data-refers="">was</span> <span class="attn-word" data-refers="">too</span> <span class="attn-word" data-refers="">tired</span>.
+  </p>
+  <div class="demo-hint" id="attn-hint">Click &ldquo;it&rdquo; to see which word the model should pay attention to.</div>
+</div>
+
       <div class="lesson-body">
-        <p class="explain">A model reading this sentence has to figure out that &ldquo;it&rdquo; refers to the <strong>animal</strong>, not the <strong>road</strong> &mdash; because &ldquo;tired&rdquo; makes sense for a living thing, not a road. This kind of reasoning requires every word to be able to look at every other word and weigh how relevant it is. That mechanism is called <strong>attention</strong>, and it&rsquo;s the single most important idea behind modern LLMs.</p>
+        <p class="explain">A model reading this sentence has to work out that &ldquo;it&rdquo; means the <strong>animal</strong>, not the <strong>road</strong>. Why? Because &ldquo;tired&rdquo; makes sense for a living thing, not a road. To do this, every word needs to look at every other word and judge how relevant it is. That mechanism is called <abbr class='gloss' title='A mechanism that lets each token weigh and gather information from every other token in a sequence.'><strong>attention</strong></abbr> &mdash; the single most important idea behind modern LLMs.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a detective re-reading every earlier clue in a story before deciding what a pronoun really refers to.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l10">&larr; Positional Information: Word Order Matters</a><a class="lesson-nav-link next" href="#l12">Self-Attention: Every Token Looks at Every Token &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l11"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l12">
+    <section class="lesson" id="l12" data-part="">
       <div class="lesson-eyebrow">Lesson 12</div>
       <h2 class="lesson-title">Self-Attention: Every Token Looks at Every Token</h2>
       <p class="lesson-thesis">Self-attention lets each token gather context from every other token in the sequence, weighted by relevance.</p>
@@ -473,15 +1392,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Context-Aware Output</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">For every token, the model asks a question (Query), compares it against what every other token offers (Keys), and scores how relevant each one is. Those scores become weights, and the token&rsquo;s new representation becomes a weighted blend of all the other tokens &mdash; now &lsquo;aware&rsquo; of its context instead of standing alone.</p>
+        <p class="explain">For every token, the model asks a question &mdash; that&rsquo;s the Query. It compares this question against what every other token has to offer &mdash; the Keys. This gives a relevance score for each token. Those scores become weights, and the token&rsquo;s new representation becomes a blend of every other token, weighted by relevance. Now the token is &lsquo;aware&rsquo; of its context, instead of standing alone.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a group discussion where, before speaking, everyone briefly checks in with everyone else in the room to see whose input is most relevant to the current topic.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l11">&larr; Why Attention? Context Changes Meaning</a><a class="lesson-nav-link next" href="#l13">Query, Key, Value &mdash; The Three Roles &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l12"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l13">
+    <section class="lesson" id="l13" data-part="">
       <div class="lesson-eyebrow">Lesson 13</div>
       <h2 class="lesson-title">Query, Key, Value &mdash; The Three Roles</h2>
       <p class="lesson-thesis">Query asks &ldquo;what am I looking for,&rdquo; Key answers &ldquo;here&rsquo;s what I contain,&rdquo; Value carries the actual content.</p>
@@ -504,7 +1428,7 @@
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div>
-<div class="node kind-amber"><span class="node-label">Q &amp;times; K</span><span class="node-sub">match score</span></div>
+<div class="node kind-amber"><span class="node-label">Q &times; K</span><span class="node-sub">match score</span></div>
 <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
       <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
@@ -524,28 +1448,33 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Attention Output</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">Every token is projected into three different vectors using three separate learned weight matrices. The <strong>Query</strong> represents what this token is searching for. The <strong>Key</strong> represents what each token has to offer, and matching Q against K produces relevance scores. Those scores are used to blend the <strong>Values</strong> &mdash; the actual content each token carries.</p>
+        <p class="explain">Every token gets turned into three separate vectors, using three learned weight matrices. The <abbr class='gloss' title='The vector representing what a token is searching for during attention.'><strong>Query</strong></abbr> is what this token is searching for. The <strong>Key</strong> is what each token has to offer. Matching Query against Key gives relevance scores. Those scores are then used to blend the <strong>Values</strong> &mdash; the actual content each token carries.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a library search: your <em>Query</em> is your search terms, every book&rsquo;s <em>Key</em> is its catalog tags, and once you find good matches, the <em>Value</em> is the actual book content you walk away with.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l12">&larr; Self-Attention: Every Token Looks at Every Token</a><a class="lesson-nav-link next" href="#l14">The Attention Formula, Step by Step &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l13"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l14">
+    <section class="lesson" id="l14" data-part="">
       <div class="lesson-eyebrow">Lesson 14</div>
       <h2 class="lesson-title">The Attention Formula, Step by Step</h2>
       <p class="lesson-thesis">Behind the diagrams is one compact formula &mdash; here&rsquo;s exactly what each piece does.</p>
       <div class="diagram formula-wrap">
       <div class="formula">Attention(Q,K,V) = softmax( QK<sup>T</sup> / &radic;d<sub>k</sub> ) V</div>
       <div class="diagram flow-row">
-<div class="node "><span class="node-label">Q &amp;times; Kᵀ</span><span class="node-sub">similarity scores</span></div>
+<div class="node "><span class="node-label">Q &times; Kᵀ</span><span class="node-sub">similarity scores</span></div>
 <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
       <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div>
-<div class="node kind-amber"><span class="node-label">&amp;divide; &amp;radic;dₖ</span><span class="node-sub">keep values stable</span></div>
+<div class="node kind-amber"><span class="node-label">&divide; &radic;dₖ</span><span class="node-sub">keep values stable</span></div>
 <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
       <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
@@ -557,7 +1486,7 @@
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div>
-<div class="node "><span class="node-label">&amp;times; V</span><span class="node-sub">blend the values</span></div>
+<div class="node "><span class="node-label">&times; V</span><span class="node-sub">blend the values</span></div>
 <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
       <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
@@ -566,15 +1495,26 @@
 <div class="node kind-green"><span class="node-label">Attention Output</span></div>
 </div>
     </div>
+      
       <div class="lesson-body">
-        <p class="explain"><strong>QK<sup>T</sup></strong> multiplies queries against keys to get raw similarity scores. Dividing by <strong>&radic;d<sub>k</sub></strong> (the square root of the key dimension) simply keeps those numbers from growing too large as vectors get bigger. <strong>Softmax</strong> turns the scores into a clean probability distribution that sums to 1. Multiplying by <strong>V</strong> then blends the actual content according to those probabilities.</p>
+        <p class="explain"><strong>QK<sup>T</sup></strong> multiplies queries against keys to get raw similarity scores. Dividing by <strong>&radic;d<sub>k</sub></strong> just keeps those numbers from growing too large. <abbr class='gloss' title='Converts raw scores into a probability distribution that sums to 1.'><strong>Softmax</strong></abbr> turns the scores into clean probabilities that add up to 1. Multiplying by <strong>V</strong> then blends the actual content, based on those probabilities.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a recipe with exactly four steps &mdash; each one boring on its own, but skip any single step and the whole dish fails.</div></div>
         
+        <div class="code-block">
+          <div class="code-label"><span>&#128013;</span> Python</div>
+          <pre><code>scores = Q @ K.transpose(-2, -1)      # QK^T
+scores = scores / math.sqrt(d_k)      # scale
+weights = softmax(scores, dim=-1)     # probabilities
+output = weights @ V                  # weighted blend</code></pre>
+        </div>
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l13">&larr; Query, Key, Value &mdash; The Three Roles</a><a class="lesson-nav-link next" href="#l15">Multi-Head Attention: Many Perspectives at Once &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l14"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l15">
+    <section class="lesson" id="l15" data-part="">
       <div class="lesson-eyebrow">Lesson 15</div>
       <h2 class="lesson-title">Multi-Head Attention: Many Perspectives at Once</h2>
       <p class="lesson-thesis">Instead of paying attention one way, the model runs several attention &lsquo;heads&rsquo; in parallel, each free to learn a different kind of relationship.</p>
@@ -593,15 +1533,20 @@
     </svg></div>
       <div class="node "><span class="node-label">Concatenate</span></div><div class="node "><span class="node-label">Linear Projection</span></div><div class="node kind-green"><span class="node-label">Multi-Head Output</span></div>
     </div>
+      
       <div class="lesson-body">
-        <p class="explain">One attention head might learn to track grammatical structure, another might track which pronoun refers to which noun, another might track topic. Running several heads in parallel &mdash; then concatenating and projecting their outputs back down &mdash; lets the model capture many kinds of relationships simultaneously instead of being forced to pick just one.</p>
+        <p class="explain">One attention head might learn to track grammar. Another might track which pronoun points to which noun. Another might track topic. Running several heads at once &mdash; then combining their outputs &mdash; lets the model notice many kinds of relationships at the same time, instead of being forced to pick just one.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a panel of specialists reviewing the same document at once &mdash; a grammar expert, a fact-checker, a tone reader &mdash; then combining all their notes into one final review.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l14">&larr; The Attention Formula, Step by Step</a><a class="lesson-nav-link next" href="#l16">The Feed-Forward Network &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l15"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l16">
+    <section class="lesson" id="l16" data-part="">
       <div class="lesson-eyebrow">Lesson 16</div>
       <h2 class="lesson-title">The Feed-Forward Network</h2>
       <p class="lesson-thesis">After attention mixes information between tokens, the feed-forward network processes each token individually to refine it.</p>
@@ -632,15 +1577,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">FFN Output</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">Attention is about tokens talking to each other; the FFN is the opposite &mdash; it takes each token&rsquo;s (now context-aware) representation and pushes it through its own small neural network, independently of every other token, to further refine what it &lsquo;knows.&rsquo; This combination of &lsquo;mix, then think&rsquo; repeats throughout the whole model.</p>
+        <p class="explain">Attention is about tokens talking to each other. The FFN does the opposite: it takes each token&rsquo;s representation and runs it through a small neural network, on its own, without looking at other tokens. This further refines what each token &lsquo;knows.&rsquo; This pattern &mdash; mix, then think &mdash; repeats throughout the whole model.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a team meeting (attention, everyone shares notes) followed by quiet, independent desk work (FFN, each person processes what they just heard on their own).</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l15">&larr; Multi-Head Attention: Many Perspectives at Once</a><a class="lesson-nav-link next" href="#l17">Residual Connections: Don&rsquo;t Lose the Original &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l16"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l17">
+    <section class="lesson" id="l17" data-part="">
       <div class="lesson-eyebrow">Lesson 17</div>
       <h2 class="lesson-title">Residual Connections: Don&rsquo;t Lose the Original</h2>
       <p class="lesson-thesis">A shortcut path carries the original input forward so it never gets lost &mdash; only added to.</p>
@@ -662,15 +1612,54 @@
       </div>
       <div class="residual-skip">&#8618; the original Input is carried straight through and added back in, not replaced</div>
     </div>
+      
       <div class="lesson-body">
-        <p class="explain">Instead of letting a layer completely overwrite a token&rsquo;s representation, the layer&rsquo;s output is <em>added to</em> the original input via a shortcut connection. This means each layer only has to learn what to <em>change</em>, not how to reconstruct everything from scratch &mdash; which makes very deep networks (dozens of stacked layers) far easier to train.</p>
+        <p class="explain">Instead of letting a layer completely overwrite a token&rsquo;s representation, its output is <em>added to</em> the original input through a shortcut connection. This means each layer only has to learn what to <em>change</em>, not rebuild everything from scratch. That makes very deep networks &mdash; with dozens of stacked layers &mdash; much easier to train.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> editing a document with tracked changes instead of retyping it from memory &mdash; you keep the original text and only layer your edits on top.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l16">&larr; The Feed-Forward Network</a><a class="lesson-nav-link next" href="#l18">One Transformer Block, Assembled &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l17"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l18">
+    <section class="quiz-block" id="quiz3" data-quiz-total="3">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#129504;</span>
+        <div>
+          <div class="quiz-title">Chapter Check &mdash; The Attention Mechanism</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 3</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="Self-attention lets a token like 'it' look at the rest of the sentence to figure out what it actually refers to, instead of being interpreted in isolation.">
+          <p class="quiz-question">1. What problem is self-attention solving?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Making models train faster</button><button class="quiz-opt" data-correct="true">Letting each token gather relevant context from every other token in the sequence</button><button class="quiz-opt" data-correct="false">Reducing the size of the vocabulary</button><button class="quiz-opt" data-correct="false">Converting text into audio</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="The Key represents what a token 'offers.' Matching a token's Query against every other token's Key produces the relevance scores.">
+          <p class="quiz-question">2. In the Query/Key/Value framework, what does the Key represent?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">The final output of the model</button><button class="quiz-opt" data-correct="true">What each token has to offer, used to match against a Query</button><button class="quiz-opt" data-correct="false">A random number used for shuffling</button><button class="quiz-opt" data-correct="false">The loss function</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Different heads can specialize &mdash; one might track grammar, another might track which pronoun refers to which noun &mdash; and their outputs are combined afterward.">
+          <p class="quiz-question">3. Why do Transformers use multiple attention heads instead of just one?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">To make the model slower on purpose</button><button class="quiz-opt" data-correct="true">So different heads can learn to track different kinds of relationships (grammar, topic, position, etc.) in parallel</button><button class="quiz-opt" data-correct="false">Because one head can only process one word at a time</button><button class="quiz-opt" data-correct="false">Multiple heads are only used during training, not inference</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
+    </section>
+    
+
+    <section class="chapter-divider" id="part4">
+      <div class="chapter-roman">IV</div>
+      <div class="chapter-info">
+        <div class="chapter-eyebrow">Part 4 &middot; Lessons 18&ndash;24</div>
+        <h2 class="chapter-title">The Full Transformer</h2>
+        <p class="chapter-desc">Assembling attention and feed-forward layers into the stacked architecture behind every modern LLM.</p>
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l18" data-part="">
       <div class="lesson-eyebrow">Lesson 18</div>
       <h2 class="lesson-title">One Transformer Block, Assembled</h2>
       <p class="lesson-thesis">Attention, then a feed-forward network, each wrapped in normalization and a residual connection &mdash; this is the repeating unit of every LLM.</p>
@@ -707,15 +1696,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Output</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">This is where every idea from the last few lessons comes together into one reusable unit: tokens exchange context through <strong>multi-head attention</strong>, get stabilized and combined with their original signal (<strong>add + norm</strong>), get individually refined by the <strong>FFN</strong>, and get stabilized again. This exact block is what actually gets stacked to build the full model.</p>
+        <p class="explain">This is where the last few ideas come together into one reusable block. Tokens share context through <strong>multi-head attention</strong>. The result gets stabilized and combined with the original signal (<strong>add + norm</strong>). Then the <strong>FFN</strong> refines each token on its own, and the result gets stabilized again. This exact block is what actually gets stacked to build the full model.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> one lap on a factory conveyor belt &mdash; the product goes through the same two stations (mix, then refine) with a quality check after each one, and the whole belt just loops this lap over and over.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l17">&larr; Residual Connections: Don&rsquo;t Lose the Original</a><a class="lesson-nav-link next" href="#l19">The Transformer Stack &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l18"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l19">
+    <section class="lesson" id="l19" data-part="">
       <div class="lesson-eyebrow">Lesson 19</div>
       <h2 class="lesson-title">The Transformer Stack</h2>
       <p class="lesson-thesis">A real LLM isn&rsquo;t one block &mdash; it&rsquo;s dozens of identical blocks, stacked, each refining the representation a little further.</p>
@@ -744,7 +1738,7 @@
       <polygon points="2,34 8,44 14,34" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
     </svg></div>
-<div class="node kind-ghost"><span class="node-label">&amp;#8942;</span></div>
+<div class="node kind-ghost"><span class="node-label">&#8942;</span></div>
 <div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
       <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
       <polygon points="2,34 8,44 14,34" class="arrow-head"/>
@@ -758,15 +1752,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Contextual Representation</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">GPT-3 has 96 of these blocks stacked; smaller models might have 12. Each block takes the previous block&rsquo;s output and refines it a bit further &mdash; early blocks tend to capture simple patterns like grammar, while later blocks capture more abstract meaning and reasoning. Depth is one of the main reasons scale helps LLMs get smarter.</p>
+        <p class="explain">GPT-3 stacks 96 of these blocks. Smaller models might use just 12. Each block takes the output from the block before it and refines it a bit more. Early blocks tend to pick up simple patterns like grammar. Later blocks pick up deeper meaning and reasoning. Depth is a big reason why bigger models tend to be smarter.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> sharpening a pencil &mdash; each pass of the blade removes a little more wood, and it takes many passes before you get a fine point.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l18">&larr; One Transformer Block, Assembled</a><a class="lesson-nav-link next" href="#l20">Encoder vs. Decoder &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l19"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l20">
+    <section class="lesson" id="l20" data-part="">
       <div class="lesson-eyebrow">Lesson 20</div>
       <h2 class="lesson-title">Encoder vs. Decoder</h2>
       <p class="lesson-thesis">Transformers come in two flavors, depending on whether the goal is to understand text or to generate it.</p>
@@ -777,7 +1776,7 @@
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div>
-      <div class="branch-group"><div class="branch-col"><div class="node kind-violet"><span class="node-label">Encoder</span><span class="node-sub">Understand / Represent&lt;br&gt;&lt;em&gt;e.g. BERT&lt;/em&gt;</span></div></div><div class="branch-col"><div class="node kind-amber"><span class="node-label">Decoder</span><span class="node-sub">Generate Tokens&lt;br&gt;&lt;em&gt;e.g. GPT&lt;/em&gt;</span></div></div></div>
+      <div class="branch-group"><div class="branch-col"><div class="node kind-violet"><span class="node-label">Encoder</span><span class="node-sub">Understand / Represent<br><em>e.g. BERT</em></span></div></div><div class="branch-col"><div class="node kind-amber"><span class="node-label">Decoder</span><span class="node-sub">Generate Tokens<br><em>e.g. GPT</em></span></div></div></div>
       <div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none">
       <line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/>
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
@@ -785,15 +1784,20 @@
     </svg></div>
       
     </div>
+      
       <div class="lesson-body">
-        <p class="explain">An <strong>encoder</strong> looks at the whole input at once and builds a rich representation of it &mdash; good for classification, search, and understanding tasks. A <strong>decoder</strong> generates text one token at a time, only looking backward at what it has already produced &mdash; good for writing and conversation. Most modern chat-style LLMs (GPT, Claude, Llama) are decoder-only.</p>
+        <p class="explain">An <strong>encoder</strong> looks at the whole input at once and builds a rich representation of it. It&rsquo;s good for classification, search, and understanding tasks. A <strong>decoder</strong> generates text one token at a time, only looking back at what it has already written. It&rsquo;s good for writing and conversation. Most chat-style LLMs today &mdash; GPT, Claude, Llama &mdash; are decoder-only.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an editor who reads an entire manuscript before summarizing it (encoder) versus a novelist writing one sentence at a time, never allowed to peek at pages they haven&rsquo;t written yet (decoder).</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l19">&larr; The Transformer Stack</a><a class="lesson-nav-link next" href="#l21">Causal (Masked) Attention &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l20"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l21">
+    <section class="lesson" id="l21" data-part="">
       <div class="lesson-eyebrow">Lesson 21</div>
       <h2 class="lesson-title">Causal (Masked) Attention</h2>
       <p class="lesson-thesis">A GPT-style decoder is only allowed to look at the past &mdash; never at tokens it hasn&rsquo;t generated yet.</p>
@@ -804,15 +1808,25 @@
   <div class="mask-caption">rows = the token &ldquo;asking,&rdquo; columns = the token being looked at &mdash; &#10003; = allowed, &#128274; = blocked (future)</div>
 </div>
 
+      
       <div class="lesson-body">
-        <p class="explain">If the model could peek at future tokens while learning to predict them, it would be cheating &mdash; and useless at generation time, since future tokens don&rsquo;t exist yet when you&rsquo;re writing them. The <strong>causal mask</strong> forces each token to attend only to itself and everything before it, which keeps training and real-world generation consistent.</p>
+        <p class="explain">If the model could peek at future tokens while learning, that would be cheating &mdash; and it wouldn&rsquo;t work at generation time anyway, since future tokens don&rsquo;t exist yet. The <abbr class='gloss' title='Prevents a token from attending to tokens that come after it in the sequence.'><strong>causal mask</strong></abbr> forces each token to look only at itself and whatever came before it. This keeps training and real generation consistent with each other.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> taking a closed-book exam one question at a time &mdash; you can use everything you&rsquo;ve already answered, but the next question stays covered up until it&rsquo;s your turn.</div></div>
         
+        <div class="code-block">
+          <div class="code-label"><span>&#128013;</span> Python</div>
+          <pre><code>mask = torch.triu(torch.ones(seq_len, seq_len), diagonal=1)
+scores = scores.masked_fill(mask == 1, float(&#x27;-inf&#x27;))
+weights = softmax(scores, dim=-1)  # future positions get 0 weight</code></pre>
+        </div>
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l20">&larr; Encoder vs. Decoder</a><a class="lesson-nav-link next" href="#l22">The Complete LLM Pipeline &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l21"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l22">
+    <section class="lesson" id="l22" data-part="">
       <div class="lesson-eyebrow">Lesson 22</div>
       <h2 class="lesson-title">The Complete LLM Pipeline</h2>
       <p class="lesson-thesis">Every idea so far assembles into one path: a prompt goes in, a next token comes out.</p>
@@ -867,15 +1881,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Generated Text</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">This is the entire forward pass of an LLM in one line: text is tokenized, tokens become embeddings enriched with position, the Transformer stack processes everything into a contextual representation, and a final layer turns that into a probability over every possible next token. One token is chosen, and the text grows by one word.</p>
+        <p class="explain">This is the entire forward pass of an LLM, start to finish. Text gets tokenized. Tokens become embeddings, enriched with position. The Transformer stack processes everything into a rich representation. A final layer turns that into a probability for every possible next token. One token gets picked, and the text grows by one word.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a single, well-rehearsed assembly line &mdash; every station you learned about in earlier lessons is really just one stage of this one continuous process.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l21">&larr; Causal (Masked) Attention</a><a class="lesson-nav-link next" href="#l23">Next-Token Prediction &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l22"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l23">
+    <section class="lesson" id="l23" data-part="">
       <div class="lesson-eyebrow">Lesson 23</div>
       <h2 class="lesson-title">Next-Token Prediction</h2>
       <p class="lesson-thesis">An LLM doesn&rsquo;t know the &lsquo;right&rsquo; next word &mdash; it produces a probability for every word in its vocabulary.</p>
@@ -890,15 +1909,27 @@
   <div class="prob-bars"><div class="prob-row"><span class="prob-label">blue</span><div class="prob-track"><div class="prob-fill prob-winner" style="width:62%"></div></div><span class="prob-pct">62%</span></div><div class="prob-row"><span class="prob-label">dark</span><div class="prob-track"><div class="prob-fill" style="width:19%"></div></div><span class="prob-pct">19%</span></div><div class="prob-row"><span class="prob-label">clear</span><div class="prob-track"><div class="prob-fill" style="width:11%"></div></div><span class="prob-pct">11%</span></div><div class="prob-row"><span class="prob-label">full of stars</span><div class="prob-track"><div class="prob-fill" style="width:3%"></div></div><span class="prob-pct">3%</span></div></div>
 </div>
 
+      
+<div class="demo-box" id="prob-demo">
+  <div class="demo-label"><span class="demo-dot"></span> Try it &mdash; next-token predictor</div>
+  <input type="text" class="demo-input" id="prob-input" placeholder="Type the start of a sentence&hellip;" value="The sky is" maxlength="60">
+  <div class="prob-bars" id="prob-output"></div>
+  <div class="demo-hint">Illustrative demo with a small hardcoded word list &mdash; not a real model, just showing the shape of the idea.</div>
+</div>
+
       <div class="lesson-body">
-        <p class="explain">Given &ldquo;The sky is&hellip;&rdquo;, the model doesn&rsquo;t deterministically output &ldquo;blue.&rdquo; It computes a probability for every token in its vocabulary, and &ldquo;blue&rdquo; simply scores highest given everything it learned from training data. A sampling strategy then picks one token &mdash; often the highest-probability one, sometimes a slightly less likely one for variety.</p>
+        <p class="explain">Given &ldquo;The sky is&hellip;&rdquo;, the model doesn&rsquo;t just output &ldquo;blue&rdquo; automatically. It works out a probability for every token in its vocabulary, and &ldquo;blue&rdquo; simply scores highest, based on everything it learned from training data. A sampling method then picks one token &mdash; usually the highest-probability one, sometimes a slightly less likely one for variety.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a weather forecaster who never says &lsquo;it will rain&rsquo; &mdash; only &lsquo;70% chance of rain, 20% cloudy, 10% clear,&rsquo; leaving the final call to how the forecast gets used.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l22">&larr; The Complete LLM Pipeline</a><a class="lesson-nav-link next" href="#l24">Autoregressive Generation &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l23"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l24">
+    <section class="lesson" id="l24" data-part="">
       <div class="lesson-eyebrow">Lesson 24</div>
       <h2 class="lesson-title">Autoregressive Generation</h2>
       <p class="lesson-thesis">The model generates one token, appends it to its own input, and runs itself again &mdash; over and over.</p>
@@ -929,15 +1960,54 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">I love AI because it helps</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">&ldquo;Autoregressive&rdquo; just means the model feeds its own output back in as part of the next input. Every single word you see an LLM produce is really the entire prompt-so-far being re-processed from scratch through the whole Transformer stack, one more time, to predict just the next token.</p>
+        <p class="explain">&ldquo;Autoregressive&rdquo; just means the model feeds its own output back in as the next input. Every word an LLM writes means the entire prompt-so-far gets reprocessed, from scratch, through the whole Transformer stack &mdash; just to predict one more token.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> writing a story one word at a time, and before every new word, silently re-reading the entire story so far from the beginning.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l23">&larr; Next-Token Prediction</a><a class="lesson-nav-link next" href="#l25">Training an LLM &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l24"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l25">
+    <section class="quiz-block" id="quiz4" data-quiz-total="3">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#129504;</span>
+        <div>
+          <div class="quiz-title">Chapter Check &mdash; The Full Transformer</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 3</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="Residual connections mean each layer only has to learn what to *change*, not reconstruct everything from scratch &mdash; which makes very deep stacks of layers much easier to train.">
+          <p class="quiz-question">1. What is a residual (skip) connection for?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">It skips training entirely</button><button class="quiz-opt" data-correct="true">It carries the original input forward and adds the layer's output to it, instead of replacing it</button><button class="quiz-opt" data-correct="false">It removes tokens that aren't useful</button><button class="quiz-opt" data-correct="false">It's only used in the very first layer</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="If a token could see the future, training and real generation would be inconsistent, since future tokens don't exist yet when the model is actually writing them one at a time.">
+          <p class="quiz-question">2. Why does a GPT-style decoder use causal (masked) attention?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">To make the model faster</button><button class="quiz-opt" data-correct="true">To prevent a token from 'cheating' by looking at future tokens it hasn't generated yet</button><button class="quiz-opt" data-correct="false">To reduce the vocabulary size</button><button class="quiz-opt" data-correct="false">It's only used during evaluation, not real generation</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Every new token requires re-running the whole sequence-so-far through the model again &mdash; the model's own previous outputs become part of its next input.">
+          <p class="quiz-question">3. What does 'autoregressive generation' mean?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">The model generates the entire response in one single step</button><button class="quiz-opt" data-correct="true">The model generates one token, appends it to its own input, and reprocesses everything to predict the next token</button><button class="quiz-opt" data-correct="false">The model only works on pre-written text</button><button class="quiz-opt" data-correct="false">It refers to how the model was trained, not how it generates text</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
+    </section>
+    
+
+    <section class="chapter-divider" id="part5">
+      <div class="chapter-roman">V</div>
+      <div class="chapter-info">
+        <div class="chapter-eyebrow">Part 5 &middot; Lessons 25&ndash;27</div>
+        <h2 class="chapter-title">Training &amp; Deployment</h2>
+        <p class="chapter-desc">How a model actually learns from data, and what changes (and doesn&rsquo;t) once it&rsquo;s serving real users.</p>
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l25" data-part="">
       <div class="lesson-eyebrow">Lesson 25</div>
       <h2 class="lesson-title">Training an LLM</h2>
       <p class="lesson-thesis">The exact same predict-compare-adjust loop from Lesson 4 &mdash; just run on billions of sentences of real text.</p>
@@ -986,15 +2056,20 @@
     </svg></div>
 <div class="node "><span class="node-label">Update Weights</span></div>
 </div><div class="loop-chip">&#8635; repeated across trillions of tokens, for weeks on thousands of GPUs</div>
+      
       <div class="lesson-body">
-        <p class="explain">For every sentence in a giant training set, the model is shown some words and asked to predict the next one. It compares its guess to the real next word, computes a loss, backpropagates that error through every layer, and updates its weights slightly. Scale that up to a trillion+ tokens of text and you get a model that has absorbed an enormous amount of world knowledge and language structure &mdash; purely as a side effect of getting better at next-token prediction.</p>
+        <p class="explain">For every sentence in a huge training set, the model sees some words and tries to predict the next one. It compares its guess to the real answer, calculates a loss, and sends that error backward through every layer to update the weights. Do this across a trillion-plus tokens of text, and the model ends up absorbing a huge amount of knowledge and language structure &mdash; just as a side effect of getting better at predicting the next word.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> learning a language by reading an entire library, one sentence at a time, constantly quizzing yourself on &lsquo;what word comes next&rsquo; and correcting your intuition after every guess.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l24">&larr; Autoregressive Generation</a><a class="lesson-nav-link next" href="#l26">Pretraining &rarr; Fine-Tuning &rarr; Alignment &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l25"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l26">
+    <section class="lesson" id="l26" data-part="">
       <div class="lesson-eyebrow">Lesson 26</div>
       <h2 class="lesson-title">Pretraining &rarr; Fine-Tuning &rarr; Alignment</h2>
       <p class="lesson-thesis">A raw pretrained model is a text predictor. Two more stages turn it into a helpful assistant.</p>
@@ -1005,7 +2080,7 @@
       <polygon points="2,34 8,44 14,34" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
     </svg></div>
-<div class="node kind-violet"><span class="node-label">Pretraining</span><span class="node-sub">learn language &amp; facts</span></div>
+<div class="node kind-violet"><span class="node-label">Pretraining</span><span class="node-sub">learn language & facts</span></div>
 <div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
       <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
       <polygon points="2,34 8,44 14,34" class="arrow-head"/>
@@ -1017,7 +2092,7 @@
       <polygon points="2,34 8,44 14,34" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle>
     </svg></div>
-<div class="node "><span class="node-label">Instruction Dataset</span><span class="node-sub">example Q&amp;amp;A pairs</span></div>
+<div class="node "><span class="node-label">Instruction Dataset</span><span class="node-sub">example Q&amp;A pairs</span></div>
 <div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
       <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
       <polygon points="2,34 8,44 14,34" class="arrow-head"/>
@@ -1043,20 +2118,25 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Chat Assistant</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain"><strong>Pretraining</strong> teaches the raw model language, facts, and reasoning patterns from huge amounts of text &mdash; but it just predicts plausible next text, with no sense of being &lsquo;helpful&rsquo; or &lsquo;safe.&rsquo; <strong>Fine-tuning</strong> shows it curated examples of instructions and good responses. <strong>Alignment</strong> then uses human preference rankings to steer it further toward answers people actually prefer &mdash; turning a raw text predictor into the assistant you chat with.</p>
+        <p class="explain"><strong>Pretraining</strong> teaches the raw model language, facts, and reasoning patterns from huge amounts of text. But it only predicts plausible next words &mdash; it has no sense of being &lsquo;helpful&rsquo; or &lsquo;safe.&rsquo; <strong>Fine-tuning</strong> then shows it curated examples of instructions and good responses. <strong>Alignment</strong> uses human preference rankings to steer it further toward answers people actually like. Together, these steps turn a raw text predictor into the assistant you chat with.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> raising someone through school (pretraining &mdash; broad general knowledge), then job training (fine-tuning &mdash; how to do this specific role), then on-the-job coaching based on feedback (alignment &mdash; how to do it the way people actually want).</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l25">&larr; Training an LLM</a><a class="lesson-nav-link next" href="#l27">Training vs. Inference &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l26"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l27">
+    <section class="lesson" id="l27" data-part="">
       <div class="lesson-eyebrow">Lesson 27</div>
       <h2 class="lesson-title">Training vs. Inference</h2>
       <p class="lesson-thesis">Training is the one-time (expensive) process of learning weights. Inference is every single time you actually use the model.</p>
       <div class="diagram compare-row">
-      <div class="compare-col"><div class="compare-title compare-a">TRAINING &amp;mdash; happens once</div><div class="diagram flow-col">
+      <div class="compare-col"><div class="compare-title compare-a">TRAINING &mdash; happens once</div><div class="diagram flow-col">
 <div class="node "><span class="node-label">Dataset</span></div>
 <div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
       <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
@@ -1078,7 +2158,7 @@
 <div class="node kind-green"><span class="node-label">Updated Weights</span></div>
 </div></div>
       <div class="compare-divider">VS</div>
-      <div class="compare-col"><div class="compare-title compare-b">INFERENCE &amp;mdash; happens every chat</div><div class="diagram flow-col">
+      <div class="compare-col"><div class="compare-title compare-b">INFERENCE &mdash; happens every chat</div><div class="diagram flow-col">
 <div class="node "><span class="node-label">User Prompt</span></div>
 <div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none">
       <line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/>
@@ -1100,15 +2180,54 @@
 <div class="node kind-green"><span class="node-label">Generated Answer</span></div>
 </div></div>
     </div>
+      
       <div class="lesson-body">
-        <p class="explain">During <strong>training</strong>, the model&rsquo;s weights are constantly changing as it learns from data &mdash; this happens once (or occasionally, for updates), and is extremely expensive. During <strong>inference</strong> &mdash; every time you send a message to an LLM &mdash; the weights are completely frozen. The model just runs a forward pass through fixed weights to produce a response; nothing about it is being &lsquo;learned&rsquo; from your conversation.</p>
+        <p class="explain">During <strong>training</strong>, the model&rsquo;s weights keep changing as it learns from data. This happens once, or occasionally for updates, and it&rsquo;s expensive. During <strong>inference</strong> &mdash; every time you chat with an LLM &mdash; the weights stay completely frozen. The model just runs a forward pass through those fixed weights to produce a response. Nothing is being learned from your specific conversation.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> the difference between years spent training for a marathon (training, you change and improve) and actually running race day (inference, you just execute what you already learned &mdash; no more improving mid-race).</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l26">&larr; Pretraining &rarr; Fine-Tuning &rarr; Alignment</a><a class="lesson-nav-link next" href="#l28">RAG: Retrieval-Augmented Generation &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l27"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l28">
+    <section class="quiz-block" id="quiz5" data-quiz-total="3">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#129504;</span>
+        <div>
+          <div class="quiz-title">Chapter Check &mdash; Training &amp; Deployment</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 3</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="Pretraining builds broad general knowledge from huge amounts of text. Fine-tuning then narrows that raw capability toward following instructions well.">
+          <p class="quiz-question">1. What is the difference between pretraining and fine-tuning?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">They're the same process with different names</button><button class="quiz-opt" data-correct="true">Pretraining teaches broad language and facts from massive raw text; fine-tuning teaches the model to follow instructions using curated examples</button><button class="quiz-opt" data-correct="false">Fine-tuning happens before pretraining</button><button class="quiz-opt" data-correct="false">Pretraining only happens for image models</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Inference is a read-only forward pass through fixed, frozen weights. Nothing about the model changes based on your specific conversation.">
+          <p class="quiz-question">2. During inference (when you chat with an LLM), what happens to its weights?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">They update slightly based on your conversation</button><button class="quiz-opt" data-correct="true">They stay completely frozen &mdash; only a forward pass happens, nothing is learned</button><button class="quiz-opt" data-correct="false">They reset to random values</button><button class="quiz-opt" data-correct="false">They only update if you give a thumbs-up</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Alignment uses human preference rankings between candidate responses to further steer the model toward answers people find genuinely helpful and appropriate.">
+          <p class="quiz-question">3. What is RLHF / preference alignment used for?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Making the model run faster on GPUs</button><button class="quiz-opt" data-correct="true">Steering the model toward responses that humans actually prefer, using ranked feedback</button><button class="quiz-opt" data-correct="false">Reducing the vocabulary size</button><button class="quiz-opt" data-correct="false">It's a technique only used for tokenization</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
+    </section>
+    
+
+    <section class="chapter-divider" id="part6">
+      <div class="chapter-roman">VI</div>
+      <div class="chapter-info">
+        <div class="chapter-eyebrow">Part 6 &middot; Lessons 28&ndash;MASTER</div>
+        <h2 class="chapter-title">Building Real Applications</h2>
+        <p class="chapter-desc">Wrapping a raw LLM with retrieval, tools, and memory to build something people can actually use.</p>
+      </div>
+    </section>
+    
+
+    <section class="lesson" id="l28" data-part="">
       <div class="lesson-eyebrow">Lesson 28</div>
       <h2 class="lesson-title">RAG: Retrieval-Augmented Generation</h2>
       <p class="lesson-thesis">An LLM only knows what was in its training data. RAG hands it fresh, specific facts to read before answering.</p>
@@ -1151,15 +2270,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Grounded Answer</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">Instead of relying purely on what the model memorized during training (which can be outdated or simply not include your private data), RAG first searches a knowledge base for the most relevant documents, then stuffs those documents into the prompt as extra context. The LLM then answers using that fresh, specific information instead of guessing from memory.</p>
+        <p class="explain">An LLM only knows what it saw during training &mdash; which can be outdated, or might not include your private data at all. RAG first searches a knowledge base for the most relevant documents. Then it adds those documents to the prompt as extra context. The LLM answers using this fresh information, instead of guessing from memory.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an open-book exam &mdash; instead of relying only on what you memorized, you&rsquo;re allowed to quickly look up the exact page that answers the question before you write your response.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l27">&larr; Training vs. Inference</a><a class="lesson-nav-link next" href="#l29">Tool / Function Calling &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l28"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l29">
+    <section class="lesson" id="l29" data-part="">
       <div class="lesson-eyebrow">Lesson 29</div>
       <h2 class="lesson-title">Tool / Function Calling</h2>
       <p class="lesson-thesis">When an LLM can&rsquo;t answer from knowledge alone, it can ask to call a real tool &mdash; and use the result.</p>
@@ -1202,15 +2326,20 @@
     </svg></div>
 <div class="node kind-green"><span class="node-label">Final Answer</span></div>
 </div>
+      
       <div class="lesson-body">
-        <p class="explain">The LLM itself never runs code or hits an API &mdash; it just outputs structured text saying &lsquo;call this function with these arguments.&rsquo; The surrounding application actually executes that call, and feeds the real result back into the model&rsquo;s context so it can write a final answer grounded in real, live data instead of a guess.</p>
+        <p class="explain">The LLM itself never runs code or calls an API directly. It just writes out a request, like &lsquo;call this function with these arguments.&rsquo; The application around it actually runs that call, and feeds the real result back to the model. Then the model writes a final answer using real data, instead of guessing.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a manager who can&rsquo;t personally check the live stock price, but knows exactly who to ask &mdash; delegates the lookup, waits for the answer, then reports back using the real number.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l28">&larr; RAG: Retrieval-Augmented Generation</a><a class="lesson-nav-link next" href="#l30">AI Agent: A Loop, Not Just an Answer &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l29"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="l30">
+    <section class="lesson" id="l30" data-part="">
       <div class="lesson-eyebrow">Lesson 30</div>
       <h2 class="lesson-title">AI Agent: A Loop, Not Just an Answer</h2>
       <p class="lesson-thesis">An agent doesn&rsquo;t just answer once &mdash; it repeatedly plans, acts, and checks its own progress until the goal is met.</p>
@@ -1257,17 +2386,22 @@
       <polygon points="50,2 60,8 50,14" class="arrow-head"/>
       <circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle>
     </svg></div>
-<div class="node kind-amber"><span class="node-label">Goal Complete?</span><span class="node-sub">no &amp;rarr; loop again</span></div>
-</div><div class="loop-chip">&#8635; loops through plan &amp;rarr; act &amp;rarr; observe until the goal check passes, then returns the Final Answer</div>
+<div class="node kind-amber"><span class="node-label">Goal Complete?</span><span class="node-sub">no &rarr; loop again</span></div>
+</div><div class="loop-chip">&#8635; loops through plan &rarr; act &rarr; observe until the goal check passes, then returns the Final Answer</div>
+      
       <div class="lesson-body">
-        <p class="explain">A single LLM call is a one-shot response. An <strong>agent</strong> wraps that call in a loop: it plans a next step, uses a tool, observes what happened, updates its memory, and checks whether the overall goal is done &mdash; repeating until it is (or it gives up). This is what lets an LLM tackle multi-step tasks instead of only answering single questions.</p>
+        <p class="explain">A single LLM call gives you one answer and stops. An <abbr class='gloss' title='A system that wraps an LLM in a loop of planning, acting, and observing to complete multi-step tasks.'><strong>agent</strong></abbr> wraps that call in a loop instead: plan a step, use a tool, observe what happened, update its memory, then check if the goal is done. It repeats this until the goal is met, or it gives up. This is what lets an LLM handle multi-step tasks, not just single questions.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a project manager who doesn&rsquo;t just give one instruction and walk away &mdash; they plan, delegate, check the result, adjust the plan, and repeat until the project is actually finished.</div></div>
         
+        
+      </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l29">&larr; Tool / Function Calling</a><a class="lesson-nav-link next" href="#lmaster">The Complete Modern LLM Application &rarr;</a></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="l30"><span class="done-box"></span> Mark as understood</label>
       </div>
     </section>
     
 
-    <section class="lesson" id="lmaster">
+    <section class="lesson" id="lmaster" data-part="">
       <div class="lesson-eyebrow">Lesson MASTER</div>
       <h2 class="lesson-title">The Complete Modern LLM Application</h2>
       <p class="lesson-thesis">Everything in this course is a piece of a bigger machine: an orchestrator around a raw LLM, giving it memory, tools, and fresh knowledge.</p>
@@ -1289,11 +2423,94 @@
   </div>
 </div>
 
+      
       <div class="lesson-body">
-        <p class="explain">A raw LLM only does one thing well: predict the next token. Every production AI application wraps that core with an <strong>orchestrator</strong> that decides, per request, whether to fetch context via <strong>RAG</strong>, call out to <strong>tools/APIs</strong>, consult <strong>memory</strong> from earlier in the conversation, or just answer directly from the model &mdash; then assembles all of it into a final response. Everything you just learned, from tokenization up through agents, is one layer of this stack.</p>
+        <p class="explain">A raw LLM only does one thing well: predict the next token. Every real AI application wraps that core with an <strong>orchestrator</strong>. For each request, it decides whether to pull in context through <abbr class='gloss' title='Retrieval-Augmented Generation &mdash; retrieving relevant documents and adding them to the prompt.'>RAG</abbr>, call out to <strong>tools or APIs</strong>, check <strong>memory</strong> from earlier in the chat, or just answer directly. Then it combines all of that into one final response. Everything you learned in this course &mdash; from tokenization to agents &mdash; is one layer of this bigger system.</p>
         <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a restaurant kitchen &mdash; the LLM is the chef, but the chef alone isn&rsquo;t the restaurant. Orders (orchestrator), a pantry of fresh ingredients (RAG), specialized equipment (tools), and notes on regular customers (memory) all have to work together to actually serve a meal.</div></div>
         
+        
       </div>
+      <div class="lesson-nav"><a class="lesson-nav-link prev" href="#l30">&larr; AI Agent: A Loop, Not Just an Answer</a><span class="lesson-nav-link spacer"></span></div><div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="lmaster"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+    
+
+    <section class="quiz-block" id="quiz6" data-quiz-total="3">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#129504;</span>
+        <div>
+          <div class="quiz-title">Chapter Check &mdash; Building Real Applications</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 3</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="An LLM only 'knows' what was in its training data. RAG retrieves relevant, up-to-date documents and adds them to the prompt so the model can answer with real information.">
+          <p class="quiz-question">1. What problem does RAG (Retrieval-Augmented Generation) solve?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">It makes the model smaller</button><button class="quiz-opt" data-correct="true">It gives the model access to fresh or private information it wasn't trained on, by retrieving relevant documents first</button><button class="quiz-opt" data-correct="false">It replaces the need for tokenization</button><button class="quiz-opt" data-correct="false">It's only used for image generation</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="The LLM outputs text saying 'call this function with these arguments' &mdash; the application around it actually performs the action and returns the result.">
+          <p class="quiz-question">2. When an LLM uses 'tool calling,' who actually executes the tool or API?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">The LLM itself runs the code directly</button><button class="quiz-opt" data-correct="true">The surrounding application executes the call; the LLM only outputs a structured request to call it</button><button class="quiz-opt" data-correct="false">Tool calling doesn't require any code execution</button><button class="quiz-opt" data-correct="false">The user has to manually run the tool</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="A single call answers once. An agent repeatedly plans, uses tools, observes results, and checks progress toward a goal, across multiple steps.">
+          <p class="quiz-question">3. What makes an 'AI agent' different from a single LLM response?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Agents are just a faster version of the same model</button><button class="quiz-opt" data-correct="true">An agent wraps LLM calls in a loop &mdash; plan, act, observe, repeat &mdash; until a goal is met</button><button class="quiz-opt" data-correct="false">Agents don't use tools at all</button><button class="quiz-opt" data-correct="false">Agents only work with image inputs</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
+    </section>
+    
+
+  
+    <section class="quiz-block final-quiz" id="finalquiz" data-quiz-total="10">
+      <div class="quiz-header">
+        <span class="quiz-icon">&#127942;</span>
+        <div>
+          <div class="quiz-title">The Final Recap</div>
+          <div class="quiz-sub">One question from every chapter &mdash; see how much stuck.</div>
+          <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 10</div>
+        </div>
+      </div>
+      <div class="quiz-q" data-explain="AI is the broadest field. Machine Learning is part of AI. Deep Learning is part of ML. NLP applies deep learning to language. Transformers are the architecture, and an LLM is a very large Transformer.">
+          <p class="quiz-question">1. What's the correct order of the AI &rarr; LLM hierarchy, from broadest to narrowest?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">LLM &rarr; Transformers &rarr; AI &rarr; ML &rarr; Deep Learning</button><button class="quiz-opt" data-correct="true">AI &rarr; Machine Learning &rarr; Deep Learning &rarr; NLP &rarr; Transformers &rarr; LLM</button><button class="quiz-opt" data-correct="false">Deep Learning &rarr; AI &rarr; ML &rarr; LLM</button><button class="quiz-opt" data-correct="false">They all mean the same thing</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="A tokenizer breaks raw text into tokens &mdash; words or sub-word pieces &mdash; which then get converted into numbers the model can compute on.">
+          <p class="quiz-question">2. What does a tokenizer actually do?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Deletes unimportant words from a sentence</button><button class="quiz-opt" data-correct="true">Splits text into small, consistent chunks the model can process</button><button class="quiz-opt" data-correct="false">Translates text into another language</button><button class="quiz-opt" data-correct="false">Compresses a file to save disk space</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="A token ID is just an arbitrary label. An embedding is a learned vector, positioned so that words with related meaning are close together in vector space.">
+          <p class="quiz-question">3. Why do embeddings matter more than raw token IDs?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Embeddings are smaller and load faster</button><button class="quiz-opt" data-correct="true">Embeddings are vectors that capture meaning, so similar words end up positioned close together</button><button class="quiz-opt" data-correct="false">Token IDs are only used for images, not text</button><button class="quiz-opt" data-correct="false">There's no real difference between them</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Attention lets a word like &lsquo;it&rsquo; look at the rest of the sentence to figure out what it actually refers to, instead of being interpreted alone.">
+          <p class="quiz-question">4. What is the core problem that attention solves?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Making the vocabulary smaller</button><button class="quiz-opt" data-correct="true">Letting each word look at every other word to figure out relevant context and meaning</button><button class="quiz-opt" data-correct="false">Speeding up how fast text is typed</button><button class="quiz-opt" data-correct="false">Converting speech into text</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="The residual connection adds the layer's output back onto its original input, and normalization keeps the resulting numbers in a stable, consistent range.">
+          <p class="quiz-question">5. In a Transformer block, what does 'Add + Norm' refer to?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Adding more layers to make the model bigger</button><button class="quiz-opt" data-correct="true">Adding a layer's output back to its input (residual), then stabilizing the result (normalization)</button><button class="quiz-opt" data-correct="false">Adding random noise to prevent overfitting</button><button class="quiz-opt" data-correct="false">A step that only happens during inference</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Causal masking forces each token to attend only to itself and earlier tokens, which keeps training consistent with how the model actually generates text &mdash; one token at a time, without seeing the future.">
+          <p class="quiz-question">6. Why does a chat-style LLM (like GPT or Claude) use causal masking?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">To make responses shorter</button><button class="quiz-opt" data-correct="true">So it can't 'cheat' by looking at tokens it hasn't generated yet</button><button class="quiz-opt" data-correct="false">To hide the model's internal weights from users</button><button class="quiz-opt" data-correct="false">It's only used for translation tasks</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="This is autoregressive generation: the model predicts a probability for the next token, picks one, appends it to the input, and repeats the whole process again.">
+          <p class="quiz-question">7. What actually happens when an LLM 'generates' a response?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">It looks up a pre-written answer from a database</button><button class="quiz-opt" data-correct="true">It predicts one token at a time, feeding each new token back in to predict the next one</button><button class="quiz-opt" data-correct="false">It runs a search engine query behind the scenes</button><button class="quiz-opt" data-correct="false">It copies the most similar example from its training data</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="Training is where the model's weights are adjusted based on data. Inference is just using the already-trained model &mdash; the weights don't change, no matter what you type.">
+          <p class="quiz-question">8. What's the key difference between training and inference?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">There is no real difference</button><button class="quiz-opt" data-correct="true">Training updates the model's weights; inference uses fixed, frozen weights to generate a response</button><button class="quiz-opt" data-correct="false">Inference is more expensive than training</button><button class="quiz-opt" data-correct="false">Training only happens on images, not text</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="An LLM only knows what it saw during training. RAG (Retrieval-Augmented Generation) is one way to give it access to fresh or private information it wasn't trained on.">
+          <p class="quiz-question">9. Why might an LLM give a wrong or outdated answer even if it's very capable?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">It's always guessing randomly</button><button class="quiz-opt" data-correct="true">Its knowledge is frozen at whatever was in its training data &mdash; unless something like RAG gives it fresh information</button><button class="quiz-opt" data-correct="false">It refuses to answer difficult questions</button><button class="quiz-opt" data-correct="false">It can only answer questions about itself</button></div>
+          <div class="quiz-feedback"></div>
+        </div><div class="quiz-q" data-explain="A single call just answers once. An agent repeatedly plans, uses tools, observes results, and checks progress toward a goal across multiple steps.">
+          <p class="quiz-question">10. What makes an AI agent different from a single LLM response?</p>
+          <div class="quiz-options"><button class="quiz-opt" data-correct="false">Agents use a completely different kind of model</button><button class="quiz-opt" data-correct="true">An agent wraps LLM calls in a loop &mdash; plan, act, observe, repeat &mdash; until a goal is met</button><button class="quiz-opt" data-correct="false">Agents can only answer yes/no questions</button><button class="quiz-opt" data-correct="false">There's no real difference</button></div>
+          <div class="quiz-feedback"></div>
+        </div>
     </section>
     
 
