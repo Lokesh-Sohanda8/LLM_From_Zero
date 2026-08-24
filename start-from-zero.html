@@ -3,164 +3,1307 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Start From Zero — LLM, From Zero</title>
+<title>Start From Zero &mdash; LLM, From Zero</title>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/styles.css">
+<style>
+/* Small page-specific additions; the main visual system is reused from styles.css. */
+.zero-hero .hero-sub { max-width: 760px; }
+.zero-meta { margin-top: 18px; display:flex; gap:18px; flex-wrap:wrap; }
+.zero-meta span { font-size:.9rem; opacity:.82; }
+.foundation-map { margin-top: 34px; }
+.foundation-map .node { min-width: 120px; }
+.quiz-final { margin-top: 60px; }
+.quiz-final .quiz-intro { color: var(--muted, #9aa); max-width: 760px; margin-bottom: 24px; }
+.readiness { margin-top: 28px; padding: 24px; border:1px solid rgba(255,255,255,.1); border-radius:16px; background:rgba(255,255,255,.025); display:none; }
+.readiness strong { font-family:"Space Grotesk",sans-serif; }
+.quiz-reset { margin-top:18px; }
+.quiz-reset button { border:1px solid rgba(255,255,255,.15); background:transparent; color:inherit; border-radius:10px; padding:9px 14px; cursor:pointer; }
+</style>
 </head>
 <body>
 <div id="progress"></div>
+
 <button id="navtoggle">&#9776; Contents</button>
 <nav id="navrail">
   <div class="navrail-title">Start From Zero</div>
-  <a href="index.html" class="navrail-crosslink">&larr; Back to Full Course</a>
-  <div class="progress-counter" id="progresscounter">0 / 12 lessons marked understood</div>
-  <a href="#s01" class="nav-item" data-lesson="s01"><span class="nav-check"></span><span class="nav-num">01</span><span class="nav-title">What Is a Computer?</span></a>
-  <a href="#s02" class="nav-item" data-lesson="s02"><span class="nav-check"></span><span class="nav-num">02</span><span class="nav-title">What Is Data?</span></a>
-  <a href="#s03" class="nav-item" data-lesson="s03"><span class="nav-check"></span><span class="nav-num">03</span><span class="nav-title">What Is a Program?</span></a>
-  <a href="#s04" class="nav-item" data-lesson="s04"><span class="nav-check"></span><span class="nav-num">04</span><span class="nav-title">What Is an Algorithm?</span></a>
-  <a href="#s05" class="nav-item" data-lesson="s05"><span class="nav-check"></span><span class="nav-num">05</span><span class="nav-title">Programming vs. Machine Learning</span></a>
-  <a href="#s06" class="nav-item" data-lesson="s06"><span class="nav-check"></span><span class="nav-num">06</span><span class="nav-title">What Is Artificial Intelligence?</span></a>
-  <a href="#s07" class="nav-item" data-lesson="s07"><span class="nav-check"></span><span class="nav-num">07</span><span class="nav-title">What Is Machine Learning?</span></a>
-  <a href="#s08" class="nav-item" data-lesson="s08"><span class="nav-check"></span><span class="nav-num">08</span><span class="nav-title">What Is Deep Learning?</span></a>
-  <a href="#s09" class="nav-item" data-lesson="s09"><span class="nav-check"></span><span class="nav-num">09</span><span class="nav-title">What Is a Neural Network?</span></a>
-  <a href="#s10" class="nav-item" data-lesson="s10"><span class="nav-check"></span><span class="nav-num">10</span><span class="nav-title">What Is a Model?</span></a>
-  <a href="#s11" class="nav-item" data-lesson="s11"><span class="nav-check"></span><span class="nav-num">11</span><span class="nav-title">What Are Parameters?</span></a>
-  <a href="#s12" class="nav-item" data-lesson="s12"><span class="nav-check"></span><span class="nav-num">12</span><span class="nav-title">What Is NLP?</span></a>
+  <div class="progress-counter" id="progresscounter">0 / 30 lessons marked understood</div>
+  <a href="#top" class="nav-item"><span class="nav-check"></span><span class="nav-num">&#8962;</span><span class="nav-title">Start Here</span></a>
+  <a href="#z01" class="nav-item" data-lesson="z01"><span class="nav-check"></span><span class="nav-num">01</span><span class="nav-title">What Is a Computer?</span></a>
+<a href="#z02" class="nav-item" data-lesson="z02"><span class="nav-check"></span><span class="nav-num">02</span><span class="nav-title">What Is Data?</span></a>
+<a href="#z03" class="nav-item" data-lesson="z03"><span class="nav-check"></span><span class="nav-num">03</span><span class="nav-title">How Does a Computer Represent Information?</span></a>
+<a href="#z04" class="nav-item" data-lesson="z04"><span class="nav-check"></span><span class="nav-num">04</span><span class="nav-title">What Is a Program?</span></a>
+<a href="#z05" class="nav-item" data-lesson="z05"><span class="nav-check"></span><span class="nav-num">05</span><span class="nav-title">What Is an Algorithm?</span></a>
+<a href="#z06" class="nav-item" data-lesson="z06"><span class="nav-check"></span><span class="nav-num">06</span><span class="nav-title">Traditional Programming vs. Machine Learning</span></a>
+<a href="#z07" class="nav-item" data-lesson="z07"><span class="nav-check"></span><span class="nav-num">07</span><span class="nav-title">What Is Artificial Intelligence?</span></a>
+<a href="#z08" class="nav-item" data-lesson="z08"><span class="nav-check"></span><span class="nav-num">08</span><span class="nav-title">AI vs. Machine Learning vs. Deep Learning</span></a>
+<a href="#z09" class="nav-item" data-lesson="z09"><span class="nav-check"></span><span class="nav-num">09</span><span class="nav-title">What Is a Machine Learning Model?</span></a>
+<a href="#z10" class="nav-item" data-lesson="z10"><span class="nav-check"></span><span class="nav-num">10</span><span class="nav-title">Training vs. Inference</span></a>
+<a href="#z11" class="nav-item" data-lesson="z11"><span class="nav-check"></span><span class="nav-num">11</span><span class="nav-title">What Is a Neuron?</span></a>
+<a href="#z12" class="nav-item" data-lesson="z12"><span class="nav-check"></span><span class="nav-num">12</span><span class="nav-title">What Are Weights and Biases?</span></a>
+<a href="#z13" class="nav-item" data-lesson="z13"><span class="nav-check"></span><span class="nav-num">13</span><span class="nav-title">What Is an Activation Function?</span></a>
+<a href="#z14" class="nav-item" data-lesson="z14"><span class="nav-check"></span><span class="nav-num">14</span><span class="nav-title">What Is a Neural Network?</span></a>
+<a href="#z15" class="nav-item" data-lesson="z15"><span class="nav-check"></span><span class="nav-num">15</span><span class="nav-title">What Is Deep Learning?</span></a>
+<a href="#z16" class="nav-item" data-lesson="z16"><span class="nav-check"></span><span class="nav-num">16</span><span class="nav-title">How Does a Neural Network Learn?</span></a>
+<a href="#z17" class="nav-item" data-lesson="z17"><span class="nav-check"></span><span class="nav-num">17</span><span class="nav-title">What Is Gradient Descent?</span></a>
+<a href="#z18" class="nav-item" data-lesson="z18"><span class="nav-check"></span><span class="nav-num">18</span><span class="nav-title">What Is NLP?</span></a>
+<a href="#z19" class="nav-item" data-lesson="z19"><span class="nav-check"></span><span class="nav-num">19</span><span class="nav-title">How Can Computers Process Text?</span></a>
+<a href="#z20" class="nav-item" data-lesson="z20"><span class="nav-check"></span><span class="nav-num">20</span><span class="nav-title">What Is Tokenization?</span></a>
+<a href="#z21" class="nav-item" data-lesson="z21"><span class="nav-check"></span><span class="nav-num">21</span><span class="nav-title">What Is a Vector?</span></a>
+<a href="#z22" class="nav-item" data-lesson="z22"><span class="nav-check"></span><span class="nav-num">22</span><span class="nav-title">What Is a Vector Space?</span></a>
+<a href="#z23" class="nav-item" data-lesson="z23"><span class="nav-check"></span><span class="nav-num">23</span><span class="nav-title">What Is an Embedding?</span></a>
+<a href="#z24" class="nav-item" data-lesson="z24"><span class="nav-check"></span><span class="nav-num">24</span><span class="nav-title">What Is Probability?</span></a>
+<a href="#z25" class="nav-item" data-lesson="z25"><span class="nav-check"></span><span class="nav-num">25</span><span class="nav-title">What Are Logits and Softmax?</span></a>
+<a href="#z26" class="nav-item" data-lesson="z26"><span class="nav-check"></span><span class="nav-num">26</span><span class="nav-title">What Is Generative AI?</span></a>
+<a href="#z27" class="nav-item" data-lesson="z27"><span class="nav-check"></span><span class="nav-num">27</span><span class="nav-title">What Is a Language Model?</span></a>
+<a href="#z28" class="nav-item" data-lesson="z28"><span class="nav-check"></span><span class="nav-num">28</span><span class="nav-title">What Is an LLM?</span></a>
+<a href="#z29" class="nav-item" data-lesson="z29"><span class="nav-check"></span><span class="nav-num">29</span><span class="nav-title">How Does an LLM Generate Text?</span></a>
+  <a href="#final-quiz" class="nav-item"><span class="nav-check"></span><span class="nav-num">Q</span><span class="nav-title">Foundation Quiz</span></a>
 </nav>
 
-<main>
-  <section class="hero">
-    <div class="hero-eyebrow">A Beginner's Starting Point</div>
+<main id="top">
+  <section class="hero zero-hero">
+    <div class="hero-eyebrow">Level 0 &middot; Beginner Foundations</div>
     <h1>Start From <span class="accent">Zero</span>.</h1>
-    <p class="hero-sub">Never studied AI, machine learning, neural networks, or NLP before? Start here. These short lessons build the mental foundation you need before entering the main <strong>LLM, From Zero</strong> course.</p>
+    <p class="hero-sub">Never studied AI, machine learning, neural networks, or LLMs before? Start here. These short lessons build the mental models you need before entering the main <strong>LLM, From Zero</strong> course.</p>
     <div class="hero-meta">
-      <span><b>12</b> lessons</span>
-      <span><b>1</b> foundation path</span>
-      <span><b>~15 min</b> to read straight through</span>
+      <span><b>29</b> lessons</span>
+      <span><b>5</b> parts</span>
+      <span><b>20</b> quiz questions</span>
+      <span><b>~30&ndash;40 min</b> straight through</span>
     </div>
     <div class="roadmap">
-      <a href="#s01" class="roadmap-chip"><span class="roadmap-roman">I</span><span class="roadmap-info"><span class="roadmap-title">Computers &amp; Data</span><span class="roadmap-range">Lessons 01&ndash;02</span></span></a>
-      <a href="#s03" class="roadmap-chip"><span class="roadmap-roman">II</span><span class="roadmap-info"><span class="roadmap-title">Programs &amp; Problem Solving</span><span class="roadmap-range">Lessons 03&ndash;04</span></span></a>
-      <a href="#s05" class="roadmap-chip"><span class="roadmap-roman">III</span><span class="roadmap-info"><span class="roadmap-title">From Rules to Learning</span><span class="roadmap-range">Lessons 05&ndash;07</span></span></a>
-      <a href="#s08" class="roadmap-chip"><span class="roadmap-roman">IV</span><span class="roadmap-info"><span class="roadmap-title">Neural Networks &amp; NLP</span><span class="roadmap-range">Lessons 08&ndash;12</span></span></a>
+      <a href="#part1" class="roadmap-chip"><span class="roadmap-roman">I</span><span class="roadmap-info"><span class="roadmap-title">Computing Foundations</span><span class="roadmap-range">01&ndash;05</span></span></a>
+      <a href="#part2" class="roadmap-chip"><span class="roadmap-roman">II</span><span class="roadmap-info"><span class="roadmap-title">From Programming to AI</span><span class="roadmap-range">06&ndash;10</span></span></a>
+      <a href="#part3" class="roadmap-chip"><span class="roadmap-roman">III</span><span class="roadmap-info"><span class="roadmap-title">Neural Networks</span><span class="roadmap-range">11&ndash;17</span></span></a>
+      <a href="#part4" class="roadmap-chip"><span class="roadmap-roman">IV</span><span class="roadmap-info"><span class="roadmap-title">Language &amp; Math</span><span class="roadmap-range">18&ndash;25</span></span></a>
+      <a href="#part5" class="roadmap-chip"><span class="roadmap-roman">V</span><span class="roadmap-info"><span class="roadmap-title">The LLM Bridge</span><span class="roadmap-range">26&ndash;29</span></span></a>
+    </div>
+
+    <div class="diagram flow-row foundation-map">
+      <div class="node"><span class="node-label">Computer</span><span class="node-sub">processes information</span></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><span class="node-label">Data</span><span class="node-sub">examples</span></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><span class="node-label">AI / ML</span><span class="node-sub">learn patterns</span></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node"><span class="node-label">Neural Networks</span><span class="node-sub">learned transformations</span></div>
+      <div class="arrow">&#8594;</div>
+      <div class="node kind-green"><span class="node-label">LLMs</span><span class="node-sub">language models</span></div>
     </div>
   </section>
 
   <section class="prereq-section">
     <div class="prereq-header">
-      <span class="prereq-eyebrow">Start Here</span>
-      <h2 class="prereq-heading">You don't need to know anything yet.</h2>
-      <p class="prereq-sub">This page is the bridge between everyday computer knowledge and the technical ideas inside an LLM. Take the lessons in order; each one gives you a piece needed by the next.</p>
+      <span class="prereq-eyebrow">Before You Start</span>
+      <h2 class="prereq-heading">You don't need an AI background.</h2>
+      <p class="prereq-sub">This page starts with computers and gradually builds toward the basic pipeline behind an LLM. You can read the lessons in order, or jump to any concept from the contents rail.</p>
     </div>
     <div class="prereq-grid">
-      <div class="prereq-col prereq-required"><div class="prereq-col-title"><span class="prereq-icon">&#10003;</span> You should bring</div><ul class="prereq-list"><li>Curiosity about how AI works</li><li>Comfort reading simple diagrams</li><li>A willingness to follow ideas one step at a time</li></ul></div>
-      <div class="prereq-col prereq-helpful"><div class="prereq-col-title"><span class="prereq-icon">&#128161;</span> Helpful, but not required</div><ul class="prereq-list"><li>Basic programming exposure</li><li>Some familiarity with numbers and percentages</li><li>Having used an AI chatbot before</li></ul></div>
-      <div class="prereq-col prereq-skip"><div class="prereq-col-title"><span class="prereq-icon">&#10007;</span> You do NOT need</div><ul class="prereq-list"><li>Machine learning experience</li><li>Neural network knowledge</li><li>Advanced mathematics or GPU knowledge</li></ul></div>
+      <div class="prereq-col prereq-required">
+        <div class="prereq-col-title"><span class="prereq-icon">&#10003;</span> Helpful</div>
+        <ul class="prereq-list"><li>Curiosity about how AI works</li><li>Comfort reading simple explanations and diagrams</li><li>Basic programming is useful, but not required</li></ul>
+      </div>
+      <div class="prereq-col prereq-helpful">
+        <div class="prereq-col-title"><span class="prereq-icon">&#128161;</span> What you'll build</div>
+        <ul class="prereq-list"><li>A mental model of AI, ML, and deep learning</li><li>A basic understanding of neurons, training, and vectors</li><li>A clear picture of how text becomes something an LLM can process</li></ul>
+      </div>
+      <div class="prereq-col prereq-skip">
+        <div class="prereq-col-title"><span class="prereq-icon">&#10007;</span> You do NOT need</div>
+        <ul class="prereq-list"><li>Calculus or linear algebra proofs</li><li>Previous machine learning experience</li><li>A GPU, coding environment, or powerful computer</li></ul>
+      </div>
     </div>
   </section>
 
-  <section class="chapter-divider" id="part1"><div class="chapter-roman">I</div><div class="chapter-info"><div class="chapter-eyebrow">Part 1 &middot; Lessons 01&ndash;04</div><h2 class="chapter-title">Computers &amp; Problem Solving</h2><p class="chapter-desc">Before machines can learn, let's understand what computers do with instructions and information.</p></div></section>
-
-  <section class="lesson" id="s01">
-    <div class="lesson-eyebrow">Lesson 01</div><h2 class="lesson-title">What Is a Computer?</h2><p class="lesson-thesis">A computer takes information, follows instructions, processes it, and produces a result.</p>
-    <div class="diagram flow-row"><div class="node"><span class="node-label">Input</span><span class="node-sub">information</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet"><span class="node-label">Processing</span><span class="node-sub">follow instructions</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">result</span></div></div>
-    <div class="lesson-body"><p class="explain">At the simplest level, a computer is a machine that takes some <strong>input</strong>, performs a series of operations on it, and produces an <strong>output</strong>. A calculator is a tiny example: you give it numbers and an operation, it processes them, and it gives you an answer. Modern computers do this at enormous scale, with much more complicated instructions and much more data.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a very fast worker who never gets tired. You give it information and clear instructions, it follows them exactly, and it gives you a result.</div></div></div>
-    <div class="lesson-nav"><span class="lesson-nav-link spacer"></span><a class="lesson-nav-link next" href="#s02">What Is Data? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s01"><span class="done-box"></span> Mark as understood</label></div>
+  <section class="chapter-divider" id="part1">
+    <div class="chapter-roman">I</div><div class="chapter-info">
+      <div class="chapter-eyebrow">Part 1 &middot; Lessons 01&ndash;05</div>
+      <h2 class="chapter-title">Computing Foundations</h2>
+      <p class="chapter-desc">The basic ideas behind computers, information, programs, and algorithms.</p>
+    </div>
   </section>
 
-  <section class="lesson" id="s02">
-    <div class="lesson-eyebrow">Lesson 02</div><h2 class="lesson-title">What Is Data?</h2><p class="lesson-thesis">Data is information represented in a form a computer can store, process, compare, or learn from.</p>
-    <div class="diagram flow-row"><div class="node"><span class="node-label">Real World</span><span class="node-sub">people, events, things</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-amber"><span class="node-label">Data</span><span class="node-sub">numbers, text, images</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green"><span class="node-label">Useful Information</span></div></div>
-    <div class="lesson-body"><p class="explain">Data can be almost anything we want a computer to work with: a person's age, a list of prices, a sentence, a photograph, a sound recording, or a table of thousands of customer records. Machine learning is especially dependent on data because the examples a model sees are what allow it to discover patterns.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> ingredients in a kitchen. Raw ingredients can be simple, but the cook needs them before a meal can be made. Data is the raw material computers and AI systems work with.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s01">&larr; What Is a Computer?</a><a class="lesson-nav-link next" href="#s03">What Is a Program? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s02"><span class="done-box"></span> Mark as understood</label></div>
+    <section class="lesson" id="z01">
+      <div class="lesson-eyebrow">Lesson 01</div>
+      <h2 class="lesson-title">What Is a Computer?</h2>
+      <p class="lesson-thesis">A computer takes information in, processes it according to instructions, and produces a result.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Input</span><span class="node-sub">information</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Processing</span><span class="node-sub">instructions + computation</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Output</span><span class="node-sub">result</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A computer is a machine that follows instructions to transform input into useful output.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a very fast worker: you give it information and instructions, it does the work, and gives you a result.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <span class='lesson-nav-link spacer'></span>
+        <a class="lesson-nav-link next" href="#z02">What Is Data? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z01"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z02">
+      <div class="lesson-eyebrow">Lesson 02</div>
+      <h2 class="lesson-title">What Is Data?</h2>
+      <p class="lesson-thesis">Data is information represented in a form that a computer can store, process, and analyze.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Real World</span><span class="node-sub">people, events, objects</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Data</span><span class="node-sub">numbers, text, images, audio</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Computer</span><span class="node-sub">store + process</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Data can be numbers, words, images, audio, video, or structured records. Machine learning depends on data because the model needs examples from which to learn patterns.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a box of ingredients: before you can cook a meal, you need the ingredients in front of you.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z01'>← What Is a Computer?</a>
+        <a class="lesson-nav-link next" href="#z03">How Does a Computer Represent Information? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z02"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z03">
+      <div class="lesson-eyebrow">Lesson 03</div>
+      <h2 class="lesson-title">How Does a Computer Represent Information?</h2>
+      <p class="lesson-thesis">Computers ultimately work with numerical representations, even when the original information is text, images, or sound.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Information</span><span class="node-sub">text / image / audio</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Encoding</span><span class="node-sub">bits + bytes</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Numbers</span><span class="node-sub">computer representation</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Processing</span><span class="node-sub">computation</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A computer cannot manipulate a word, photograph, or song in the same way a person experiences it. Information is encoded into patterns of bits and bytes that hardware can store and process. You do not need to master binary arithmetic yet; the important idea is that information must be represented in a machine-readable form.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> translating a book into a language the worker understands before asking the worker to do anything with it.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z02'>← What Is Data?</a>
+        <a class="lesson-nav-link next" href="#z04">What Is a Program? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z03"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z04">
+      <div class="lesson-eyebrow">Lesson 04</div>
+      <h2 class="lesson-title">What Is a Program?</h2>
+      <p class="lesson-thesis">A program is a set of instructions that tells a computer what steps to perform.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Problem</span><span class="node-sub">what should happen?</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Instructions</span><span class="node-sub">ordered steps</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Program</span><span class="node-sub">executable logic</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">result</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Programs are built from instructions such as variables, conditions, loops, and functions. The computer follows those instructions rather than inventing its own procedure.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a recipe: the ingredients are the data, while the recipe tells the cook what to do with them.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z03'>← How Does a Computer Represent Information?</a>
+        <a class="lesson-nav-link next" href="#z05">What Is an Algorithm? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z04"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z05">
+      <div class="lesson-eyebrow">Lesson 05</div>
+      <h2 class="lesson-title">What Is an Algorithm?</h2>
+      <p class="lesson-thesis">An algorithm is a step-by-step procedure for solving a problem or completing a task.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Problem</span><span class="node-sub">goal</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Algorithm</span><span class="node-sub">step-by-step procedure</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Execution</span><span class="node-sub">follow the steps</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Solution</span><span class="node-sub">result</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">An algorithm describes the logic of solving a problem. A program is a concrete implementation of instructions; an algorithm is the underlying procedure or recipe.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a route on a map: it gives you the sequence of turns needed to get from where you are to where you want to go.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z04'>← What Is a Program?</a>
+        <a class="lesson-nav-link next" href="#z06">Traditional Programming vs. Machine Learning &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z05"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+  <section class="chapter-divider" id="part2">
+    <div class="chapter-roman">II</div><div class="chapter-info">
+      <div class="chapter-eyebrow">Part 2 &middot; Lessons 06&ndash;10</div>
+      <h2 class="chapter-title">From Programming to AI</h2>
+      <p class="chapter-desc">Why machine learning is different from hand-written software, and how models learn.</p>
+    </div>
   </section>
 
-  <section class="chapter-divider" id="part2"><div class="chapter-roman">II</div><div class="chapter-info"><div class="chapter-eyebrow">Part 2 &middot; Lessons 03&ndash;04</div><h2 class="chapter-title">Programs &amp; Algorithms</h2><p class="chapter-desc">A computer needs instructions. An algorithm is the plan; a program is one way to express that plan for a machine.</p></div></section>
+    <section class="lesson" id="z06">
+      <div class="lesson-eyebrow">Lesson 06</div>
+      <h2 class="lesson-title">Traditional Programming vs. Machine Learning</h2>
+      <p class="lesson-thesis">Traditional programs are given rules; machine learning systems learn useful patterns from examples.</p>
 
-  <section class="lesson" id="s03">
-    <div class="lesson-eyebrow">Lesson 03</div><h2 class="lesson-title">What Is a Program?</h2><p class="lesson-thesis">A program is a set of instructions that tells a computer what to do with its input.</p>
-    <div class="diagram flow-row"><div class="node"><span class="node-label">Human</span><span class="node-sub">defines instructions</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet"><span class="node-label">Program</span><span class="node-sub">instructions + logic</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green"><span class="node-label">Computer</span><span class="node-sub">executes them</span></div></div>
-    <div class="lesson-body"><p class="explain">A program is a set of instructions written so a computer can execute them. If you write a program that says, "take these two numbers, add them, and print the result," the computer doesn't need to understand the problem like a human does. It simply follows the instructions you gave it.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a recipe. The recipe tells you what steps to follow, in what order, to turn ingredients into a finished dish. A program does something similar for a computer.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s02">&larr; What Is Data?</a><a class="lesson-nav-link next" href="#s04">What Is an Algorithm? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s03"><span class="done-box"></span> Mark as understood</label></div>
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Traditional</span><span class="node-sub">Rules + Data</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Program</span><span class="node-sub">hand-written logic</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Output</span><span class="node-sub">result</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">ML</span><span class="node-sub">Data + examples → Model</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">In traditional programming, a developer explicitly writes the rules. In machine learning, we provide examples and a learning procedure, and the system adjusts internal parameters to capture patterns that can be used on new data.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> teaching someone with a rulebook versus showing them many examples and letting them discover the pattern.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z05'>← What Is an Algorithm?</a>
+        <a class="lesson-nav-link next" href="#z07">What Is Artificial Intelligence? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z06"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z07">
+      <div class="lesson-eyebrow">Lesson 07</div>
+      <h2 class="lesson-title">What Is Artificial Intelligence?</h2>
+      <p class="lesson-thesis">Artificial Intelligence is the broad field of building systems that perform tasks that appear intelligent.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">AI</span><span class="node-sub">broad field</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Vision</span><span class="node-sub">images</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Speech</span><span class="node-sub">audio</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Language</span><span class="node-sub">text</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Robotics</span><span class="node-sub">actions</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">AI is an umbrella term. Systems can use AI techniques for vision, speech, planning, robotics, language, and many other tasks. Modern LLMs are one part of this larger field.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a large toolbox: different tools solve different kinds of intelligent tasks.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z06'>← Traditional Programming vs. Machine Learning</a>
+        <a class="lesson-nav-link next" href="#z08">AI vs. Machine Learning vs. Deep Learning &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z07"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z08">
+      <div class="lesson-eyebrow">Lesson 08</div>
+      <h2 class="lesson-title">AI vs. Machine Learning vs. Deep Learning</h2>
+      <p class="lesson-thesis">AI is the broad field, machine learning is one approach within AI, and deep learning is machine learning built around layered neural networks.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">AI</span><span class="node-sub">broad field</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">ML</span><span class="node-sub">learns from data</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Deep Learning</span><span class="node-sub">layered neural networks</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">LLMs</span><span class="node-sub">deep learning for language</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">These terms are related rather than competing labels. Machine learning is a way to build AI systems by learning from data. Deep learning uses neural networks with many layers and powers much of modern language AI.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a set of nesting dolls: the smaller concept sits inside the larger one.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z07'>← What Is Artificial Intelligence?</a>
+        <a class="lesson-nav-link next" href="#z09">What Is a Machine Learning Model? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z08"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z09">
+      <div class="lesson-eyebrow">Lesson 09</div>
+      <h2 class="lesson-title">What Is a Machine Learning Model?</h2>
+      <p class="lesson-thesis">A model is the learned system that uses patterns captured during training to make predictions or produce outputs.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Training Data</span><span class="node-sub">examples</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Training</span><span class="node-sub">learn patterns</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Model</span><span class="node-sub">learned parameters</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">New Input</span><span class="node-sub">prediction</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A model is not simply the dataset. Training changes the model's internal parameters so that it can transform new inputs into useful predictions or outputs.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a student who has studied many examples and can now attempt a new question.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z08'>← AI vs. Machine Learning vs. Deep Learning</a>
+        <a class="lesson-nav-link next" href="#z10">Training vs. Inference &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z09"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z10">
+      <div class="lesson-eyebrow">Lesson 10</div>
+      <h2 class="lesson-title">Training vs. Inference</h2>
+      <p class="lesson-thesis">Training changes a model so it learns; inference uses the trained model to produce an output.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Training</span><span class="node-sub">data → adjustment</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Trained Model</span><span class="node-sub">learned parameters</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Inference</span><span class="node-sub">input → output</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">During training, the model makes predictions, measures error, and updates its parameters. During normal inference, the learned parameters stay fixed while the model processes a new input and generates a result.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> training is studying for an exam; inference is taking the exam using what you learned.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z09'>← What Is a Machine Learning Model?</a>
+        <a class="lesson-nav-link next" href="#z11">What Is a Neuron? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z10"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+  <section class="chapter-divider" id="part3">
+    <div class="chapter-roman">III</div><div class="chapter-info">
+      <div class="chapter-eyebrow">Part 3 &middot; Lessons 11&ndash;17</div>
+      <h2 class="chapter-title">Neural Networks</h2>
+      <p class="chapter-desc">The small mathematical building blocks that eventually become the core of an LLM.</p>
+    </div>
   </section>
 
-  <section class="lesson" id="s04">
-    <div class="lesson-eyebrow">Lesson 04</div><h2 class="lesson-title">What Is an Algorithm?</h2><p class="lesson-thesis">An algorithm is a step-by-step procedure for solving a problem or completing a task.</p>
-    <div class="diagram flow-col"><div class="node"><span class="node-label">Problem</span></div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node kind-amber"><span class="node-label">Step 1</span><span class="node-sub">clear instruction</span></div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node kind-amber"><span class="node-label">Step 2</span><span class="node-sub">another instruction</span></div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node kind-green"><span class="node-label">Solution</span></div></div>
-    <div class="lesson-body"><p class="explain">An algorithm is the plan behind a solution. It does not have to be code. For example, a recipe is an algorithm for cooking a meal: gather ingredients, boil water, add tea, add milk, and serve. In computing, algorithms can be much more complicated, but the basic idea is the same: break a problem into steps that can be followed.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> Google Maps giving you turn-by-turn directions. The destination is the problem, and the sequence of turns is the algorithm for getting there.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s03">&larr; What Is a Program?</a><a class="lesson-nav-link next" href="#s05">Programming vs. Machine Learning &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s04"><span class="done-box"></span> Mark as understood</label></div>
+    <section class="lesson" id="z11">
+      <div class="lesson-eyebrow">Lesson 11</div>
+      <h2 class="lesson-title">What Is a Neuron?</h2>
+      <p class="lesson-thesis">A neural-network neuron combines inputs using learned weights, adds a bias, applies an activation function, and produces an output.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Inputs</span><span class="node-sub">numbers</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Weights</span><span class="node-sub">importance</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Bias</span><span class="node-sub">adjustment</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Activation</span><span class="node-sub">non-linearity</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">signal</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A neuron is a small mathematical unit. It does not understand a concept by itself; it performs a simple computation. Many such units working together can represent much more complicated patterns.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a small decision maker that considers several signals, gives them different importance, and produces a result.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z10'>← Training vs. Inference</a>
+        <a class="lesson-nav-link next" href="#z12">What Are Weights and Biases? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z11"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z12">
+      <div class="lesson-eyebrow">Lesson 12</div>
+      <h2 class="lesson-title">What Are Weights and Biases?</h2>
+      <p class="lesson-thesis">Weights control how strongly inputs influence a neuron, while a bias provides a learned offset to its calculation.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Input</span><span class="node-sub">x</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">× Weight</span><span class="node-sub">importance</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">+ Bias</span><span class="node-sub">shift</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Neuron</span><span class="node-sub">combined signal</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Weights are learned numbers that determine how much each input contributes. Bias gives the neuron an additional adjustable value, allowing the activation to shift even when the inputs are small or zero.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> weights are volume knobs for different signals; bias is a small adjustment knob that shifts the whole setting.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z11'>← What Is a Neuron?</a>
+        <a class="lesson-nav-link next" href="#z13">What Is an Activation Function? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z12"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z13">
+      <div class="lesson-eyebrow">Lesson 13</div>
+      <h2 class="lesson-title">What Is an Activation Function?</h2>
+      <p class="lesson-thesis">An activation function adds non-linearity so a neural network can learn more than simple straight-line relationships.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Weighted Sum</span><span class="node-sub">combined signal</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Activation</span><span class="node-sub">non-linear transformation</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Output</span><span class="node-sub">new signal</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Common activation functions include ReLU, sigmoid, and tanh. You do not need their formulas yet. The key idea is that non-linearity lets stacked layers build increasingly useful and complex transformations.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a filter that changes how strongly a signal is allowed to pass through.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z12'>← What Are Weights and Biases?</a>
+        <a class="lesson-nav-link next" href="#z14">What Is a Neural Network? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z13"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z14">
+      <div class="lesson-eyebrow">Lesson 14</div>
+      <h2 class="lesson-title">What Is a Neural Network?</h2>
+      <p class="lesson-thesis">A neural network is a collection of interconnected mathematical units arranged in layers that learn useful transformations from data.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Input Layer</span><span class="node-sub">raw features</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Hidden Layers</span><span class="node-sub">learned transformations</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Output Layer</span><span class="node-sub">prediction</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Each layer transforms the representation produced by the previous layer. One simple transformation is limited, but many layers can gradually build more useful representations.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an assembly line: each station performs a small operation, and together the stations turn raw material into a finished product.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z13'>← What Is an Activation Function?</a>
+        <a class="lesson-nav-link next" href="#z15">What Is Deep Learning? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z14"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z15">
+      <div class="lesson-eyebrow">Lesson 15</div>
+      <h2 class="lesson-title">What Is Deep Learning?</h2>
+      <p class="lesson-thesis">Deep learning is machine learning that uses neural networks with multiple layers to learn increasingly complex representations.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Data</span><span class="node-sub">examples</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Many Layers</span><span class="node-sub">progressive transformations</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Deep Network</span><span class="node-sub">learned representation</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">prediction / generation</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">The word 'deep' refers to the depth created by multiple layers. Deep networks can learn useful features from raw or lightly processed data instead of requiring every feature to be hand-designed.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> an assembly line with many stations, where later stations can build on what earlier stations discovered.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z14'>← What Is a Neural Network?</a>
+        <a class="lesson-nav-link next" href="#z16">How Does a Neural Network Learn? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z15"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z16">
+      <div class="lesson-eyebrow">Lesson 16</div>
+      <h2 class="lesson-title">How Does a Neural Network Learn?</h2>
+      <p class="lesson-thesis">Training is a loop: predict, measure the error, trace the error backward, and update the parameters.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Input</span><span class="node-sub">example</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Network</span><span class="node-sub">prediction</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Loss</span><span class="node-sub">how wrong?</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Backpropagation</span><span class="node-sub">trace error</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Update</span><span class="node-sub">adjust weights</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">The network produces a prediction. A loss function measures how far that prediction is from the desired answer. Backpropagation calculates how parameters contributed to the loss, and an optimizer uses that information to update them. The loop repeats over many examples.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a group project post-mortem: after a bad result, you trace back through the decisions and adjust the parts that contributed to the mistake.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z15'>← What Is Deep Learning?</a>
+        <a class="lesson-nav-link next" href="#z17">What Is Gradient Descent? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z16"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z17">
+      <div class="lesson-eyebrow">Lesson 17</div>
+      <h2 class="lesson-title">What Is Gradient Descent?</h2>
+      <p class="lesson-thesis">Gradient descent is a method for adjusting model parameters in a direction that reduces the loss.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Current Parameters</span><span class="node-sub">current position</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Loss</span><span class="node-sub">how bad?</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Gradient</span><span class="node-sub">direction of change</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Update</span><span class="node-sub">small step</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Lower Loss</span><span class="node-sub">improved model</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">The gradient gives information about how changing parameters would affect the loss. Gradient descent uses that information to take small steps toward lower loss. The idea matters more here than the calculus behind it.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> walking down a hill in fog: you cannot see the whole landscape, but you can feel which direction slopes downward and take a small step.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z16'>← How Does a Neural Network Learn?</a>
+        <a class="lesson-nav-link next" href="#z18">What Is NLP? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z17"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+  <section class="chapter-divider" id="part4">
+    <div class="chapter-roman">IV</div><div class="chapter-info">
+      <div class="chapter-eyebrow">Part 4 &middot; Lessons 18&ndash;25</div>
+      <h2 class="chapter-title">Language &amp; Mathematical Foundations</h2>
+      <p class="chapter-desc">How human language becomes numerical representations, and how models reason in terms of scores and probabilities.</p>
+    </div>
   </section>
 
-  <section class="chapter-divider" id="part3"><div class="chapter-roman">III</div><div class="chapter-info"><div class="chapter-eyebrow">Part 3 &middot; Lessons 05&ndash;07</div><h2 class="chapter-title">From Rules to Learning</h2><p class="chapter-desc">This is the key shift: instead of writing every rule ourselves, we can let a machine learn patterns from examples.</p></div></section>
+    <section class="lesson" id="z18">
+      <div class="lesson-eyebrow">Lesson 18</div>
+      <h2 class="lesson-title">What Is NLP?</h2>
+      <p class="lesson-thesis">Natural Language Processing is the field of AI concerned with helping computers work with human language.</p>
 
-  <section class="lesson" id="s05">
-    <div class="lesson-eyebrow">Lesson 05</div><h2 class="lesson-title">Programming vs. Machine Learning</h2><p class="lesson-thesis">Traditional programming gives the computer the rules; machine learning gives it examples and lets it discover useful patterns.</p>
-    <div class="diagram compare-row"><div class="compare-col"><div class="compare-title compare-a">TRADITIONAL PROGRAMMING</div><div class="diagram flow-col"><div class="node">Rules</div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node">Data</div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node kind-green">Output</div></div></div><div class="compare-divider">VS</div><div class="compare-col"><div class="compare-title compare-b">MACHINE LEARNING</div><div class="diagram flow-col"><div class="node">Data + Examples</div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node kind-violet">Learning</div><div class="arrow arrow-vert"><svg viewBox="0 0 16 44" class="arrow-svg-v" preserveAspectRatio="none"><line x1="8" y1="2" x2="8" y2="34" class="arrow-line"/><polygon points="2,34 8,44 14,34" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.4s" repeatCount="indefinite" path="M8,2 L8,34"/></circle></svg></div><div class="node kind-green">Model / Prediction</div></div></div></div>
-    <div class="lesson-body"><p class="explain">In traditional programming, a developer tries to describe the rules directly. For example, you might write: <em>if the temperature is above 30&deg;C, call it hot.</em> In machine learning, you can instead provide many examples such as 35&deg;C &rarr; hot, 28&deg;C &rarr; warm, and 15&deg;C &rarr; cold. The learning system looks for a pattern that explains those examples and can use that pattern on new data.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> teaching a child the difference between cats and dogs. You can write hundreds of rules, or you can show many examples and let the child notice the patterns.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s04">&larr; What Is an Algorithm?</a><a class="lesson-nav-link next" href="#s06">What Is Artificial Intelligence? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s05"><span class="done-box"></span> Mark as understood</label></div>
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Human Language</span><span class="node-sub">words + grammar + context</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">NLP</span><span class="node-sub">processing</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Representation</span><span class="node-sub">machine-readable form</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Task</span><span class="node-sub">translate / classify / generate</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">NLP covers tasks such as translation, question answering, summarization, sentiment analysis, and text generation. Modern NLP relies heavily on deep learning, especially Transformer-based models.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a translator standing between a person who speaks human language and a system that works with numerical representations.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z17'>← What Is Gradient Descent?</a>
+        <a class="lesson-nav-link next" href="#z19">How Can Computers Process Text? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z18"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z19">
+      <div class="lesson-eyebrow">Lesson 19</div>
+      <h2 class="lesson-title">How Can Computers Process Text?</h2>
+      <p class="lesson-thesis">Text has to be converted from human-readable symbols into numerical representations that a neural network can compute on.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Text</span><span class="node-sub">human-readable</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Tokens</span><span class="node-sub">pieces</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Token IDs</span><span class="node-sub">integers</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Vectors</span><span class="node-sub">rich numbers</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Neural Network</span><span class="node-sub">computation</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">An LLM does not receive a sentence as a human mind does. The text is broken into tokens, mapped to token IDs, and represented as vectors before it moves through the neural network.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> turning a written recipe into a sequence of labeled ingredients and measurements that a machine can process.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z18'>← What Is NLP?</a>
+        <a class="lesson-nav-link next" href="#z20">What Is Tokenization? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z19"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z20">
+      <div class="lesson-eyebrow">Lesson 20</div>
+      <h2 class="lesson-title">What Is Tokenization?</h2>
+      <p class="lesson-thesis">Tokenization breaks text into smaller pieces called tokens so a model can process language consistently.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Sentence</span><span class="node-sub">raw text</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Tokenizer</span><span class="node-sub">split into pieces</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Tokens</span><span class="node-sub">words / subwords / symbols</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">IDs</span><span class="node-sub">numbers</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A token can be a whole word, part of a word, punctuation, or another small text unit. Tokenization gives the model a fixed vocabulary of pieces it can represent.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> cutting a sentence into LEGO bricks: common pieces can stay large, while unusual words can be broken into smaller pieces.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z19'>← How Can Computers Process Text?</a>
+        <a class="lesson-nav-link next" href="#z21">What Is a Vector? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z20"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z21">
+      <div class="lesson-eyebrow">Lesson 21</div>
+      <h2 class="lesson-title">What Is a Vector?</h2>
+      <p class="lesson-thesis">A vector is an ordered list of numbers that can represent a point, direction, or useful features in a mathematical space.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Object</span><span class="node-sub">word / item</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Numbers</span><span class="node-sub">[0.2, -0.4, 0.8, …]</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Vector</span><span class="node-sub">numerical representation</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Computation</span><span class="node-sub">compare / transform</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Vectors let computers perform mathematical operations on representations. In machine learning, a vector can encode useful information about an input or learned representation.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a row of coordinates on a map: instead of saying 'where is it?' in words, you describe its position using numbers.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z20'>← What Is Tokenization?</a>
+        <a class="lesson-nav-link next" href="#z22">What Is a Vector Space? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z21"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z22">
+      <div class="lesson-eyebrow">Lesson 22</div>
+      <h2 class="lesson-title">What Is a Vector Space?</h2>
+      <p class="lesson-thesis">A vector space gives numerical representations a geometric place where distance and direction can help describe relationships.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Vectors</span><span class="node-sub">points</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Dimensions</span><span class="node-sub">axes</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Distance</span><span class="node-sub">closeness</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Relationships</span><span class="node-sub">patterns</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A vector can be thought of as a point in a space with many dimensions. In learned representations, related items may end up with similar positions, making mathematical comparison useful.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a giant map where every item has a location, and nearby locations can indicate related things.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z21'>← What Is a Vector?</a>
+        <a class="lesson-nav-link next" href="#z23">What Is an Embedding? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z22"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z23">
+      <div class="lesson-eyebrow">Lesson 23</div>
+      <h2 class="lesson-title">What Is an Embedding?</h2>
+      <p class="lesson-thesis">An embedding is a learned vector representation that captures useful patterns or relationships in data.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Token</span><span class="node-sub">symbol</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Embedding Layer</span><span class="node-sub">lookup / transform</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Vector</span><span class="node-sub">learned representation</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Vector Space</span><span class="node-sub">relationships</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A token ID such as 4021 is just an identifier. An embedding turns that ID into a vector whose values are learned during training. Related concepts can develop related representations.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a map of a city: restaurants tend to live near restaurants, hospitals near hospitals, and schools near schools.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z22'>← What Is a Vector Space?</a>
+        <a class="lesson-nav-link next" href="#z24">What Is Probability? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z23"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z24">
+      <div class="lesson-eyebrow">Lesson 24</div>
+      <h2 class="lesson-title">What Is Probability?</h2>
+      <p class="lesson-thesis">Probability expresses how likely an event or outcome is, and language models use probabilities to rank possible next tokens.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Context</span><span class="node-sub">prompt so far</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Possible Tokens</span><span class="node-sub">many choices</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Scores</span><span class="node-sub">relative preference</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Probabilities</span><span class="node-sub">likelihoods</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">For a context such as 'The cat sat on the', a language model can assign different probabilities to possible next tokens. The model is not simply retrieving a single pre-written answer; it is estimating a distribution over possibilities.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a weather forecast: it does not say exactly what must happen; it gives different possible outcomes different likelihoods.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z23'>← What Is an Embedding?</a>
+        <a class="lesson-nav-link next" href="#z25">What Are Logits and Softmax? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z24"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z25">
+      <div class="lesson-eyebrow">Lesson 25</div>
+      <h2 class="lesson-title">What Are Logits and Softmax?</h2>
+      <p class="lesson-thesis">A model produces raw scores called logits; softmax converts those scores into a probability distribution.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Model Output</span><span class="node-sub">raw scores</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Logits</span><span class="node-sub">unnormalized</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Softmax</span><span class="node-sub">normalize</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Probabilities</span><span class="node-sub">sum to 1</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Logits are the raw numerical scores for possible next tokens. Softmax transforms them into values between 0 and 1 whose total is 1, making them easier to interpret as probabilities.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> judges first give contestants raw marks, then a final step turns those marks into normalized percentages.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z24'>← What Is Probability?</a>
+        <a class="lesson-nav-link next" href="#z26">What Is Generative AI? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z25"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+  <section class="chapter-divider" id="part5">
+    <div class="chapter-roman">V</div><div class="chapter-info">
+      <div class="chapter-eyebrow">Part 5 &middot; Lessons 26&ndash;29</div>
+      <h2 class="chapter-title">The LLM Bridge</h2>
+      <p class="chapter-desc">Put the pieces together: generative AI, language models, LLMs, and next-token generation.</p>
+    </div>
   </section>
 
-  <section class="lesson" id="s06">
-    <div class="lesson-eyebrow">Lesson 06</div><h2 class="lesson-title">What Is Artificial Intelligence?</h2><p class="lesson-thesis">Artificial Intelligence is the broad field of building systems that can perform tasks that appear intelligent.</p>
-    <div class="diagram hierarchy-wrap"><div class="ring ring-1"><span class="ring-label">Artificial Intelligence <em>— the broad field</em></span><div class="ring ring-2"><span class="ring-label">Machine Learning <em>— learns from data</em></span><div class="ring ring-3"><span class="ring-label">Deep Learning <em>— uses neural networks</em></span><div class="ring ring-4"><span class="ring-label">NLP <em>— works with language</em></span><div class="ring ring-5">LLMs<em>you are heading here</em></div></div></div></div></div></div>
-    <div class="lesson-body"><p class="explain"><strong>AI</strong> is the broadest idea in this course. It includes systems that work with language, images, speech, games, robotics, recommendations, and much more. Machine learning is one way to build AI systems: instead of writing every rule by hand, we let a system learn useful patterns from data. Deep learning is a family of machine-learning methods built around layered neural networks. LLMs sit much further down this tree and focus on language.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a university. AI is the whole university, machine learning is one department, deep learning is a specialization inside it, and LLMs are one specialized area within language.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s05">&larr; Programming vs. Machine Learning</a><a class="lesson-nav-link next" href="#s07">What Is Machine Learning? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s06"><span class="done-box"></span> Mark as understood</label></div>
+    <section class="lesson" id="z26">
+      <div class="lesson-eyebrow">Lesson 26</div>
+      <h2 class="lesson-title">What Is Generative AI?</h2>
+      <p class="lesson-thesis">Generative AI refers to systems that create new content such as text, images, audio, video, or code.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Input</span><span class="node-sub">prompt / context</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Generative Model</span><span class="node-sub">learned patterns</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Generation</span><span class="node-sub">new content</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Output</span><span class="node-sub">text / image / audio / code</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">Traditional AI systems are often described in terms of classification or prediction. Generative systems are designed to produce new content that follows patterns learned from data.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a musician who has studied many songs and can compose a new piece using patterns learned from them.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z25'>← What Are Logits and Softmax?</a>
+        <a class="lesson-nav-link next" href="#z27">What Is a Language Model? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z26"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z27">
+      <div class="lesson-eyebrow">Lesson 27</div>
+      <h2 class="lesson-title">What Is a Language Model?</h2>
+      <p class="lesson-thesis">A language model estimates what language is likely to come next given the context it has seen so far.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Context</span><span class="node-sub">text so far</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Language Model</span><span class="node-sub">predict likelihoods</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Next Token</span><span class="node-sub">most likely candidates</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Sequence</span><span class="node-sub">continues</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">A language model learns statistical patterns in sequences of tokens. Given context, it can assign probabilities to possible next tokens. This next-token objective is the central idea behind modern autoregressive LLMs.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> finishing a sentence in your head: after hearing the beginning, you have several possible next words, some much more likely than others.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z26'>← What Is Generative AI?</a>
+        <a class="lesson-nav-link next" href="#z28">What Is an LLM? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z27"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z28">
+      <div class="lesson-eyebrow">Lesson 28</div>
+      <h2 class="lesson-title">What Is an LLM?</h2>
+      <p class="lesson-thesis">A Large Language Model is a very large neural language model, typically Transformer-based, trained on huge amounts of text to learn language patterns.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Large Dataset</span><span class="node-sub">massive text</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Deep Network</span><span class="node-sub">many parameters</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Training</span><span class="node-sub">learn patterns</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">LLM</span><span class="node-sub">language model</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">The three words matter: 'large' refers to scale, 'language' refers to the kind of data and task, and 'model' refers to the learned system. An LLM is not a database of answers; it is a learned parameterized model that processes token sequences.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a student who has read an enormous library and learned patterns from it, then uses those learned patterns to produce an answer.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z27'>← What Is a Language Model?</a>
+        <a class="lesson-nav-link next" href="#z29">How Does an LLM Generate Text? &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z28"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+
+    <section class="lesson" id="z29">
+      <div class="lesson-eyebrow">Lesson 29</div>
+      <h2 class="lesson-title">How Does an LLM Generate Text?</h2>
+      <p class="lesson-thesis">An autoregressive LLM generates a response by predicting one token at a time and feeding each new token back into the context.</p>
+
+      <div class="diagram flow-row">
+        <div class="node "><span class="node-label">Prompt</span><span class="node-sub">input text</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Tokenize</span><span class="node-sub">tokens + IDs</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-amber"><span class="node-label">Embeddings</span><span class="node-sub">vectors</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Transformer</span><span class="node-sub">context processing</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Logits</span><span class="node-sub">raw scores</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Softmax</span><span class="node-sub">probabilities</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node "><span class="node-label">Next Token</span><span class="node-sub">choose one</span></div>
+<div class="arrow">&#8594;</div>
+<div class="node kind-green"><span class="node-label">Repeat</span><span class="node-sub">until done</span></div>
+      </div>
+
+      <div class="lesson-body">
+        <p class="explain">At a high level, the pipeline is: text becomes tokens, tokens become numerical representations, the Transformer processes the context, the model produces logits for possible next tokens, softmax gives probabilities, and a token is selected. That token is appended to the context and the process repeats.</p>
+        <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> writing a story one word at a time: after each word, you look at everything written so far and decide what should come next.</div></div>
+      </div>
+
+      <div class="lesson-nav">
+        <a class='lesson-nav-link prev' href='#z28'>← What Is an LLM?</a>
+        <a class="lesson-nav-link next" href="#final-quiz">Foundation Quiz &rarr;</a>
+      </div>
+      <div class="lesson-footer">
+        <label class="mark-done"><input type="checkbox" class="done-check" data-lesson="z29"><span class="done-box"></span> Mark as understood</label>
+      </div>
+    </section>
+
+    <section class="lesson" id="z30">
+  <div class="lesson-eyebrow">Lesson 30</div>
+
+  <h2 class="lesson-title">What Is a Transformer?</h2>
+
+  <p class="lesson-thesis">
+    A Transformer is a neural-network architecture designed to process sequences
+    by allowing each token to use information from other relevant tokens in its context.
+  </p>
+
+  <div class="diagram flow-row">
+
+    <div class="node">
+      <span class="node-label">Tokens</span>
+      <span class="node-sub">pieces of text</span>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="node">
+      <span class="node-label">Embeddings</span>
+      <span class="node-sub">numerical representations</span>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="node">
+      <span class="node-label">Attention</span>
+      <span class="node-sub">tokens exchange information</span>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="node">
+      <span class="node-label">Feed-Forward</span>
+      <span class="node-sub">refines representations</span>
+    </div>
+
+    <div class="arrow">&#8594;</div>
+
+    <div class="node kind-green">
+      <span class="node-label">Context-Aware Tokens</span>
+      <span class="node-sub">richer representations</span>
+    </div>
+
+  </div>
+
+  <div class="lesson-body">
+
+    <p class="explain">
+      A Transformer is a type of neural-network architecture that became extremely
+      important for modern language models. Instead of processing every word in
+      isolation, it allows tokens to consider other tokens in the sequence and
+      build context-aware representations.
+    </p>
+
+    <p class="explain">
+      The most important mechanism inside a Transformer is <strong>attention</strong>.
+      Attention allows a token to determine which other tokens are important to it
+      and gather useful information from them. Transformers also contain feed-forward
+      networks, residual connections, normalization, and other components that help
+      the network learn effectively.
+    </p>
+
+    <p class="explain">
+      Modern LLMs such as GPT-style models are built using Transformer-based
+      architectures. The exact architecture can differ between models, but the
+      Transformer provides the core machinery for understanding relationships
+      between tokens.
+    </p>
+
+    <div class="note note-analogy">
+      <span class="note-icon">&#128161;</span>
+      <div>
+        <strong>Think of it like:</strong>
+        Imagine a group of students reading the same paragraph. Instead of every
+        student reading only their own word, each student can look around the room,
+        decide which other words are important, gather that information, and update
+        their understanding. That is the basic intuition behind attention inside
+        a Transformer.
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="note-icon">&#128640;</span>
+      <div>
+        <strong>The big picture:</strong>
+        Tokens become vectors → attention mixes information between tokens →
+        feed-forward networks refine each token's representation → the process
+        repeats through multiple Transformer layers.
+      </div>
+    </div>
+
+  </div>
+
+  <div class="lesson-nav">
+    <a class="lesson-nav-link prev" href="#z29">
+      &larr; How Does an LLM Generate Text?
+    </a>
+
+    <a class="lesson-nav-link next" href="#final-quiz">
+      Foundation Quiz &rarr;
+    </a>
+  </div>
+
+  <div class="lesson-footer">
+    <label class="mark-done">
+      <input type="checkbox" class="done-check" data-lesson="z30">
+      <span class="done-box"></span>
+      Mark as understood
+    </label>
+  </div>
+</section>
+
+
+  <section class="quiz-block quiz-final" id="final-quiz" data-quiz-total="20">
+    <div class="quiz-header">
+      <span class="quiz-icon">&#129504;</span>
+      <div>
+        <div class="quiz-title">Foundation Quiz &mdash; Are You Ready for LLMs?</div>
+        <div class="quiz-score" data-score="0">Score: <span class="score-val">0</span> / 20</div>
+      </div>
+    </div>
+    <p class="quiz-intro">This quiz checks whether the core ideas connect in your head. Don't worry about memorizing exact definitions; focus on understanding the flow from computers and data all the way to next-token prediction.</p>
+
+      <div class="quiz-q" data-explain="A computer takes input, processes it according to instructions, and produces an output.">
+        <p class="quiz-question">1. What is the basic flow of a computer system?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">Data → Model → Training</button><button class="quiz-opt" data-correct="true">Input → Processing → Output</button><button class="quiz-opt" data-correct="false">Prompt → Token → Embedding</button><button class="quiz-opt" data-correct="false">Weights → Loss → Backpropagation</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Data can be numbers, text, images, audio, video, and many other forms of information.">
+        <p class="quiz-question">2. What is data?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">Only numbers</button><button class="quiz-opt" data-correct="false">Only text</button><button class="quiz-opt" data-correct="true">Information represented in a form a computer can store and process</button><button class="quiz-opt" data-correct="false">A computer program</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="An algorithm describes the procedure; a program implements instructions that a computer can execute.">
+        <p class="quiz-question">3. What is the main difference between an algorithm and a program?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="true">An algorithm is a step-by-step procedure; a program is a concrete implementation of instructions</button><button class="quiz-opt" data-correct="false">A program is always mathematical</button><button class="quiz-opt" data-correct="false">An algorithm can only work with AI</button><button class="quiz-opt" data-correct="false">There is no difference</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Machine learning uses data and a learning process to adjust a model rather than requiring every useful rule to be explicitly written.">
+        <p class="quiz-question">4. How does machine learning differ from traditional programming?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">ML never uses data</button><button class="quiz-opt" data-correct="false">Traditional programming always learns automatically</button><button class="quiz-opt" data-correct="true">ML learns useful patterns from examples instead of relying only on hand-written rules</button><button class="quiz-opt" data-correct="false">ML does not produce outputs</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="AI is the broad field; machine learning is one approach within it; deep learning is machine learning based on layered neural networks.">
+        <p class="quiz-question">5. Which relationship is correct?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">Deep Learning is part of AI, but ML is unrelated</button><button class="quiz-opt" data-correct="true">AI contains ML, and ML contains Deep Learning</button><button class="quiz-opt" data-correct="false">AI is part of Deep Learning</button><button class="quiz-opt" data-correct="false">ML and AI are exactly the same</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Training adjusts a model's parameters so it can use learned patterns on new inputs.">
+        <p class="quiz-question">6. What is a machine learning model?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">The raw training dataset</button><button class="quiz-opt" data-correct="true">A learned system with parameters that can produce predictions or outputs</button><button class="quiz-opt" data-correct="false">A programming language</button><button class="quiz-opt" data-correct="false">A GPU</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Inference is using an already-trained model; its learned weights normally remain fixed.">
+        <p class="quiz-question">7. What happens during normal inference?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">The model's weights are continuously rewritten</button><button class="quiz-opt" data-correct="true">The model uses its learned parameters to process an input and produce an output</button><button class="quiz-opt" data-correct="false">The training dataset is deleted</button><button class="quiz-opt" data-correct="false">The model creates a new vocabulary</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Weights are learned numbers that determine the influence of different inputs.">
+        <p class="quiz-question">8. What does a weight do in a neuron?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">It stores the entire dataset</button><button class="quiz-opt" data-correct="true">It controls how strongly an input contributes to the neuron's calculation</button><button class="quiz-opt" data-correct="false">It converts text to audio</button><button class="quiz-opt" data-correct="false">It guarantees a correct prediction</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Without useful non-linearity, stacking layers would be much less expressive.">
+        <p class="quiz-question">9. Why are activation functions important?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="true">They add non-linearity so networks can learn richer patterns</button><button class="quiz-opt" data-correct="false">They remove all parameters</button><button class="quiz-opt" data-correct="false">They replace training data</button><button class="quiz-opt" data-correct="false">They turn every output into text</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Loss measures the gap between a model's prediction and the desired answer.">
+        <p class="quiz-question">10. What is loss?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">The model's final answer</button><button class="quiz-opt" data-correct="true">A measure of how wrong a prediction was</button><button class="quiz-opt" data-correct="false">The number of layers</button><button class="quiz-opt" data-correct="false">The vocabulary size</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Backpropagation works backward through the network to calculate gradients that show how parameters contributed to the loss.">
+        <p class="quiz-question">11. What does backpropagation do?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">It writes the training dataset</button><button class="quiz-opt" data-correct="true">It traces how the loss relates to parameters so they can be adjusted</button><button class="quiz-opt" data-correct="false">It tokenizes text</button><button class="quiz-opt" data-correct="false">It generates the final answer</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Gradient descent uses gradient information to take parameter-update steps intended to reduce loss.">
+        <p class="quiz-question">12. What is gradient descent used for?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">Selecting a font</button><button class="quiz-opt" data-correct="true">Reducing loss by updating model parameters in useful directions</button><button class="quiz-opt" data-correct="false">Splitting words into tokens</button><button class="quiz-opt" data-correct="false">Storing images</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Natural Language Processing focuses on enabling computers to work with human language.">
+        <p class="quiz-question">13. What is NLP?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">A type of computer hardware</button><button class="quiz-opt" data-correct="true">A field focused on working with human language</button><button class="quiz-opt" data-correct="false">A database system</button><button class="quiz-opt" data-correct="false">A programming syntax</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="The model processes numerical representations such as token IDs and vectors.">
+        <p class="quiz-question">14. Why must text be represented numerically before a neural network can process it?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="true">Neural networks operate on numerical representations</button><button class="quiz-opt" data-correct="false">Words are too short</button><button class="quiz-opt" data-correct="false">Text cannot be stored</button><button class="quiz-opt" data-correct="false">Numbers are always more accurate</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Tokenization converts text into the smaller pieces a model's vocabulary represents.">
+        <p class="quiz-question">15. What does tokenization do?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">It trains the entire model</button><button class="quiz-opt" data-correct="true">It breaks text into tokens</button><button class="quiz-opt" data-correct="false">It turns probabilities into logits</button><button class="quiz-opt" data-correct="false">It removes all punctuation permanently</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Embeddings turn identifiers into learned numerical representations that can capture useful relationships.">
+        <p class="quiz-question">16. What is an embedding?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">A raw token ID</button><button class="quiz-opt" data-correct="true">A learned vector representation</button><button class="quiz-opt" data-correct="false">A type of loss</button><button class="quiz-opt" data-correct="false">A training dataset</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="The model can assign different probabilities to possible next tokens.">
+        <p class="quiz-question">17. What does probability tell us in next-token prediction?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">How large the model is</button><button class="quiz-opt" data-correct="true">How likely different possible outcomes are</button><button class="quiz-opt" data-correct="false">How many layers exist</button><button class="quiz-opt" data-correct="false">How much storage a model uses</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Logits are unnormalized scores; softmax turns them into probabilities that sum to 1.">
+        <p class="quiz-question">18. What is the relationship between logits and softmax?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">Softmax produces logits from text</button><button class="quiz-opt" data-correct="true">Logits are raw scores; softmax converts them into a probability distribution</button><button class="quiz-opt" data-correct="false">They are unrelated</button><button class="quiz-opt" data-correct="false">Logits are probabilities already</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="Autoregressive LLMs repeatedly predict a next token, append it to the context, and continue.">
+        <p class="quiz-question">19. What is an LLM fundamentally doing when it generates text?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">Looking up every response from a fixed answer database</button><button class="quiz-opt" data-correct="true">Predicting one token at a time using the context so far</button><button class="quiz-opt" data-correct="false">Changing its weights after every user message</button><button class="quiz-opt" data-correct="false">Ignoring previous tokens</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+      <div class="quiz-q" data-explain="This is the conceptual pipeline you will unpack in the main LLM course.">
+        <p class="quiz-question">20. Which sequence best connects the foundations to an LLM?</p>
+        <div class="quiz-options"><button class="quiz-opt" data-correct="false">LLM → Data → Computer → Algorithm</button><button class="quiz-opt" data-correct="true">Text → Tokens → IDs → Embeddings → Transformer → Next-token probabilities</button><button class="quiz-opt" data-correct="false">GPU → Website → Database → Algorithm</button><button class="quiz-opt" data-correct="false">Probability → Program → Image → Token</button></div>
+        <div class="quiz-feedback"></div>
+      </div>
+
+    <div class="readiness" id="readiness"></div>
+    <div class="quiz-reset"><button id="resetquiz" type="button">Reset quiz</button></div>
   </section>
 
-  <section class="lesson" id="s07">
-    <div class="lesson-eyebrow">Lesson 07</div><h2 class="lesson-title">What Is Machine Learning?</h2><p class="lesson-thesis">Machine learning is a way of building systems that improve at a task by learning patterns from examples.</p>
-    <div class="diagram flow-row"><div class="node">Training Data<span class="node-sub">past examples</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Learning<span class="node-sub">find patterns</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-amber">Model<span class="node-sub">learned pattern</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green">Prediction</div></div><div class="loop-chip">&#8635; training repeats, comparing predictions with known answers and improving the model</div>
-    <div class="lesson-body"><p class="explain">A machine-learning model starts with parameters that are not yet useful. During training, it sees examples, makes predictions, measures how wrong those predictions are, and adjusts itself. After many rounds, it can learn patterns that help it make predictions on new data it has not seen before. That basic idea is the foundation underneath neural networks and, eventually, LLMs.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> learning to throw darts. You throw, someone tells you that you are too far left, you adjust, and after many attempts your throws become more accurate.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s06">&larr; What Is Artificial Intelligence?</a><a class="lesson-nav-link next" href="#s08">What Is Deep Learning? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s07"><span class="done-box"></span> Mark as understood</label></div>
+  <section class="lesson" id="ready">
+    <div class="lesson-eyebrow">Next Step</div>
+    <h2 class="lesson-title">You're Ready for LLM, From Zero.</h2>
+    <p class="lesson-thesis">You now have the foundation needed to understand how language moves through a Transformer and becomes an LLM response.</p>
+    <div class="lesson-body">
+      <p class="explain">The main course starts where this page ends: tokenization, token IDs, embeddings, positional information, attention, Query / Key / Value, Transformers, causal masking, next-token prediction, training, inference, RAG, tools, and agents.</p>
+      <div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> you have learned the alphabet, vocabulary, and grammar of the subject. Now it's time to open the Transformer and see how the whole machine works.</div></div>
+    </div>
+    <div class="lesson-nav">
+      <a class="lesson-nav-link prev" href="#final-quiz">&larr; Foundation Quiz</a>
+      <a class="lesson-nav-link next" href="index.html">Enter LLM, From Zero &rarr;</a>
+    </div>
   </section>
 
-  <section class="chapter-divider" id="part4"><div class="chapter-roman">IV</div><div class="chapter-info"><div class="chapter-eyebrow">Part 4 &middot; Lessons 08&ndash;12</div><h2 class="chapter-title">Neural Networks &amp; Language</h2><p class="chapter-desc">Now we introduce the machinery underneath modern deep learning and the bridge from numbers to human language.</p></div></section>
-
-  <section class="lesson" id="s08">
-    <div class="lesson-eyebrow">Lesson 08</div><h2 class="lesson-title">What Is Deep Learning?</h2><p class="lesson-thesis">Deep learning is machine learning built from many layers of neural-network transformations.</p>
-    <div class="diagram flow-row"><div class="node">Input<span class="node-sub">raw information</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Layer 1</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Layer 2</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Layer N</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green">Output</div></div>
-    <div class="lesson-body"><p class="explain">Deep learning is not a completely different kind of learning from machine learning. It is a way of doing machine learning with <strong>many layers</strong> of learned transformations. Early layers can learn simpler patterns, while later layers can combine those patterns into more complex ones. This ability to stack many layers is why deep-learning models can handle complicated inputs such as images, audio, and language.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a team of workers on an assembly line. The first worker makes a simple change, the next builds on it, and after many stations the raw material has become something much more useful.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s07">&larr; What Is Machine Learning?</a><a class="lesson-nav-link next" href="#s09">What Is a Neural Network? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s08"><span class="done-box"></span> Mark as understood</label></div>
-  </section>
-
-  <section class="lesson" id="s09">
-    <div class="lesson-eyebrow">Lesson 09</div><h2 class="lesson-title">What Is a Neural Network?</h2><p class="lesson-thesis">A neural network is a collection of connected mathematical operations whose learned weights let it discover useful patterns.</p>
-    <div class="diagram flow-row"><div class="node">Input<span class="node-sub">numbers</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Hidden Layer 1</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Hidden Layers</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green">Output<span class="node-sub">prediction</span></div></div>
-    <div class="lesson-body"><p class="explain">A neural network takes numbers as input and passes them through layers of simple mathematical operations. The important part is that the network has <strong>learned weights</strong> that control how strongly different signals influence one another. During training, those weights are adjusted so the network becomes better at its task. Stack enough layers together and the network can learn surprisingly complex patterns.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a chain of filters. Each filter changes the information a little, and the final result is much more useful than the raw input.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s08">&larr; What Is Deep Learning?</a><a class="lesson-nav-link next" href="#s10">What Is a Model? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s09"><span class="done-box"></span> Mark as understood</label></div>
-  </section>
-
-  <section class="lesson" id="s10">
-    <div class="lesson-eyebrow">Lesson 10</div><h2 class="lesson-title">What Is a Model?</h2><p class="lesson-thesis">A model is the learned mathematical system that uses patterns from training to make predictions or produce outputs.</p>
-    <div class="diagram flow-row"><div class="node">Training Data<span class="node-sub">examples</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Training</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-amber">Model<span class="node-sub">learned parameters</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green">New Input<span class="node-sub">→ output</span></div></div>
-    <div class="lesson-body"><p class="explain">When people say <em>"the model learned"</em>, they mean that training changed a large collection of numbers inside the system. Those learned numbers encode patterns that can be reused later. The trained model can then take a new input and use what it learned to make a prediction, classify something, generate text, or perform another task.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a student who has studied thousands of examples. The student is not carrying every example into the exam; they are using what they learned from those examples to solve a new question.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s09">&larr; What Is a Neural Network?</a><a class="lesson-nav-link next" href="#s11">What Are Parameters? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s10"><span class="done-box"></span> Mark as understood</label></div>
-  </section>
-
-  <section class="lesson" id="s11">
-    <div class="lesson-eyebrow">Lesson 11</div><h2 class="lesson-title">What Are Parameters?</h2><p class="lesson-thesis">Parameters are the learned numbers inside a model that are adjusted during training to improve its behavior.</p>
-    <div class="diagram flow-row"><div class="node">Prediction</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-red">Error / Loss</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-amber">Update Parameters<span class="node-sub">small adjustments</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green">Better Model</div></div><div class="loop-chip">&#8635; repeat many times during training</div>
-    <div class="lesson-body"><p class="explain">Parameters are the numbers a model learns. In a neural network, many of them are called <strong>weights</strong>. At the beginning of training, these numbers are not yet useful. Training repeatedly nudges them so the model's predictions become better. A large language model can contain billions of these learned numbers, but the basic idea is still simple: <strong>training changes parameters; inference uses them.</strong></p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> the settings on a huge mixing board. Training keeps adjusting the knobs until the system produces better results for the task it is learning.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s10">&larr; What Is a Model?</a><a class="lesson-nav-link next" href="#s12">What Is NLP? &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s11"><span class="done-box"></span> Mark as understood</label></div>
-  </section>
-
-  <section class="lesson" id="s12">
-    <div class="lesson-eyebrow">Lesson 12</div><h2 class="lesson-title">What Is NLP?</h2><p class="lesson-thesis">Natural Language Processing is the field that helps computers work with human language.</p>
-    <div class="diagram flow-row"><div class="node">Human Language<span class="node-sub">words + context</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-amber">NLP<span class="node-sub">language → computation</span></div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-violet">Language Model</div><div class="arrow"><svg viewBox="0 0 60 16" class="arrow-svg" preserveAspectRatio="none"><line x1="2" y1="8" x2="50" y2="8" class="arrow-line"/><polygon points="50,2 60,8 50,14" class="arrow-head"/><circle r="2.6" class="arrow-dot"><animateMotion dur="1.8s" repeatCount="indefinite" path="M2,8 L50,8"/></circle></svg></div><div class="node kind-green">Useful Output<span class="node-sub">answer, summary, translation</span></div></div>
-    <div class="lesson-body"><p class="explain">Human language is messy: words can have multiple meanings, sentences depend on context, and the same idea can be expressed in many ways. <strong>Natural Language Processing (NLP)</strong> is the field that builds methods for working with this language. Modern NLP systems turn text into numerical representations that neural networks can process, then turn the resulting computations back into useful outputs such as answers, summaries, translations, or generated text.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> a translator between two worlds: humans communicate with words and meaning, while neural networks operate on numbers. NLP helps bridge that gap.</div></div></div>
-    <div class="lesson-nav"><a class="lesson-nav-link prev" href="#s11">&larr; What Are Parameters?</a><a class="lesson-nav-link next" href="#finish">You Are Ready &rarr;</a></div><div class="lesson-footer"><label class="mark-done"><input type="checkbox" class="done-check" data-lesson="s12"><span class="done-box"></span> Mark as understood</label></div>
-  </section>
-
-  <section class="chapter-divider" id="finish"><div class="chapter-roman">&#10003;</div><div class="chapter-info"><div class="chapter-eyebrow">Foundation Complete</div><h2 class="chapter-title">You Are Ready for LLM, From Zero.</h2><p class="chapter-desc">You now have the vocabulary and mental model needed for the main course. Next, we zoom in on the family tree, neural networks, NLP, tokenization, embeddings, attention, and Transformers.</p></div></section>
-  <section class="lesson"><div class="lesson-body"><p class="explain">The main course starts with <strong>The Family Tree of an LLM</strong> and builds forward from there. You don't need to memorize everything on this page. The goal was simply to make the words familiar enough that the next lessons feel like a continuation instead of a completely new language.</p><div class="note note-analogy"><span class="note-icon">&#128161;</span><div><strong>Think of it like:</strong> learning the alphabet before reading a book. You haven't learned the whole language yet &mdash; you've just removed the first barrier.</div></div><div class="lesson-nav"><a class="lesson-nav-link next" href="index.html">Start LLM, From Zero &rarr;</a></div></div></section>
-
-  <div class="footer">Built as the beginner foundation for <strong>LLM, From Zero</strong> &middot; follow the lessons in order; each one prepares you for the next.</div>
+  <div class="footer">Built for teaching &middot; start with the basics, follow the flowing ideas, and enter the main LLM course when you're ready.</div>
 </main>
+
 <script src="js/start-from-zero.js"></script>
 </body>
 </html>
