@@ -394,6 +394,32 @@ main{margin-left:280px; max-width:900px; padding:0 48px 120px;}
 .attn-word.attn-miss{background:rgba(248,113,113,.15); color:var(--red); text-decoration:line-through;}
 .attn-pronoun{color:var(--amber); font-weight:700;}
 
+/* ---------- cross-page beginner link ---------- */
+.beginner-cta{
+  position:relative; margin-top:32px; padding:24px 226px 24px 28px; border-radius:14px;
+  background:linear-gradient(120deg,rgba(255,180,84,.08),rgba(91,157,255,.06));
+  border:1px solid rgba(255,180,84,.3);
+}
+.beginner-cta-text{flex:1; min-width:240px;}
+.beginner-cta-title{font-family:var(--display); font-size:15.5px; font-weight:600; margin-bottom:5px;}
+.beginner-cta-sub{font-size:13px; color:var(--text-dim);}
+
+/* pinned to the right-center of the box itself, not the viewport */
+.beginner-cta-btn{
+  position:absolute; right:24px; top:50%; transform:translateY(-50%);
+  font-family:var(--mono); font-size:12.5px; color:#0b0f1a; background:var(--amber); text-decoration:none;
+  padding:13px 22px; border-radius:24px; font-weight:600; white-space:nowrap;
+  box-shadow:0 4px 20px rgba(255,180,84,.35);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.beginner-cta-btn:hover{transform:translateY(-50%) translateX(-4px); box-shadow:0 6px 26px rgba(255,180,84,.5);}
+.navrail-crosslink{
+  display:flex; align-items:center; gap:6px; font-family:var(--mono); font-size:11px; color:var(--amber);
+  text-decoration:none; padding:9px 10px; margin:0 0 14px; border:1px dashed rgba(255,180,84,.35);
+  border-radius:8px; background:rgba(255,180,84,.06);
+}
+.navrail-crosslink:hover{background:rgba(255,180,84,.12);}
+
 /* ---------- final quiz (distinct styling) ---------- */
 .final-quiz{
   margin:70px 0 50px; padding:38px 34px;
@@ -508,4 +534,9 @@ main{margin-left:280px; max-width:900px; padding:0 48px 120px;}
   #navtoggle{display:block;}
   main{margin-left:0; padding:0 20px 100px;}
   .hero{padding:90px 0 50px;}
+  .beginner-cta{padding:22px 24px;}
+  .beginner-cta-btn{
+    position:static; display:inline-block; margin-top:16px; transform:none;
+  }
+  .beginner-cta-btn:hover{transform:translateY(-2px);}
 }
